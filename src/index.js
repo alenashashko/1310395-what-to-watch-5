@@ -89,10 +89,6 @@ const MOVIES = [ // add genre
   {
     title: `Mindhunter`,
     picture: `img/mindhunter.jpg`
-  },
-  {
-    title: `Midnight Special`,
-    picture: `img/midnight-special.jpg`
   }
 ];
 

@@ -18,7 +18,7 @@ const MainPage = (props) => {
             <a className="logo__link">
               {cinemaName.split(``).map((character, index) => {
                 return (
-                  <span key={character} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
+                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                 );
               })}
             </a>
@@ -101,7 +101,7 @@ const MainPage = (props) => {
             <a className="logo__link logo__link--light">
               {cinemaName.split(``).map((character, index) => {
                 return (
-                  <span key={character} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
+                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                 );
               })}
             </a>
