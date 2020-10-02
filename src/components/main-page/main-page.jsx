@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MainPage = (props) => {
-  const {cinemaName, genres, movies} = props;
+  const {cinemaName, promoMovie, genres, movies} = props;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={movies[0].picture} alt={movies[0].name} />
+          <img src={promoMovie.picture} alt={promoMovie.title} />
         </div>
 
         <h1 className="visually-hidden">{cinemaName}</h1>
@@ -33,14 +34,14 @@ const MainPage = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={movies[0].poster} alt={`${movies[0]} poster`} width="218" height="327" />
+              <img src={promoMovie.poster} alt={`${promoMovie} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movies[0].name}</h2>
+              <h2 className="movie-card__title">{promoMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movies[0].genre}</span>
-                <span className="movie-card__year">{movies[0].year}</span>
+                <span className="movie-card__genre">{promoMovie.genre}</span>
+                <span className="movie-card__year">{promoMovie.year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -69,7 +70,7 @@ const MainPage = (props) => {
           <ul className="catalog__genres-list">
             {genres.map((genre) => {
               return (
-                <li key={genre} className="catalog__genres-item catalog__genres-item--active">
+                <li key={genre} className="catalog__genres-item">
                   <a href="#" className="catalog__genres-link">{genre}</a>
                 </li>
               );
@@ -77,14 +78,14 @@ const MainPage = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {movies.slice(1).map((movie) => {
+            {movies.map((movie) => {
               return (
-                <article key={movie.name} className="small-movie-card catalog__movies-card">
+                <article key={movie.title} className="small-movie-card catalog__movies-card">
                   <div className="small-movie-card__image">
-                    <img src={movie.picture} alt={movie.name} width="280" height="175" />
+                    <img src={movie.picture} alt={movie.title} width="280" height="175" />
                   </div>
                   <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{movie.name}</a>
+                    <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
                   </h3>
                 </article>
               );
@@ -113,6 +114,26 @@ const MainPage = (props) => {
       </div>
     </React.Fragment>
   );
+};
+
+MainPage.propTypes = {
+  cinemaName: PropTypes.string.isRequired,
+  promoMovie: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired
+      })
+  ).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired
+      })
+  ).isRequired
 };
 
 export default MainPage;
