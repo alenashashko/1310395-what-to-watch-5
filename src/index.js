@@ -94,6 +94,8 @@ const MOVIES = [ // add genre
 
 const CINEMA_NAME = `WTW`;
 
+const RATINGS = [1, 2, 3, 4, 5];
+
 ReactDom.render(
     <App cinemaName={CINEMA_NAME} promoMovie={PROMO_MOVIE} genres={GENRES} movies={MOVIES} />,
     document.querySelector(`#root`)
