@@ -7,8 +7,8 @@ const GENRES = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Hor
 
 const PROMO_MOVIE = {
   title: `The Grand Budapest Hotel`,
-  picture: `img/bg-the-grand-budapest-hotel.jpg`,
-  poster: `img/the-grand-budapest-hotel-poster.jpg`,
+  picture: `/img/bg-the-grand-budapest-hotel.jpg`,
+  poster: `/img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   year: 2014
 };
@@ -16,85 +16,87 @@ const PROMO_MOVIE = {
 const MOVIES = [ // add genre
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    picture: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
+    picture: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
   },
   {
     title: `Bohemian Rhapsody`,
-    picture: `img/bohemian-rhapsody.jpg`
+    picture: `/img/bohemian-rhapsody.jpg`
   },
   {
     title: `Macbeth`,
-    picture: `img/macbeth.jpg`
+    picture: `/img/macbeth.jpg`
   },
   {
     title: `Aviator`,
-    picture: `img/aviator.jpg`
+    picture: `/img/aviator.jpg`
   },
   {
     title: `We need to talk about Kevin`,
-    picture: `img/we-need-to-talk-about-kevin.jpg`
+    picture: `/img/we-need-to-talk-about-kevin.jpg`
   },
   {
     title: `What We Do in the Shadows`,
-    picture: `img/what-we-do-in-the-shadows.jpg`
+    picture: `/img/what-we-do-in-the-shadows.jpg`
   },
   {
     title: `Revenant`,
-    picture: `img/revenant.jpg`
+    picture: `/img/revenant.jpg`
   },
   {
     title: `Johnny English`,
-    picture: `img/johnny-english.jpg`
+    picture: `/img/johnny-english.jpg`
   },
   {
     title: `Shutter Island`,
-    picture: `img/shutter-island.jpg`
+    picture: `/img/shutter-island.jpg`
   },
   {
     title: `Pulp Fiction`,
-    picture: `img/pulp-fiction.jpg`
+    picture: `/img/pulp-fiction.jpg`
   },
   {
     title: `No Country for Old Men`,
-    picture: `img/no-country-for-old-men.jpg`
+    picture: `/img/no-country-for-old-men.jpg`
   },
   {
     title: `Snatch`,
-    picture: `img/snatch.jpg`
+    picture: `/img/snatch.jpg`
   },
   {
     title: `Moonrise Kingdom`,
-    picture: `img/moonrise-kingdom.jpg`
+    picture: `/img/moonrise-kingdom.jpg`
   },
   {
     title: `Seven Years in Tibet`,
-    picture: `img/seven-years-in-tibet.jpg`
+    picture: `/img/seven-years-in-tibet.jpg`
   },
   {
     title: `Midnight Special`,
-    picture: `img/midnight-special.jpg`
+    picture: `/img/midnight-special.jpg`
   },
   {
     title: `War of the Worlds`,
-    picture: `img/war-of-the-worlds.jpg`
+    picture: `/img/war-of-the-worlds.jpg`
   },
   {
     title: `Dardjeeling Limited`,
-    picture: `img/dardjeeling-limited.jpg`
+    picture: `/img/dardjeeling-limited.jpg`
   },
   {
     title: `Orlando`,
-    picture: `img/orlando.jpg`
+    picture: `/img/orlando.jpg`
   },
   {
     title: `Mindhunter`,
-    picture: `img/mindhunter.jpg`
+    picture: `/img/mindhunter.jpg`
   }
 ];
 
 const CINEMA_NAME = `WTW`;
 
+const RATINGS = [1, 2, 3, 4, 5];
+
 ReactDom.render(
-    <App cinemaName={CINEMA_NAME} promoMovie={PROMO_MOVIE} genres={GENRES} movies={MOVIES} />,
+    <App cinemaName={CINEMA_NAME} promoMovie={PROMO_MOVIE} genres={GENRES} movies={MOVIES} ratings={RATINGS}/>,
     document.querySelector(`#root`)
 );
