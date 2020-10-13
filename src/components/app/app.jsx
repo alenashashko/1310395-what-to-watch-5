@@ -9,7 +9,7 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPage from '../player-page/player-page';
 
 const App = (props) => {
-  const {promoMovie, cinemaName, genres, movies, ratings} = props;
+  const {cinemaName, movies, ratings} = props; // movies не те
 
   return (
     <BrowserRouter basename='/'>
@@ -40,7 +40,7 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
+App.propTypes = { // переделать
   cinemaName: PropTypes.string.isRequired,
   promoMovie: PropTypes.shape({
     title: PropTypes.string.isRequired,
