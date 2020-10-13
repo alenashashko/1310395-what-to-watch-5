@@ -1,23 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list';
-
-const createRatingTextVersion = (ratingScore) => {
-  if (ratingScore < 3) {
-    return `Bad`;
-  } else if (ratingScore < 5) {
-    return `Normal`;
-  } else if (ratingScore < 8) {
-    return `Good`;
-  } else if (ratingScore < 10) {
-    return `Very good`;
-  } else {
-    return `Awesome`;
-  }
-};
+import MovieOverview from '../movie-overview/movie-overview';
+// import MovieDetails from '../movie-details/movie-details';
+import MovieReviews from '../movie-reviews/movie-reviews';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, movies} = props;
+  const {cinemaName, movie, reviews, movies} = props;
   // id
 
   return (
@@ -96,27 +85,7 @@ const MoviePage = (props) => {
                 </ul>
               </nav>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{movie.ratingScore}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">
-                    {createRatingTextVersion(movie.ratingScore)}
-                  </span>
-                  <span className="movie-rating__count">{movie.ratingCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                {movie.description.map((it) => {
-                  return (
-                    <p key={it}>{it}</p>
-                  );
-                })}
-
-                <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: {movie.starring.join(`, `)}</strong></p>
-              </div>
+              <MovieReviews movie={movie} reviews={reviews}/>
             </div>
           </div>
         </div>
@@ -166,6 +135,15 @@ MoviePage.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired,
+        date: PropTypes.instanceOf(Date).isRequired,
+        rating: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired
+      })
+  ).isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,

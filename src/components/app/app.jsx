@@ -9,7 +9,7 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPage from '../player-page/player-page';
 
 const App = (props) => {
-  const {cinemaName, promoMovie, movies, ratings} = props;
+  const {cinemaName, promoMovie, movies, reviews, ratings} = props;
 
   return (
     <BrowserRouter basename='/'>
@@ -24,7 +24,7 @@ const App = (props) => {
           <MyListPage cinemaName={cinemaName} movies={movies} />
         </Route>
         <Route exact path='/films/:id' render={(routeProps) => (
-          <MoviePage cinemaName={cinemaName} movie={movies[0]} movies={movies}
+          <MoviePage cinemaName={cinemaName} movie={movies[0]} reviews={reviews} movies={movies}
             id={routeProps.match.params.id}
           />
         )}>
@@ -44,7 +44,7 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
+App.propTypes = { // date: PropTypes.object.isRequired ?
   cinemaName: PropTypes.string.isRequired,
   promoMovie: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -76,6 +76,15 @@ App.propTypes = {
         description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+      })
+  ).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired,
+        date: PropTypes.instanceOf(Date).isRequired,
+        rating: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired
       })
   ).isRequired,
   ratings: PropTypes.arrayOf(PropTypes.number).isRequired
