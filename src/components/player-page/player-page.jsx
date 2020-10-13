@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const PlayerPage = (props) => {
   const {movie} = props;
-  // src poster duration?
+  // poster ?
   // id
 
   return (

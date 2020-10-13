@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list';
 import MovieOverview from '../movie-overview/movie-overview';
 // import MovieDetails from '../movie-details/movie-details';
-import MovieReviews from '../movie-reviews/movie-reviews';
+// import MovieReviews from '../movie-reviews/movie-reviews';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, reviews, movies} = props;
-  // id
+  const {cinemaName, movie, movies} = props;
+  // id reviews
 
   return (
     <React.Fragment>
@@ -85,7 +85,7 @@ const MoviePage = (props) => {
                 </ul>
               </nav>
 
-              <MovieReviews movie={movie} reviews={reviews}/>
+              <MovieOverview movie={movie}/>
             </div>
           </div>
         </div>

@@ -19,9 +19,10 @@ class MoviesList extends PureComponent {
         {movies.map((movie) => {
           return (
             <MovieCard key={movie.id} movie={movie}
-              onMovieImageHover={() => this.setState({
+              onMovieHover={() => this.setState({
                 activeMovieCard: movie.id
               })}
+              isVideoPlaying={movie.id === this.state.activeMovieCard}
             />
           );
         })}
