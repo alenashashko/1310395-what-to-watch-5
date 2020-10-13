@@ -9,13 +9,13 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPage from '../player-page/player-page';
 
 const App = (props) => {
-  const {cinemaName, movies, ratings} = props; // movies не те
+  const {cinemaName, promoMovie, movies, ratings} = props; // movies не те
 
   return (
     <BrowserRouter basename='/'>
       <Switch>
         <Route exact path='/'>
-          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} genres={genres} movies={movies}/>
+          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} movies={movies}/>
         </Route>
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />
@@ -40,20 +40,38 @@ const App = (props) => {
   );
 };
 
-App.propTypes = { // переделать
+App.propTypes = {
   cinemaName: PropTypes.string.isRequired,
   promoMovie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    src: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired),
   }).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired
+        picture: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        ratingScore: PropTypes.number.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        duration: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string.isRequired),
       })
   ).isRequired,
   ratings: PropTypes.arrayOf(PropTypes.number).isRequired

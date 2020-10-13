@@ -111,7 +111,7 @@ const generateMovie = () => {
     id: nanoid(),
     title: MOVIES_INFO[randomMovieIndex].title,
     picture: MOVIES_INFO[randomMovieIndex].picture,
-    poster: `/img/the-grand-budapest-hotel-poster.jpg`,
+    poster: MOVIES_INFO[randomMovieIndex].picture,
     genre: GENRES[getRandomInteger(0, GENRES.length - 1)],
     year: getRandomInteger(1990, 2020),
     ratingScore: +(Math.random() * 10.05).toFixed(1),
@@ -124,5 +124,6 @@ const generateMovie = () => {
   };
 };
 
+export const PROMO_MOVIE = generateMovie();
 export const MOVIES = new Array(8).fill().map(generateMovie);
 
