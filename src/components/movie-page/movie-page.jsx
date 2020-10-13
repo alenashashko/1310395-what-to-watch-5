@@ -107,13 +107,15 @@ const MoviePage = (props) => {
               </div>
 
               <div className="movie-card__text">
-                <p></p>
+                {movie.description.map((it) => {
+                  return (
+                    <p key={it}>{it}</p>
+                  );
+                })}
 
-                <p></p>
+                <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
 
-                <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {movie.starring.join(`, `)}</strong></p>
               </div>
             </div>
           </div>

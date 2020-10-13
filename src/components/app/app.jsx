@@ -9,7 +9,7 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPage from '../player-page/player-page';
 
 const App = (props) => {
-  const {cinemaName, promoMovie, movies, ratings} = props; // movies не те
+  const {cinemaName, promoMovie, movies, ratings} = props;
 
   return (
     <BrowserRouter basename='/'>
