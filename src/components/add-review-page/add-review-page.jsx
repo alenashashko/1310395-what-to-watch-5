@@ -91,9 +91,9 @@ AddReviewPage.propTypes = {
     ratingCount: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired
 };
 

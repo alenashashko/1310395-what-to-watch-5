@@ -15,7 +15,7 @@ const App = (props) => {
     <BrowserRouter basename='/'>
       <Switch>
         <Route exact path='/'>
-          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} movies={movies}/>
+          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} movies={movies} />
         </Route>
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />
@@ -24,7 +24,9 @@ const App = (props) => {
           <MyListPage cinemaName={cinemaName} movies={movies} />
         </Route>
         <Route exact path='/films/:id' render={(routeProps) => (
-          <MoviePage cinemaName={cinemaName} movies={movies} id={routeProps.match.params.id}/>
+          <MoviePage cinemaName={cinemaName} movie={movies[0]} movies={movies}
+            id={routeProps.match.params.id}
+          />
         )}>
         </Route>
         <Route exact path='/films/:id/review' render={(routeProps) => (
@@ -34,7 +36,7 @@ const App = (props) => {
         )}>
         </Route>
         <Route exact path='/player/:id' render={(routeProps) => (
-          <PlayerPage id={routeProps.match.params.id} movie={movies[0]}/>
+          <PlayerPage id={routeProps.match.params.id} movie={movies[0]} />
         )}>
         </Route>
       </Switch>
@@ -55,9 +57,9 @@ App.propTypes = {
     ratingCount: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -71,9 +73,9 @@ App.propTypes = {
         ratingCount: PropTypes.number.isRequired,
         src: PropTypes.string.isRequired,
         duration: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
+        description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
         director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+        starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
       })
   ).isRequired,
   ratings: PropTypes.arrayOf(PropTypes.number).isRequired

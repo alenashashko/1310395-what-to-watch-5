@@ -118,7 +118,7 @@ const generateMovie = () => {
     ratingCount: getRandomInteger(1, 1000),
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     duration: `${getRandomInteger(1, 4)}h ${getRandomInteger(0, 59)}m`,
-    description: DESCRIPTION_PARTS.slice(0, getRandomInteger(1, DESCRIPTION_PARTS.length)).join(` `),
+    description: DESCRIPTION_PARTS.slice(0, getRandomInteger(1, DESCRIPTION_PARTS.length)),
     director: DIRECTORS[getRandomInteger(0, DIRECTORS.length - 1)],
     starring: ACTORS.slice(0, getRandomInteger(1, ACTORS.length))
   };
