@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, ratings} = props;
+  const {cinemaName, ratings, movie} = props;
   // id
 
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={movie.picture} alt={movie.title} />
         </div>
 
-        <h1 className="visually-hidden">WTW</h1>
+        <h1 className="visually-hidden">{cinemaName}</h1>
 
         <header className="page-header">
           <div className="logo">
@@ -28,7 +28,7 @@ const AddReviewPage = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="movie-page.html" className="breadcrumbs__link">{movie.title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -44,7 +44,7 @@ const AddReviewPage = (props) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={movie.poster} alt={`${movie.title} poster`} width="218" height="327" />
         </div>
       </div>
 
@@ -79,7 +79,22 @@ const AddReviewPage = (props) => {
 AddReviewPage.propTypes = {
   cinemaName: PropTypes.string.isRequired,
   ratings: PropTypes.arrayOf(PropTypes.number).isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    ratingScore: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    src: PropTypes.string.isRequired,
+    duration: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.arrayOf(PropTypes.string.isRequired),
+  }).isRequired
 };
 
 export default AddReviewPage;

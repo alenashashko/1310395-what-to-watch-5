@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MoviesList from '../movies-list/movies-list';
 
 const MyListPage = (props) => {
   const {cinemaName, movies} = props;
@@ -29,20 +30,7 @@ const MyListPage = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__movies-list">
-          {movies.map((movie) => {
-            return (
-              <article key={movie.title} className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src={movie.picture} alt={movie.title} width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
-                </h3>
-              </article>
-            );
-          })}
-        </div>
+        <MoviesList movies={movies}/>
       </section>
 
       <footer className="page-footer">

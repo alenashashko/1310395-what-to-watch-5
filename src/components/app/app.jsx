@@ -28,11 +28,13 @@ const App = (props) => {
         )}>
         </Route>
         <Route exact path='/films/:id/review' render={(routeProps) => (
-          <AddReviewPage cinemaName={cinemaName} ratings={ratings} id={routeProps.match.params.id} />
+          <AddReviewPage cinemaName={cinemaName} ratings={ratings} id={routeProps.match.params.id}
+            movie={movies[0]}
+          />
         )}>
         </Route>
         <Route exact path='/player/:id' render={(routeProps) => (
-          <PlayerPage id={routeProps.match.params.id} />
+          <PlayerPage id={routeProps.match.params.id} movie={movies[0]}/>
         )}>
         </Route>
       </Switch>
