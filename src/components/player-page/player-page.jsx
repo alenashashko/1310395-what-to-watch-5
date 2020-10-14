@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 const PlayerPage = (props) => {
   const {movie} = props;
-  // poster ?
   // id
 
   return (
     <div className="player">
-      <video src={movie.src} className="player__video" poster="/img/player-poster.jpg"></video>
+      <video src={movie.src} className="player__video" poster={movie.poster}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
