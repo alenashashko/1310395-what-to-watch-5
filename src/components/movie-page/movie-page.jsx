@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list';
 import MovieOverview from '../movie-overview/movie-overview';
@@ -21,13 +22,13 @@ const MoviePage = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 {cinemaName.split(``).map((character, index) => {
                   return (
                     <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                   );
                 })}
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -58,7 +59,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to="/films/:id/review" className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -100,13 +101,13 @@ const MoviePage = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               {cinemaName.split(``).map((character, index) => {
                 return (
                   <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                 );
               })}
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

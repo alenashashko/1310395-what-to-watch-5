@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReviewForm from '../review-form/review-form';
 
@@ -17,19 +18,19 @@ const AddReviewPage = (props) => {
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to="/" className="logo__link">
               {cinemaName.split(``).map((character, index) => {
                 return (
                   <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                 );
               })}
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">{movie.title}</a>
+                <Link to="/films/:id" className="breadcrumbs__link">{movie.title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
