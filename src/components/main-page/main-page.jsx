@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 import MoviesList from '../movies-list/movies-list';
 
 const MainPage = (props) => {
@@ -111,39 +111,9 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  cinemaName: PropTypes.string.isRequired,
-  promoMovie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        ratingScore: PropTypes.number.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        src: PropTypes.string.isRequired,
-        duration: PropTypes.number.isRequired,
-        description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-      })
-  ).isRequired,
+  cinemaName: proptypes.cinemaName,
+  promoMovie: proptypes.movie,
+  movies: proptypes.movies
 };
 
 export default MainPage;

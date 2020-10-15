@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 
 const createRatingTextVersion = (ratingScore) => {
   if (ratingScore < 3) {
@@ -46,21 +46,7 @@ const MovieOverview = (props) => {
 };
 
 MovieOverview.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired
+  movie: proptypes.movie
 };
 
 export default MovieOverview;

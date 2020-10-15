@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 
 const MovieCard = (props) => {
   const {movie, onMovieHover, isVideoPlaying} = props;
@@ -23,23 +23,9 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
-  onMovieHover: PropTypes.func.isRequired,
-  isVideoPlaying: PropTypes.bool.isRequired
+  movie: proptypes.movie,
+  onMovieHover: proptypes.onMovieHover,
+  isVideoPlaying: proptypes.isVideoPlaying
 };
 
 export default MovieCard;

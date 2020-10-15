@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 
 const AuthPage = (props) => {
   const {cinemaName} = props;
@@ -60,7 +60,7 @@ const AuthPage = (props) => {
 };
 
 AuthPage.propTypes = {
-  cinemaName: PropTypes.string.isRequired
+  cinemaName: proptypes.cinemaName
 };
 
 export default AuthPage;

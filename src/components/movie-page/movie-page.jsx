@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import MovieOverview from '../movie-overview/movie-overview';
 // import MovieDetails from '../movie-details/movie-details';
@@ -120,49 +120,11 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  cinemaName: PropTypes.string.isRequired,
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        date: PropTypes.instanceOf(Date).isRequired,
-        rating: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired
-      })
-  ).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        ratingScore: PropTypes.number.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        src: PropTypes.string.isRequired,
-        duration: PropTypes.number.isRequired,
-        description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-      })
-  ).isRequired,
-  id: PropTypes.string.isRequired
+  cinemaName: proptypes.cinemaName,
+  movie: proptypes.movie,
+  reviews: proptypes.reviews,
+  movies: proptypes.movies,
+  id: proptypes.id
 };
 
 export default MoviePage;

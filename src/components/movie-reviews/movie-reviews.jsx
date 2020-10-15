@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 
 const MovieReviews = (props) => {
   const {reviews} = props;
@@ -51,15 +51,7 @@ const MovieReviews = (props) => {
 };
 
 MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        date: PropTypes.instanceOf(Date).isRequired,
-        rating: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired
-      })
-  ).isRequired
+  reviews: proptypes.reviews
 };
 
 export default MovieReviews;

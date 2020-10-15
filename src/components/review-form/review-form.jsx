@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {proptypes} from '../../type';
 
 const ReviewForm = (props) => {
   const {ratings} = props;
@@ -31,7 +31,7 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
-  ratings: PropTypes.arrayOf(PropTypes.number).isRequired,
+  ratings: proptypes.ratings
 };
 
 export default ReviewForm;
