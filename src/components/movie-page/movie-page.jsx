@@ -60,7 +60,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to="/films/:id/review" className="btn movie-card__button">Add review</Link>
+                <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
