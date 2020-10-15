@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {formatMovieDuration} from '../../utils';
 
 const PlayerPage = (props) => {
   const {movie} = props;
@@ -17,7 +18,7 @@ const PlayerPage = (props) => {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{formatMovieDuration(movie.duration)}</div>
         </div>
 
         <div className="player__controls-row">
@@ -53,7 +54,7 @@ PlayerPage.propTypes = {
     ratingScore: PropTypes.number.isRequired,
     ratingCount: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
-    duration: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

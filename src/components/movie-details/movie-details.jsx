@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const MovieDetails = (props) => {
   const {movie} = props;
-  // duration
+  // duration 1h 39m
 
   return (
     <div className="movie-card__text movie-card__row">
@@ -28,7 +28,7 @@ const MovieDetails = (props) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">1h 39m</span>
+          <span className="movie-card__details-value">{movie.duration}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
@@ -54,7 +54,7 @@ MovieDetails.propTypes = {
     ratingScore: PropTypes.number.isRequired,
     ratingCount: PropTypes.number.isRequired,
     src: PropTypes.string.isRequired,
-    duration: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

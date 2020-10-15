@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const MovieReviews = (props) => {
   const {reviews} = props;
 
-  return ( // dateTime исправ
+  return ( // date и dateTime исправ
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
 
