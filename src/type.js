@@ -53,7 +53,6 @@ export const proptypes = {
         text: string.isRequired
       })
   ).isRequired,
-  ratings: arrayOf(number).isRequired,
   onMovieHover: func.isRequired,
   isVideoPlaying: bool.isRequired
 };

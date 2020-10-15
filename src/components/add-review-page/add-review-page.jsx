@@ -5,7 +5,7 @@ import {proptypes} from '../../type';
 import ReviewForm from '../review-form/review-form';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, ratings, movie} = props;
+  const {cinemaName, movie} = props;
   // id
 
   return (
@@ -52,7 +52,7 @@ const AddReviewPage = (props) => {
       </div>
 
       <div className="add-review">
-        <ReviewForm ratings={ratings} />
+        <ReviewForm />
       </div>
     </section>
   );
@@ -60,7 +60,6 @@ const AddReviewPage = (props) => {
 
 AddReviewPage.propTypes = {
   cinemaName: proptypes.cinemaName,
-  ratings: proptypes.ratings,
   id: proptypes.id,
   movie: proptypes.movie
 };

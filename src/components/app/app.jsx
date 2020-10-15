@@ -10,7 +10,7 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPage from '../player-page/player-page';
 
 const App = (props) => {
-  const {cinemaName, promoMovie, movies, reviews, ratings} = props;
+  const {cinemaName, promoMovie, movies, reviews} = props;
 
   return (
     <BrowserRouter basename='/'>
@@ -31,7 +31,7 @@ const App = (props) => {
         )}>
         </Route>
         <Route exact path='/films/:id/review' render={(routeProps) => (
-          <AddReviewPage cinemaName={cinemaName} ratings={ratings} id={routeProps.match.params.id}
+          <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id}
             movie={movies[0]}
           />
         )}>
@@ -49,8 +49,7 @@ App.propTypes = {
   cinemaName: proptypes.cinemaName,
   promoMovie: proptypes.movie,
   movies: proptypes.movies,
-  reviews: proptypes.reviews,
-  ratings: proptypes.ratings
+  reviews: proptypes.reviews
 };
 
 export default App;

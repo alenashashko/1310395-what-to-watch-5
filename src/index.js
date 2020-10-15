@@ -6,9 +6,8 @@ import {MOVIES} from './mocks/movies';
 import {REVIEWS} from './mocks/reviews';
 
 const CINEMA_NAME = `WTW`;
-const RATINGS = [1, 2, 3, 4, 5];
 
 ReactDom.render(
-    <App cinemaName={CINEMA_NAME} promoMovie={PROMO_MOVIE} movies={MOVIES} reviews={REVIEWS} ratings={RATINGS}/>,
+    <App cinemaName={CINEMA_NAME} promoMovie={PROMO_MOVIE} movies={MOVIES} reviews={REVIEWS}/>,
     document.querySelector(`#root`)
 );
