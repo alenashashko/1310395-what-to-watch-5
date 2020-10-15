@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {proptypes} from '../../type';
 
 const ReviewForm = (props) => {

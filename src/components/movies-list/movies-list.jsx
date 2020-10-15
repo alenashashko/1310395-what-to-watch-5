@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+
 import {proptypes} from '../../type';
 import MovieCard from '../movie-card/movie-card';
 

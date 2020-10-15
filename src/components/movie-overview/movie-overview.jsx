@@ -1,14 +1,16 @@
 import React from 'react';
 import {proptypes} from '../../type';
 
+import {TextRatingToNubmer} from '../../const';
+
 const createRatingTextVersion = (ratingScore) => {
-  if (ratingScore < 3) {
+  if (ratingScore < TextRatingToNubmer.BAD) {
     return `Bad`;
-  } else if (ratingScore < 5) {
+  } else if (ratingScore < TextRatingToNubmer.NORMAL) {
     return `Normal`;
-  } else if (ratingScore < 8) {
+  } else if (ratingScore < TextRatingToNubmer.GOOD) {
     return `Good`;
-  } else if (ratingScore < 10) {
+  } else if (ratingScore < TextRatingToNubmer.AWESOME) {
     return `Very good`;
   } else {
     return `Awesome`;
