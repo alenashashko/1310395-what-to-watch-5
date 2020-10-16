@@ -1,29 +1,35 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
+import {proptypes} from '../../type';
+import MoviesList from '../movies-list/movies-list';
+import MovieOverview from '../movie-overview/movie-overview';
+// import MovieDetails from '../movie-details/movie-details';
+// import MovieReviews from '../movie-reviews/movie-reviews';
 
 const MoviePage = (props) => {
-  const {cinemaName, movies} = props;
-  // id
+  const {cinemaName, movie, movies} = props;
+  // id reviews
 
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={movie.picture} alt={movie.title} />
           </div>
 
-          <h1 className="visually-hidden">WTW</h1>
+          <h1 className="visually-hidden">{cinemaName}</h1>
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to="/" className="logo__link">
                 {cinemaName.split(``).map((character, index) => {
                   return (
                     <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                   );
                 })}
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -35,10 +41,10 @@ const MoviePage = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{movie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{movie.genre}</span>
+                <span className="movie-card__year">{movie.year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -54,7 +60,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -63,7 +69,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={movie.poster} alt={`${movie.title} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -81,23 +87,7 @@ const MoviePage = (props) => {
                 </ul>
               </nav>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
-
-                <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
-
-                <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
-              </div>
+              <MovieOverview movie={movie}/>
             </div>
           </div>
         </div>
@@ -107,32 +97,18 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
-            {movies.map((movie) => {
-              return (
-                <article key={movie.title} className="small-movie-card catalog__movies-card">
-                  <div className="small-movie-card__image">
-                    <img src={movie.picture} alt={movie.title} width="280" height="175" />
-                  </div>
-                  <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
-                  </h3>
-                </article>
-              );
-            })}
-
-          </div>
+          <MoviesList movies={movies.filter((it) => it.genre === movie.genre)}/>
         </section>
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to="/" className="logo__link logo__link--light">
               {cinemaName.split(``).map((character, index) => {
                 return (
                   <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                 );
               })}
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -145,14 +121,11 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  cinemaName: PropTypes.string.isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired
-      })
-  ).isRequired,
-  id: PropTypes.string.isRequired
+  cinemaName: proptypes.cinemaName,
+  movie: proptypes.movie,
+  reviews: proptypes.reviews,
+  movies: proptypes.movies,
+  id: proptypes.id
 };
 
 export default MoviePage;

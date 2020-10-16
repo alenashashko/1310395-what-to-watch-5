@@ -1,5 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
+import {proptypes} from '../../type';
+import MoviesList from '../movies-list/movies-list';
 
 const MyListPage = (props) => {
   const {cinemaName, movies} = props;
@@ -8,13 +11,13 @@ const MyListPage = (props) => {
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to="/" className="logo__link">
             {cinemaName.split(``).map((character, index) => {
               return (
                 <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
               );
             })}
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">My list</h1>
@@ -29,31 +32,18 @@ const MyListPage = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__movies-list">
-          {movies.map((movie) => {
-            return (
-              <article key={movie.title} className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src={movie.picture} alt={movie.title} width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
-                </h3>
-              </article>
-            );
-          })}
-        </div>
+        <MoviesList movies={movies}/>
       </section>
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to="/" className="logo__link logo__link--light">
             {cinemaName.split(``).map((character, index) => {
               return (
                 <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
               );
             })}
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
@@ -65,13 +55,8 @@ const MyListPage = (props) => {
 };
 
 MyListPage.propTypes = {
-  cinemaName: PropTypes.string.isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired
-      })
-  ).isRequired
+  cinemaName: proptypes.cinemaName,
+  movies: proptypes.movies,
 };
 
 export default MyListPage;

@@ -1,34 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
+import {proptypes} from '../../type';
+import ReviewForm from '../review-form/review-form';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, ratings} = props;
+  const {cinemaName, movie} = props;
   // id
 
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={movie.picture} alt={movie.title} />
         </div>
 
-        <h1 className="visually-hidden">WTW</h1>
+        <h1 className="visually-hidden">{cinemaName}</h1>
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to="/" className="logo__link">
               {cinemaName.split(``).map((character, index) => {
                 return (
                   <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
                 );
               })}
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <Link to={`/films/${movie.id}`} className="breadcrumbs__link">{movie.title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -44,42 +47,21 @@ const AddReviewPage = (props) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={movie.poster} alt={`${movie.title} poster`} width="218" height="327" />
         </div>
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              {ratings.map((rating) => {
-                return (
-                  <React.Fragment key={rating}>
-                    <input className="rating__input" id={`star-${rating}`} type="radio" name="rating" value={rating.toString()} />
-                    <label className="rating__label" htmlFor={`star-${rating}`}>{`Rating ${rating}`}</label>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
-            </div>
-
-          </div>
-        </form>
+        <ReviewForm />
       </div>
     </section>
   );
 };
 
 AddReviewPage.propTypes = {
-  cinemaName: PropTypes.string.isRequired,
-  ratings: PropTypes.arrayOf(PropTypes.number).isRequired,
-  id: PropTypes.string.isRequired
+  cinemaName: proptypes.cinemaName,
+  id: proptypes.id,
+  movie: proptypes.movie
 };
 
 export default AddReviewPage;

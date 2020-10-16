@@ -1,8 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import {proptypes} from '../../type';
+import MoviesList from '../movies-list/movies-list';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, genres, movies} = props;
+  const {cinemaName, promoMovie, movies} = props;
+  const genresWithRepeating = movies.map((movie) => movie.genre);
+  const genres = Array.from(new Set(genresWithRepeating));
 
   return (
     <React.Fragment>
@@ -34,7 +38,7 @@ const MainPage = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={promoMovie.poster} alt={`${promoMovie} poster`} width="218" height="327" />
+              <img src={promoMovie.poster} alt={`${promoMovie.title} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -68,6 +72,9 @@ const MainPage = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
+            <li className="catalog__genres-item">
+              <a href="#" className="catalog__genres-link">All genres</a>
+            </li>
             {genres.map((genre) => {
               return (
                 <li key={genre} className="catalog__genres-item">
@@ -77,20 +84,8 @@ const MainPage = (props) => {
             })}
           </ul>
 
-          <div className="catalog__movies-list">
-            {movies.map((movie) => {
-              return (
-                <article key={movie.title} className="small-movie-card catalog__movies-card">
-                  <div className="small-movie-card__image">
-                    <img src={movie.picture} alt={movie.title} width="280" height="175" />
-                  </div>
-                  <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
-                  </h3>
-                </article>
-              );
-            })}
-          </div>
+          <MoviesList movies={movies}/>
+
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -117,21 +112,9 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  cinemaName: PropTypes.string.isRequired,
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
-  }).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired
-      })
-  ).isRequired
+  cinemaName: proptypes.cinemaName,
+  promoMovie: proptypes.movie,
+  movies: proptypes.movies
 };
 
 export default MainPage;

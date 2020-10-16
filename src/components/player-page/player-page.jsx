@@ -1,12 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const PlayerPage = () => {
+import {proptypes} from '../../type';
+import {formatMovieDuration} from '../../utils';
+
+const PlayerPage = (props) => {
+  const {movie} = props;
   // id
 
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="/img/player-poster.jpg"></video>
+      <video src={movie.src} className="player__video" poster={movie.poster}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -16,7 +19,7 @@ const PlayerPage = () => {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{formatMovieDuration(movie.duration)}</div>
         </div>
 
         <div className="player__controls-row">
@@ -41,7 +44,8 @@ const PlayerPage = () => {
 };
 
 PlayerPage.propTypes = {
-  id: PropTypes.string.isRequired
+  id: proptypes.id,
+  movie: proptypes.movie
 };
 
 export default PlayerPage;
