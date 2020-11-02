@@ -1,16 +1,16 @@
 import {
   number,
   shape,
-  func,
   arrayOf,
   string,
-  bool,
-  instanceOf
+  instanceOf,
+  object
 } from 'prop-types';
 
 // date: PropTypes.object.isRequired ?
 export default {
   id: string.isRequired,
+  src: string.isRequired,
   cinemaName: string.isRequired,
   movie: shape({
     id: string.isRequired,
@@ -53,8 +53,7 @@ export default {
         text: string.isRequired
       })
   ).isRequired,
-  onMovieHover: func.isRequired,
-  isVideoPlaying: bool.isRequired
+  history: object.isRequired
 };
 
 
