@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {proptypes} from '../../type';
+import proptypes from '../../type';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import MainPage from '../main-page/main-page';
 import AuthPage from '../auth-page/auth-page';

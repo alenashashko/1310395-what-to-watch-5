@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {proptypes} from '../../type';
+import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import MovieOverview from '../movie-overview/movie-overview';
 // import MovieDetails from '../movie-details/movie-details';

@@ -9,7 +9,7 @@ import {
 } from 'prop-types';
 
 // date: PropTypes.object.isRequired ?
-export const proptypes = {
+export default {
   id: string.isRequired,
   cinemaName: string.isRequired,
   movie: shape({
