@@ -31,7 +31,7 @@ const MovieReviews = (props) => {
 
         {reviews.slice(Math.ceil(reviews.length / 2)).map((review) => {
           return (
-            <div key={review.text} className="review">
+            <div key={review.id} className="review">
               <blockquote className="review__quote">
                 <p className="review__text">{review.text}</p>
 
