@@ -10,3 +10,5 @@ export const TextRatingToNubmer = {
   GOOD: 8,
   AWESOME: 10
 };
+
+export const tabNames = [`Overview`, `Details`, `Reviews`];
