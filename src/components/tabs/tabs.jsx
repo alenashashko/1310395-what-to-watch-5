@@ -1,20 +1,20 @@
 import React, {PureComponent} from 'react';
-import {tabNames} from '../../const';
+import {tabs} from '../../const';
 
 class Tabs extends PureComponent {
   constructor(props) { // ?
     super(props);
 
     this.state = {
-      activeTab: tabNames[0]
+      activeTab: tabs[0]
     };
 
     this._handleTabClick = this._handleTabClick.bind(this);
   }
 
-  _handleTabClick(tabName) {
+  _handleTabClick(tab) {
     this.setState({
-      activeTab: tabName
+      activeTab: tab
     });
   }
 
@@ -23,13 +23,13 @@ class Tabs extends PureComponent {
 
     return (
       <ul className="movie-nav__list">
-        {tabNames.map((tabName) =>
+        {tabs.map((tab) =>
           <li
-            key={tabName}
-            className={`movie-nav__item ${activeTab === tabName ? `movie-nav__item--active` : ``}`}>
+            key={tab}
+            className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
             <a href="#" className="movie-nav__link"
-              onClick={() => this._handleTabClick(tabName)}>
-              {tabName}
+              onClick={() => this._handleTabClick(tab)}>
+              {tab}
             </a>
           </li>)}
       </ul>
