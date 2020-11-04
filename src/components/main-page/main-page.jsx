@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {proptypes} from '../../type';
+import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 
 const MainPage = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {proptypes} from '../../type';
+import proptypes from '../../type';
 
 const MovieDetails = (props) => {
   const {movie} = props;

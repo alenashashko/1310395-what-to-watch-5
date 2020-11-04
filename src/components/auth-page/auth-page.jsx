@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {proptypes} from '../../type';
+import proptypes from '../../type';
 
 const AuthPage = (props) => {
   const {cinemaName} = props;
