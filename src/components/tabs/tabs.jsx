@@ -12,7 +12,7 @@ class Tabs extends PureComponent {
     super(props);
 
     this.state = {
-      activeTab: TabTypes.REVIEWS
+      activeTab: TabTypes.OVERVIEW
     };
 
     this._handleTabClick = this._handleTabClick.bind(this);
@@ -50,7 +50,10 @@ class Tabs extends PureComponent {
                 key={tab}
                 className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
                 <a href="#" className="movie-nav__link"
-                  onClick={() => this._handleTabClick(tab)}>
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    this._handleTabClick(tab);
+                  }}>
                   {tab}
                 </a>
               </li>)}
@@ -68,7 +71,4 @@ Tabs.propTypes = {
 };
 
 export default Tabs;
-
-// перерендер скачок
-// содержимое вкладок хранится в табахБ а не в компоненте страницы
 
