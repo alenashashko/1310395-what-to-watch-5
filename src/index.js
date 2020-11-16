@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+
 import App from './components/app/app';
 import {PROMO_MOVIE} from './mocks/movies'; // separate request
 import {MOVIES} from './mocks/movies';
