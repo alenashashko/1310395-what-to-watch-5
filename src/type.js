@@ -53,7 +53,9 @@ export default {
         text: string.isRequired
       })
   ).isRequired,
-  history: object.isRequired
+  history: object.isRequired,
+  genre: string.isRequired,
+  genres: arrayOf(string.isRequired).isRequired
 };
 
 

@@ -5,13 +5,13 @@ import {Provider} from 'react-redux';
 
 import App from './components/app/app';
 import {promoMovie} from './mocks/movies'; // separate request
-import {movies} from './mocks/movies';
+import {movies} from './mocks/movies'; // delete
 import {REVIEWS} from './mocks/reviews';
 import {reducer} from './store/reducer';
 
 const CINEMA_NAME = `WTW`;
 
-const store = createStore(
+const store = createStore( // delete movies prop
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );

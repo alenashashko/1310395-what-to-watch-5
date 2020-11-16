@@ -12,7 +12,7 @@ import PlayerPage from '../player-page/player-page';
 const App = (props) => {
   const {cinemaName, promoMovie, movies, reviews} = props;
 
-  return (
+  return ( // movies
     <BrowserRouter basename='/'>
       <Switch>
         <Route exact path='/'>

@@ -1,21 +1,16 @@
-import {filterMoviesByGenre} from '../core';
-
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
-  GET_MOVIES_BY_GENRE: `GET_MOVIES_BY_GENRE`
+  FILTER_MOVIES_BY_GENRE: `FILTER_MOVIES_BY_GENRE`
 };
 
-export const ActionCreator = { // ?
+export const ActionCreator = {
   changeGenre: (genre) => ({
     type: ActionType.CHANGE_GENRE,
     payload: genre
   }),
-  getMoviesByGenre: (movies, genre) => {
-    const moviesByGenre = filterMoviesByGenre(movies, genre);
-
+  filterMoviesByGenre: () => {
     return {
-      type: ActionType.GET_MOVIES_BY_GENRE,
-      payload: moviesByGenre
+      type: ActionType.FILTER_MOVIES_BY_GENRE
     };
   }
 };
