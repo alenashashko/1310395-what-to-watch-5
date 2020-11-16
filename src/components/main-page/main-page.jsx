@@ -2,11 +2,10 @@ import React from 'react';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
+import GenresList from '../genres-list/genres-list';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, movies} = props;
-  const genresWithRepeating = movies.map((movie) => movie.genre);
-  const genres = Array.from(new Set(genresWithRepeating));
+  const {cinemaName, promoMovie} = props;
 
   return (
     <React.Fragment>
@@ -71,20 +70,8 @@ const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            {genres.map((genre) => {
-              return (
-                <li key={genre} className="catalog__genres-item">
-                  <a href="#" className="catalog__genres-link">{genre}</a>
-                </li>
-              );
-            })}
-          </ul>
-
-          <MoviesList movies={movies}/>
+          <GenresList />
+          <MoviesList />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -113,8 +100,7 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   cinemaName: proptypes.cinemaName,
-  promoMovie: proptypes.movie,
-  movies: proptypes.movies
+  promoMovie: proptypes.movie
 };
 
 export default MainPage;

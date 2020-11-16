@@ -1,6 +1,6 @@
 import React from 'react';
-import proptypes from '../../type';
 
+import proptypes from '../../type';
 import {TextRatingToNubmer} from '../../const';
 
 const createRatingTextVersion = (ratingScore) => {

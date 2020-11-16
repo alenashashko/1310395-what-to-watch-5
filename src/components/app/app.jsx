@@ -1,7 +1,7 @@
 import React from 'react';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 import proptypes from '../../type';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import MainPage from '../main-page/main-page';
 import AuthPage from '../auth-page/auth-page';
 import MyListPage from '../my-list-page/my-list-page';
@@ -12,11 +12,11 @@ import PlayerPage from '../player-page/player-page';
 const App = (props) => {
   const {cinemaName, promoMovie, movies, reviews} = props;
 
-  return (
+  return ( // movies
     <BrowserRouter basename='/'>
       <Switch>
         <Route exact path='/'>
-          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} movies={movies} />
+          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} />
         </Route>
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />

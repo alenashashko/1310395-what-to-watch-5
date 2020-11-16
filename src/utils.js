@@ -7,6 +7,10 @@ export const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
 const formatDurationDisplaying = (duration) => {
   if (duration > 0 && duration < 10) {
     return `0${duration}`;
@@ -32,3 +36,4 @@ export const formatMovieDuration = (duration) => {
     formatDurationDisplaying(seconds)
   ].filter(Boolean).join(`:`);
 };
+
