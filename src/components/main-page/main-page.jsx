@@ -5,7 +5,7 @@ import MoviesList from '../movies-list/movies-list';
 import GenresList from '../genres-list/genres-list';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, movies} = props;
+  const {cinemaName, promoMovie} = props;
 
   return (
     <React.Fragment>
@@ -70,8 +70,8 @@ const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList movies={movies} />
-          <MoviesList movies={movies} />
+          <GenresList />
+          <MoviesList />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -100,8 +100,7 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   cinemaName: proptypes.cinemaName,
-  promoMovie: proptypes.movie,
-  movies: proptypes.movies
+  promoMovie: proptypes.movie
 };
 
 export default MainPage;

@@ -1,14 +1,15 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MovieCard from '../movie-card/movie-card';
 
 const MoviesList = (props) => {
-  const {movies} = props;
+  const {moviesByGenre} = props;
 
   return (
     <div className="catalog__movies-list">
-      {movies.map((movie) => {
+      {moviesByGenre.map((movie) => {
         return (
           <MovieCard key={movie.id} movie={movie} />
         );
@@ -18,7 +19,12 @@ const MoviesList = (props) => {
 };
 
 MoviesList.propTypes = {
-  movies: proptypes.movies
+  moviesByGenre: proptypes.movies
 };
 
-export default MoviesList;
+const mapStateToProps = (state) => ({
+  moviesByGenre: state.moviesByGenre
+});
+
+export {MoviesList};
+export default connect(mapStateToProps)(MoviesList);
