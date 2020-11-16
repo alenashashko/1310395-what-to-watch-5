@@ -18,3 +18,5 @@ export const TabTypes = {
 };
 
 export const tabs = Object.values(TabTypes);
+
+export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;

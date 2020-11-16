@@ -1,4 +1,5 @@
 import {MillisecondsInTimePeriod} from './const';
+import {DEFAULT_MOVIES_FILTER_VALUE} from './const';
 
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -35,4 +36,10 @@ export const formatMovieDuration = (duration) => {
 
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
+};
+
+export const getMoviesByGenre = (allMovies, genre) => {
+  return genre === DEFAULT_MOVIES_FILTER_VALUE ?
+    allMovies :
+    allMovies.filter((movie) => movie.genre === genre);
 };
