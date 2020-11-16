@@ -32,3 +32,7 @@ export const formatMovieDuration = (duration) => {
     formatDurationDisplaying(seconds)
   ].filter(Boolean).join(`:`);
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
