@@ -10,3 +10,11 @@ export const TextRatingToNubmer = {
   GOOD: 8,
   AWESOME: 10
 };
+
+export const TabTypes = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
+};
+
+export const tabs = Object.values(TabTypes);

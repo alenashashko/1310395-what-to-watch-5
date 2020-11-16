@@ -3,13 +3,16 @@ import {Link} from 'react-router-dom';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
-import MovieOverview from '../movie-overview/movie-overview';
-// import MovieDetails from '../movie-details/movie-details';
-// import MovieReviews from '../movie-reviews/movie-reviews';
+import Tabs from '../tabs/tabs';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, movies} = props;
-  // id reviews
+  const {cinemaName, movie, movies, reviews, id} = props;
+
+  const filterSimilarMovies = (allMovies) => {
+    const similarMovies = allMovies.filter((it) => it.genre === movie.genre && it.id !== movie.id);
+
+    return similarMovies.slice(0, 4);
+  };
 
   return (
     <React.Fragment>
@@ -73,21 +76,7 @@ const MoviePage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <MovieOverview movie={movie}/>
+              <Tabs movie={movie} reviews={reviews} id={id}/>
             </div>
           </div>
         </div>
@@ -97,7 +86,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList movies={movies.filter((it) => it.genre === movie.genre)}/>
+          <MoviesList movies={filterSimilarMovies(movies)} />
         </section>
 
         <footer className="page-footer">
