@@ -55,7 +55,9 @@ export default {
   ).isRequired,
   history: object.isRequired,
   genre: string.isRequired,
-  genres: arrayOf(string.isRequired).isRequired
+  genres: arrayOf(string.isRequired).isRequired,
+  ratingValue: number.isRequired,
+  reviewText: string.isRequired
 };
 
 
