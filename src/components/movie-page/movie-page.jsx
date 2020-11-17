@@ -2,17 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import proptypes from '../../type';
-import MoviesList from '../movies-list/movies-list';
+import SimilarMovies from '../similar-movies/similar-movies';
 import Tabs from '../tabs/tabs';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, movies, reviews, id} = props;
-
-  const filterSimilarMovies = (allMovies) => {
-    const similarMovies = allMovies.filter((it) => it.genre === movie.genre && it.id !== movie.id);
-
-    return similarMovies.slice(0, 4);
-  };
+  const {cinemaName, movie, reviews, id} = props;
 
   return (
     <React.Fragment>
@@ -86,7 +80,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList movies={filterSimilarMovies(movies)} />
+          <SimilarMovies movie={movie} />
         </section>
 
         <footer className="page-footer">
@@ -113,7 +107,6 @@ MoviePage.propTypes = {
   cinemaName: proptypes.cinemaName,
   movie: proptypes.movie,
   reviews: proptypes.reviews,
-  movies: proptypes.movies,
   id: proptypes.id
 };
 
