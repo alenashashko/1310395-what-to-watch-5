@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 import proptypes from '../../type';
-import VideoPlayer from '../video-player/video-player';
+import VideoPlayerWrapped from '../video-player/video-player';
 
 class MovieCard extends PureComponent {
   constructor(props) {
@@ -39,7 +39,7 @@ class MovieCard extends PureComponent {
         onClick={() => history.push(`/films/${movie.id}`)}>
         <div className="small-movie-card__image">
           {this.state.isVideoPlaying ? (
-            <VideoPlayer videoSrc={movie.src} pictureSrc={movie.picture} />
+            <VideoPlayerWrapped videoSrc={movie.src} pictureSrc={movie.picture} />
           ) : (
             <img src={movie.picture} alt={movie.title} width="280" height="175" />
           )}

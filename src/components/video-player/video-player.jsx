@@ -1,66 +1,25 @@
-import React, {PureComponent, createRef} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
+import withReadinessStatus from '../../hocs/with-readiness-status/with-readiness-status';
 
-class VideoPlayer extends PureComponent {
-  constructor(props) {
-    super(props);
+const VideoPlayer = (props) => {
+  const {videoRef, pictureSrc} = props;
 
-    this._timerId = null;
-    this._videoRef = createRef();
-
-    this.state = {
-      isDelayCompleted: false,
-      isVideoReadyToPlay: false
-    };
-  }
-
-  componentDidMount() {
-    const video = this._videoRef.current;
-
-    video.src = this.props.videoSrc;
-
-    video.oncanplaythrough = () => {
-      this.setState({
-        isVideoReadyToPlay: true
-      });
-    };
-
-    this._timerId = setTimeout(() => this.setState({
-      isDelayCompleted: true
-    }), 1000);
-  }
-
-  componentDidUpdate() {
-    const video = this._videoRef.current;
-
-    if (this.state.isDelayCompleted && this.state.isVideoReadyToPlay) {
-      video.play();
-    }
-  }
-
-  componentWillUnmount() {
-    const video = this._videoRef.current;
-
-    video.oncanplaythrough = null;
-
-    clearTimeout(this._timerId);
-  }
-
-  render() {
-    return (
-      <video width="280" height="175"
-        ref={this._videoRef}
-        muted
-        poster={this.props.pictureSrc}>
-      </video>
-    );
-  }
-}
-
-VideoPlayer.propTypes = {
-  videoSrc: proptypes.src,
-  pictureSrc: proptypes.src
+  return (
+    <video width="280" height="175"
+      ref={videoRef}
+      muted
+      poster={pictureSrc}>
+    </video>
+  );
 };
 
-export default VideoPlayer;
+VideoPlayer.propTypes = {
+  videoRef: PropTypes.object.isRequired,
+  pictureSrc: proptypes.src,
+
+};
+
+export default withReadinessStatus(VideoPlayer);
