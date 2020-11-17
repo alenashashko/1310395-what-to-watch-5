@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import proptypes from '../../type';
-import ReviewFormWrapped from '../review-form/review-form';
+import ReviewFormWithHOC from '../review-form/review-form';
 
 const AddReviewPage = (props) => {
   const {cinemaName, movie} = props;
@@ -52,7 +52,7 @@ const AddReviewPage = (props) => {
       </div>
 
       <div className="add-review">
-        <ReviewFormWrapped />
+        <ReviewFormWithHOC />
       </div>
     </section>
   );
