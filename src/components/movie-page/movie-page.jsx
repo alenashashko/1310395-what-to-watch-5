@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import proptypes from '../../type';
 import SimilarMovies from '../similar-movies/similar-movies';
-import TabsWithHOC from '../tabs/tabs';
+import TabsWrapped from '../tabs/tabs';
 
 const MoviePage = (props) => {
   const {cinemaName, movie, reviews, id} = props;
@@ -70,7 +70,7 @@ const MoviePage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabsWithHOC movie={movie} reviews={reviews} id={id}/>
+              <TabsWrapped movie={movie} reviews={reviews} id={id}/>
             </div>
           </div>
         </div>

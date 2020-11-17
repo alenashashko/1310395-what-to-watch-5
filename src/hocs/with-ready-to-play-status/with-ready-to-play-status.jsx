@@ -3,8 +3,8 @@ import React, {PureComponent, createRef} from 'react';
 import proptypes from '../../type';
 import {extend} from '../../utils';
 
-const withReadinessStatus = (Component) => {
-  class WithReadinessStatus extends PureComponent {
+const withReadyToPlayStatus = (Component) => {
+  class WithReadyToPlayStatus extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -61,12 +61,12 @@ const withReadinessStatus = (Component) => {
     }
   }
 
-  WithReadinessStatus.propTypes = {
+  WithReadyToPlayStatus.propTypes = {
     videoSrc: proptypes.src,
   };
 
-  return WithReadinessStatus;
+  return WithReadyToPlayStatus;
 };
 
-export default withReadinessStatus;
+export default withReadyToPlayStatus;
 

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 import proptypes from '../../type';
-import VideoPlayerWithHOC from '../video-player/video-player';
+import VideoPlayerWrapped from '../video-player/video-player';
 import withVideoPlayingStatus from '../../hocs/with-video-playing-status/with-video-playing-status';
 
 const MovieCard = (props) => {
@@ -17,7 +17,7 @@ const MovieCard = (props) => {
       onClick={() => history.push(`/films/${movie.id}`)}>
       <div className="small-movie-card__image">
         {isVideoPlaying ? (
-          <VideoPlayerWithHOC videoSrc={movie.src} pictureSrc={movie.picture} />
+          <VideoPlayerWrapped videoSrc={movie.src} pictureSrc={movie.picture} />
         ) : (
           <img src={movie.picture} alt={movie.title} width="280" height="175" />
         )}

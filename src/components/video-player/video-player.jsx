@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
-import withReadinessStatus from '../../hocs/with-readiness-status/with-readiness-status';
+import withReadyToPlayStatus from '../../hocs/with-readiness-status/with-readiness-status';
 
 const VideoPlayer = (props) => {
   const {videoRef, pictureSrc} = props;
@@ -22,4 +22,4 @@ VideoPlayer.propTypes = {
 
 };
 
-export default withReadinessStatus(VideoPlayer);
+export default withReadyToPlayStatus(VideoPlayer);

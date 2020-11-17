@@ -1,5 +1,8 @@
 import React, {PureComponent} from 'react';
 
+import proptypes from '../../type';
+import {MOVIES_PER_PAGE} from '../../const';
+
 const withPageNumber = (Component) => {
   class WithPageNumber extends PureComponent {
     constructor(props) {
@@ -10,6 +13,14 @@ const withPageNumber = (Component) => {
       };
 
       this._handleButtonClick = this._handleButtonClick.bind(this);
+      this._resetPageNumber = this._resetPageNumber.bind(this);
+    }
+
+    _getVisibleMovies() {
+      const {pageNumber} = this.state;
+      const {movies} = this.props;
+
+      return movies.slice(0, pageNumber * MOVIES_PER_PAGE);
     }
 
     _handleButtonClick() {
@@ -18,16 +29,30 @@ const withPageNumber = (Component) => {
       }));
     }
 
+    _resetPageNumber() {
+      this.setState({
+        pageNumber: 1
+      });
+    }
+
     render() {
+      const visibleMovies = this._getVisibleMovies();
+
       return (
         <Component
           {...this.props}
           pageNumber={this.state.pageNumber}
           onButtonClick={this._handleButtonClick}
+          visibleMovies={visibleMovies}
+          resetPageNumber={this._resetPageNumber}
         />
       );
     }
   }
+
+  WithPageNumber.propTypes = {
+    movies: proptypes.movies
+  };
 
   return WithPageNumber;
 };

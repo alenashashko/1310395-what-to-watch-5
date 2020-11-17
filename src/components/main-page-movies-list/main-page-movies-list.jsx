@@ -1,41 +1,52 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import ShowMoreButton from '../show-more-button/show-more-button';
-import {MOVIES_PER_PAGE} from '../../const';
 import withPageNumber from '../../hocs/with-page-number/with-page-number';
 
-const MainPageMoviesList = (props) => {
-  const {movies, pageNumber, onButtonClick} = props;
+class MainPageMoviesList extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  const getVisibleMovies = () => {
-    return movies.slice(0, pageNumber * MOVIES_PER_PAGE);
-  };
+  componentDidUpdate(prevProps) {
+    const {resetPageNumber, currentGenre} = this.props;
+    const {currentGenre: previousGenre} = prevProps;
 
-  const visibleMovies = getVisibleMovies();
+    if (previousGenre !== currentGenre) {
+      resetPageNumber();
+    }
+  }
 
-  return (
-    <React.Fragment>
-      <MoviesList movies={visibleMovies} />
+  render() {
+    const {movies, visibleMovies, onButtonClick} = this.props;
 
-      {visibleMovies.length < movies.length ?
-        <ShowMoreButton onButtonClick={onButtonClick} /> :
-        null}
-    </React.Fragment>
-  );
-};
+    return (
+      <React.Fragment>
+        <MoviesList movies={visibleMovies} />
+
+        {visibleMovies.length < movies.length ?
+          <ShowMoreButton onButtonClick={onButtonClick} /> :
+          null}
+      </React.Fragment>
+    );
+  }
+}
 
 MainPageMoviesList.propTypes = {
   movies: proptypes.movies,
-  pageNumber: proptypes.pageNumber,
-  onButtonClick: PropTypes.func.isRequired
+  visibleMovies: proptypes.movies,
+  onButtonClick: PropTypes.func.isRequired,
+  resetPageNumber: PropTypes.func.isRequired,
+  currentGenre: proptypes.genre
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.moviesByGenre
+  movies: state.moviesByGenre,
+  currentGenre: state.genre
 });
 
 export default connect(mapStateToProps)(withPageNumber(MainPageMoviesList));
