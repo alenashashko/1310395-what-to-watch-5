@@ -1,27 +1,18 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
 import MovieOverview from '../movie-overview/movie-overview';
 import MovieDetails from '../movie-details/movie-details';
 import MovieReviews from '../movie-reviews/movie-reviews';
-import {TabTypes} from '../../const';
-import {tabs} from '../../const';
+import {TabTypes, tabs} from '../../const';
+import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 
-class Tabs extends PureComponent {
-  constructor(props) {
-    super(props);
+const Tabs = (props) => {
+  const {activeTab, onTabClick, movie, reviews} = props;
+  // id фильма
 
-    this.state = {
-      activeTab: TabTypes.OVERVIEW
-    };
-
-    this._handleTabClick = this._handleTabClick.bind(this);
-  }
-
-  _getComponentByTab(tab) {
-    const {movie, reviews} = this.props;
-    // id фильма
-
+  const getComponentByTab = (tab) => {
     switch (tab) {
       case TabTypes.DETAILS:
         return <MovieDetails movie={movie} />;
@@ -30,45 +21,37 @@ class Tabs extends PureComponent {
       default:
         return <MovieOverview movie={movie} />;
     }
-  }
+  };
 
-  _handleTabClick(tab) {
-    this.setState({
-      activeTab: tab
-    });
-  }
-
-  render() {
-    const {activeTab} = this.state;
-
-    return (
-      <React.Fragment>
-        <nav className="movie-nav movie-card__nav">
-          <ul className="movie-nav__list">
-            {tabs.map((tab) =>
-              <li
-                key={tab}
-                className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
-                <a href="#" className="movie-nav__link"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    this._handleTabClick(tab);
-                  }}>
-                  {tab}
-                </a>
-              </li>)}
-          </ul>
-        </nav>
-        {this._getComponentByTab(activeTab)}
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <nav className="movie-nav movie-card__nav">
+        <ul className="movie-nav__list">
+          {tabs.map((tab) =>
+            <li
+              key={tab}
+              className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
+              <a href="#" className="movie-nav__link"
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onTabClick(tab);
+                }}>
+                {tab}
+              </a>
+            </li>)}
+        </ul>
+      </nav>
+      {getComponentByTab(activeTab)}
+    </React.Fragment>
+  );
+};
 
 Tabs.propTypes = {
+  activeTab: PropTypes.string.isRequired,
+  onTabClick: PropTypes.func.isRequired,
   movie: proptypes.movie,
   reviews: proptypes.reviews
 };
 
-export default Tabs;
+export default withActiveTab(Tabs);
 
