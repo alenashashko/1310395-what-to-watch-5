@@ -1,51 +1,125 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router';
 
 import proptypes from '../../type';
 import {formatMovieDuration} from '../../utils';
+import withPlayerManager from '../../hocs/with-player-manager/with-player-manager';
+import {MS_IN_SEC, ABSENT_PROGRESS_IN_PERSENT, FULL_PROGRESS_IN_PERCENT} from '../../const';
 
-const PlayerPage = (props) => {
-  const {movie} = props;
-  // id
+class PlayerPage extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="player">
-      <video src={movie.src} className="player__video" poster={movie.poster}></video>
+    this._onExitClick = this._onExitClick.bind(this);
+  }
 
-      <button type="button" className="player__exit">Exit</button>
+  _onExitClick() {
+    const {movie, destroy, history} = this.props;
 
-      <div className="player__controls">
-        <div className="player__controls-row">
-          <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+    destroy();
+
+    history.push(`/films/${movie.id}`);
+  }
+
+  render() {
+    const {
+      movie,
+      duration,
+      playbackTime,
+      isPlaying,
+      forwardContainerRef,
+      forwardVideoRef,
+      onCanPlayThrough,
+      onTimeUpdate,
+      onVideoEnded,
+      onPauseButtonClick,
+      onPlayButtonClick,
+      onFullScreenButtonClick,
+      onProgressBarClick
+    } = this.props; // id
+
+    const msLeft = (duration - playbackTime) * MS_IN_SEC;
+    const progressInPercent = duration === ABSENT_PROGRESS_IN_PERSENT ?
+      ABSENT_PROGRESS_IN_PERSENT : (playbackTime / duration) * FULL_PROGRESS_IN_PERCENT;
+
+    return (
+      <div className="player" ref={forwardContainerRef}>
+        <video
+          ref={forwardVideoRef}
+          className="player__video"
+          src={movie.src}
+          poster={movie.poster}
+          onCanPlayThrough={onCanPlayThrough}
+          onTimeUpdate={onTimeUpdate}
+          onEnded={onVideoEnded}
+        />
+
+        <button type="button" className="player__exit" onClick={this._onExitClick}>Exit</button>
+
+        <div className="player__controls">
+          <div className="player__controls-row">
+            <div className="player__time">
+              <progress
+                className="player__progress"
+                value={progressInPercent}
+                max="100"
+                onClick={onProgressBarClick}
+              />
+              <div className="player__toggler" style={{left: `${progressInPercent}%`}}>Toggler</div>
+            </div>
+            <div className="player__time-value">{formatMovieDuration(msLeft)}</div>
           </div>
-          <div className="player__time-value">{formatMovieDuration(movie.duration)}</div>
-        </div>
 
-        <div className="player__controls-row">
-          <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__controls-row">
+            {isPlaying ? (
+              <button type="button" className="player__play" onClick={onPauseButtonClick}>
+                <svg viewBox="0 0 14 21" width="14" height="21">
+                  <use xlinkHref="#pause"></use>
+                </svg>
+                <span>Pause</span>
+              </button>
+            ) : (
+              <button type="button" className="player__play" onClick={onPlayButtonClick}>
+                <svg viewBox="0 0 19 19" width="19" height="19">
+                  <use xlinkHref="#play-s"></use>
+                </svg>
+                <span>Play</span>
+              </button>
+            )}
 
-          <button type="button" className="player__full-screen">
-            <svg viewBox="0 0 27 27" width="27" height="27">
-              <use xlinkHref="#full-screen"></use>
-            </svg>
-            <span>Full screen</span>
-          </button>
+            <div className="player__name">{movie.title}</div>
+
+            <button type="button" className="player__full-screen" onClick={onFullScreenButtonClick}>
+              <svg viewBox="0 0 27 27" width="27" height="27">
+                <use xlinkHref="#full-screen"></use>
+              </svg>
+              <span>Full screen</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 PlayerPage.propTypes = {
   id: proptypes.id,
-  movie: proptypes.movie
+  movie: proptypes.movie,
+  history: proptypes.history,
+  forwardContainerRef: PropTypes.object.isRequired,
+  forwardVideoRef: PropTypes.object.isRequired,
+  duration: PropTypes.number.isRequired,
+  playbackTime: PropTypes.number.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onFullScreenButtonClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  onPauseButtonClick: PropTypes.func.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
+  onProgressBarClick: PropTypes.func.isRequired,
+  onCanPlayThrough: PropTypes.func.isRequired,
+  onVideoEnded: PropTypes.func.isRequired,
+  destroy: PropTypes.func.isRequired
 };
 
-export default PlayerPage;
+export default withPlayerManager(withRouter(PlayerPage));

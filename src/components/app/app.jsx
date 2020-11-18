@@ -7,7 +7,7 @@ import AuthPage from '../auth-page/auth-page';
 import MyListPage from '../my-list-page/my-list-page';
 import MoviePage from '../movie-page/movie-page';
 import AddReviewPage from '../add-review-page/add-review-page';
-import PlayerPage from '../player-page/player-page';
+import PlayerPageWrapped from '../player-page/player-page';
 
 const App = (props) => {
   const {cinemaName, promoMovie, movies, reviews} = props;
@@ -37,7 +37,7 @@ const App = (props) => {
         )}>
         </Route>
         <Route exact path='/player/:id' render={(routeProps) => (
-          <PlayerPage id={routeProps.match.params.id} movie={movies[0]} />
+          <PlayerPageWrapped id={routeProps.match.params.id} movie={movies[0]} />
         )}>
         </Route>
       </Switch>

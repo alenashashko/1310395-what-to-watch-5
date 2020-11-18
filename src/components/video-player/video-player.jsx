@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
-import withReadyToPlayStatus from '../../hocs/with-readiness-status/with-readiness-status';
+import withReadyToPlayStatus from '../../hocs/with-ready-to-play-status/with-ready-to-play-status';
 
 const VideoPlayer = (props) => {
   const {videoRef, pictureSrc} = props;
@@ -19,7 +19,6 @@ const VideoPlayer = (props) => {
 VideoPlayer.propTypes = {
   videoRef: PropTypes.object.isRequired,
   pictureSrc: proptypes.src,
-
 };
 
 export default withReadyToPlayStatus(VideoPlayer);

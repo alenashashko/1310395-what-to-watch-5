@@ -1,3 +1,7 @@
+export const MS_IN_SEC = 1000;
+export const ABSENT_PROGRESS_IN_PERSENT = 0;
+export const FULL_PROGRESS_IN_PERCENT = 100;
+
 export const MillisecondsInTimePeriod = {
   SECOND: 1000,
   MINUTE: 60000,

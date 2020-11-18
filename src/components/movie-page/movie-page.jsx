@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 
 import proptypes from '../../type';
@@ -6,7 +7,7 @@ import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, reviews, id} = props;
+  const {cinemaName, movie, reviews, id, history} = props;
 
   return (
     <React.Fragment>
@@ -45,7 +46,7 @@ const MoviePage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button onClick={() => history.push(`/player/${movie.id}`)} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -107,7 +108,8 @@ MoviePage.propTypes = {
   cinemaName: proptypes.cinemaName,
   movie: proptypes.movie,
   reviews: proptypes.reviews,
-  id: proptypes.id
+  id: proptypes.id,
+  history: proptypes.history
 };
 
-export default MoviePage;
+export default withRouter(MoviePage);

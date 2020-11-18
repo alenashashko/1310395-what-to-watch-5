@@ -8,10 +8,6 @@ import ShowMoreButton from '../show-more-button/show-more-button';
 import withPageNumber from '../../hocs/with-page-number/with-page-number';
 
 class MainPageMoviesList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidUpdate(prevProps) {
     const {resetPageNumber, currentGenre} = this.props;
     const {currentGenre: previousGenre} = prevProps;

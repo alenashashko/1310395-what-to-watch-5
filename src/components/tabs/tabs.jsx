@@ -41,6 +41,7 @@ const Tabs = (props) => {
             </li>)}
         </ul>
       </nav>
+
       {getComponentByTab(activeTab)}
     </React.Fragment>
   );
