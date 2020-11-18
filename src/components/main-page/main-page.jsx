@@ -2,7 +2,7 @@ import React from 'react';
 
 import proptypes from '../../type';
 import GenresList from '../genres-list/genres-list';
-import MainPageMoviesList from '../main-page-movies-list/main-page-movies-list';
+import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
 
 const MainPage = (props) => {
   const {cinemaName, promoMovie} = props;
@@ -71,7 +71,7 @@ const MainPage = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresList />
-          <MainPageMoviesList />
+          <MainPageMoviesListWrapped />
 
         </section>
 

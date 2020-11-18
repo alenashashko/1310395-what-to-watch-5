@@ -125,5 +125,5 @@ const generateMovie = () => {
 };
 
 export const promoMovie = generateMovie();
-export const movies = new Array(20).fill().map(generateMovie);
+export const movies = new Array(100).fill().map(generateMovie);
 

@@ -1,44 +1,35 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import ShowMoreButton from '../show-more-button/show-more-button';
-import {MOVIES_PER_PAGE} from '../../const';
+import withPageNumber from '../../hocs/with-page-number/with-page-number';
 
 class MainPageMoviesList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      pageNumber: 1
-    };
-
-    this._handleButtonClick = this._handleButtonClick.bind(this);
   }
 
-  _getVisibleMovies() {
-    const {movies} = this.props;
+  componentDidUpdate(prevProps) {
+    const {resetPageNumber, currentGenre} = this.props;
+    const {currentGenre: previousGenre} = prevProps;
 
-    return movies.slice(0, this.state.pageNumber * MOVIES_PER_PAGE);
-  }
-
-  _handleButtonClick() {
-    this.setState((prevState) => ({
-      pageNumber: prevState.pageNumber + 1
-    }));
+    if (previousGenre !== currentGenre) {
+      resetPageNumber();
+    }
   }
 
   render() {
-    const {movies} = this.props;
-    const visibleMovies = this._getVisibleMovies();
+    const {movies, visibleMovies, onButtonClick} = this.props;
 
     return (
       <React.Fragment>
         <MoviesList movies={visibleMovies} />
 
         {visibleMovies.length < movies.length ?
-          <ShowMoreButton onButtonClick={this._handleButtonClick} /> :
+          <ShowMoreButton onButtonClick={onButtonClick} /> :
           null}
       </React.Fragment>
     );
@@ -46,11 +37,16 @@ class MainPageMoviesList extends PureComponent {
 }
 
 MainPageMoviesList.propTypes = {
-  movies: proptypes.movies
+  movies: proptypes.movies,
+  visibleMovies: proptypes.movies,
+  onButtonClick: PropTypes.func.isRequired,
+  resetPageNumber: PropTypes.func.isRequired,
+  currentGenre: proptypes.genre
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.moviesByGenre
+  movies: state.moviesByGenre,
+  currentGenre: state.genre
 });
 
-export default connect(mapStateToProps)(MainPageMoviesList);
+export default connect(mapStateToProps)(withPageNumber(MainPageMoviesList));

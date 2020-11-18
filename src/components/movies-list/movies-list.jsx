@@ -1,7 +1,7 @@
 import React from 'react';
 
 import proptypes from '../../type';
-import MovieCard from '../movie-card/movie-card';
+import MovieCardWrapped from '../movie-card/movie-card';
 
 const MoviesList = (props) => {
   const {movies} = props;
@@ -10,7 +10,7 @@ const MoviesList = (props) => {
     <div className="catalog__movies-list">
       {movies.map((movie) => {
         return (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCardWrapped key={movie.id} movie={movie} />
         );
       })}
     </div>
