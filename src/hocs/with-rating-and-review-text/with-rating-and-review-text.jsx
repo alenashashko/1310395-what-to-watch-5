@@ -10,23 +10,23 @@ const withRatingAndReviewText = (Component) => {
         reviewText: ``
       };
 
-      this._handleFormSubmit = this._handleFormSubmit.bind(this);
-      this._handleTextChange = this._handleTextChange.bind(this);
-      this._handleRatingChange = this._handleRatingChange.bind(this);
+      this.handleFormSubmit = this.handleFormSubmit.bind(this);
+      this.handleTextChange = this.handleTextChange.bind(this);
+      this.handleRatingChange = this.handleRatingChange.bind(this);
     }
 
-    _handleFormSubmit(evt) {
+    handleFormSubmit(evt) {
       // clear form ?
       evt.preventDefault();
     }
 
-    _handleTextChange(evt) {
+    handleTextChange(evt) {
       this.setState({
         reviewText: evt.target.value
       });
     }
 
-    _handleRatingChange(value) {
+    handleRatingChange(value) {
       this.setState({
         ratingValue: value
       });
@@ -39,9 +39,9 @@ const withRatingAndReviewText = (Component) => {
         <Component
           ratingValue={ratingValue}
           reviewText={reviewText}
-          onFormSubmit={this._handleFormSubmit}
-          onTextChange={this._handleTextChange}
-          onRatingChange={this._handleRatingChange}
+          onFormSubmit={this.handleFormSubmit}
+          onTextChange={this.handleTextChange}
+          onRatingChange={this.handleRatingChange}
         />
       );
     }

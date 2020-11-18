@@ -11,10 +11,10 @@ const withActiveTab = (Component) => {
         activeTab: TabTypes.OVERVIEW
       };
 
-      this._handleTabClick = this._handleTabClick.bind(this);
+      this.handleTabClick = this.handleTabClick.bind(this);
     }
 
-    _handleTabClick(tab) {
+    handleTabClick(tab) {
       this.setState({
         activeTab: tab
       });
@@ -27,7 +27,7 @@ const withActiveTab = (Component) => {
         <Component
           {...this.props}
           activeTab={activeTab}
-          onTabClick={this._handleTabClick}
+          onTabClick={this.handleTabClick}
         />
       );
     }
