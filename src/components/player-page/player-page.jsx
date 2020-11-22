@@ -47,24 +47,24 @@ class PlayerPage extends PureComponent {
       <div className="player" ref={forwardContainerRef}>
         <video
           ref={forwardVideoRef}
-          className="player__video"
-          src={movie.src}
-          poster={movie.poster}
           onCanPlayThrough={onCanPlayThrough}
           onTimeUpdate={onTimeUpdate}
           onEnded={onVideoEnded}
+          className="player__video"
+          src={movie.src}
+          poster={movie.poster}
         />
 
-        <button type="button" className="player__exit" onClick={this._onExitClick}>Exit</button>
+        <button onClick={this._onExitClick} type="button" className="player__exit">Exit</button>
 
         <div className="player__controls">
           <div className="player__controls-row">
             <div className="player__time">
               <progress
+                onClick={onProgressBarClick}
                 className="player__progress"
                 value={progressInPercent}
                 max="100"
-                onClick={onProgressBarClick}
               />
               <div className="player__toggler" style={{left: `${progressInPercent}%`}}>Toggler</div>
             </div>
@@ -73,14 +73,14 @@ class PlayerPage extends PureComponent {
 
           <div className="player__controls-row">
             {isPlaying ? (
-              <button type="button" className="player__play" onClick={onPauseButtonClick}>
+              <button onClick={onPauseButtonClick} type="button" className="player__play">
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
                 </svg>
                 <span>Pause</span>
               </button>
             ) : (
-              <button type="button" className="player__play" onClick={onPlayButtonClick}>
+              <button onClick={onPlayButtonClick} type="button" className="player__play">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -90,7 +90,7 @@ class PlayerPage extends PureComponent {
 
             <div className="player__name">{movie.title}</div>
 
-            <button type="button" className="player__full-screen" onClick={onFullScreenButtonClick}>
+            <button onClick={onFullScreenButtonClick} type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>
