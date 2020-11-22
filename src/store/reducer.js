@@ -1,5 +1,5 @@
 import {DEFAULT_MOVIES_FILTER_VALUE} from '../const';
-import {ActionType} from './actions';
+import {ActionType} from './action';
 import {extend} from '../utils';
 import {movies} from '../mocks/movies';
 import {filterMoviesByGenre} from '../core';
