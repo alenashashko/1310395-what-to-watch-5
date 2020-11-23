@@ -44,4 +44,5 @@ ReviewForm.propTypes = {
   onRatingChange: PropTypes.func.isRequired
 };
 
+export {ReviewForm};
 export default withRatingAndReviewText(ReviewForm);

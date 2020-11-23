@@ -54,5 +54,6 @@ Tabs.propTypes = {
   reviews: proptypes.reviews
 };
 
+export {Tabs};
 export default withActiveTab(Tabs);
 

@@ -7,7 +7,6 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './components/app/app';
 import {CINEMA_NAME, AuthorizationStatus} from './const';
-import {movies} from './mocks/movies'; // delete
 import {REVIEWS} from './mocks/reviews';
 import rootReducer from './store/reducers/root-reducer';
 import {createAPI} from './services/api';
@@ -30,7 +29,7 @@ store.dispatch(checkAuth());
 
 ReactDom.render(
     <Provider store={store}>
-      <App cinemaName={CINEMA_NAME} movies={movies} reviews={REVIEWS}/>
+      <App cinemaName={CINEMA_NAME} reviews={REVIEWS}/>
     </Provider>,
     document.querySelector(`#root`)
 );

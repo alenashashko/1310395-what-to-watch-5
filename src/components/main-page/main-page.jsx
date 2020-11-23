@@ -107,5 +107,5 @@ const mapStateToProps = (state) => ({
   promoMovie: state.DATA.promoMovie
 });
 
-export const MainPageWithRouter = withRouter(MainPage);
-export default connect(mapStateToProps)(MainPageWithRouter);
+export {MainPage};
+export default connect(mapStateToProps)(withRouter(MainPage));

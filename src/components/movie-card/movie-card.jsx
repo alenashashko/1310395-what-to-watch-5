@@ -37,4 +37,5 @@ MovieCard.propTypes = {
   onMouseLeave: PropTypes.func.isRequired
 };
 
+export {MovieCard};
 export default withRouter(withVideoPlayingStatus(MovieCard));

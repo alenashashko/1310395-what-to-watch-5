@@ -134,5 +134,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export const MoviePageWithRouter = withRouter(MoviePage);
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePageWithRouter);
+export {MoviePage};
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MoviePage));

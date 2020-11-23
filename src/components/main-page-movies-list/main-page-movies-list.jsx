@@ -46,4 +46,5 @@ const mapStateToProps = (state) => ({
   currentGenre: state.APP.genre
 });
 
+export {MainPageMoviesList};
 export default connect(mapStateToProps)(withPageNumber(MainPageMoviesList));

@@ -21,4 +21,5 @@ VideoPlayer.propTypes = {
   pictureSrc: proptypes.src,
 };
 
+export {VideoPlayer};
 export default withReadyToPlayStatus(VideoPlayer);
