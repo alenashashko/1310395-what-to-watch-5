@@ -15,13 +15,19 @@ export const TextRatingToNubmer = {
   AWESOME: 10
 };
 
-export const TabTypes = {
+export const TabType = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`
 };
 
-export const TAB_NAMES = Object.values(TabTypes);
+export const AuthorizationStatus = {
+  UNKNOWN: `UNKNOWN`,
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const TAB_NAMES = Object.values(TabType);
 
 export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;
 

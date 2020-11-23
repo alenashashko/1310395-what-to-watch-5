@@ -5,7 +5,7 @@ import proptypes from '../../type';
 import MovieOverview from '../movie-overview/movie-overview';
 import MovieDetails from '../movie-details/movie-details';
 import MovieReviews from '../movie-reviews/movie-reviews';
-import {TabTypes, TAB_NAMES} from '../../const';
+import {TabType, TAB_NAMES} from '../../const';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 
 const Tabs = (props) => {
@@ -14,9 +14,9 @@ const Tabs = (props) => {
 
   const getComponentByTab = (tabName) => {
     switch (tabName) {
-      case TabTypes.DETAILS:
+      case TabType.DETAILS:
         return <MovieDetails movie={movie} />;
-      case TabTypes.REVIEWS:
+      case TabType.REVIEWS:
         return <MovieReviews reviews={reviews} />;
       default:
         return <MovieOverview movie={movie} />;
