@@ -25,7 +25,7 @@ const App = (props) => {
           <MyListPage cinemaName={cinemaName} />
         </Route>
         <Route exact path='/films/:id' render={(routeProps) => (
-          <MoviePage cinemaName={cinemaName} movie={movies[0]} reviews={reviews}
+          <MoviePage cinemaName={cinemaName} reviews={reviews}
             id={routeProps.match.params.id}
           />
         )}>

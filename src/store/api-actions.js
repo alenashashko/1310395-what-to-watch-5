@@ -1,4 +1,4 @@
-import {loadMovies, loadFavoriteMovies, loadPromoMovie, changeAuthorizationStatus} from '../store/action';
+import {loadMovies, loadMovieByID, loadFavoriteMovies, loadPromoMovie, changeAuthorizationStatus} from '../store/action';
 import {AuthorizationStatus} from '../const';
 // import {adaptMovieToClient} from '../services/adapters';
 
@@ -6,6 +6,12 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
     // .then(({movies}) => movies.map(adaptMovieToClient))
     .then(({data}) => dispatch(loadMovies(data)))
+);
+
+export const fetchMovieByID = (id) => (dispatch, _getState, api) => (
+  api.get(`/films/${id}`)
+    // .then(({movies}) => movies.map(adaptMovieToClient))
+    .then(({data}) => dispatch(loadMovieByID(data)))
 );
 
 export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (

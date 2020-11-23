@@ -1,6 +1,7 @@
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_MOVIE: `LOAD_MOVIE`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   LOAD_PROMO_MOVIE: `LODA_PROMO_MOVIE`,
   CHANGE_AUTHORIZATION_STATUS: `CHANGE_AUTHORIZATION_STATUS`
@@ -17,6 +18,13 @@ export const loadMovies = (movies) => {
   return {
     type: ActionType.LOAD_MOVIES,
     payload: movies
+  };
+};
+
+export const loadMovieByID = (movie) => {
+  return {
+    type: ActionType.LOAD_MOVIE,
+    payload: movie
   };
 };
 
