@@ -1,29 +1,29 @@
 import {loadMovies, loadMovieByID, loadFavoriteMovies, loadPromoMovie, changeAuthorizationStatus} from '../store/action';
 import {AuthorizationStatus} from '../const';
-// import {adaptMovieToClient} from '../services/adapters';
+import {adaptMovieToClient} from '../services/adapters';
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-    // .then(({movies}) => movies.map(adaptMovieToClient))
-    .then(({data}) => dispatch(loadMovies(data)))
+    .then(({movies}) => movies.map(adaptMovieToClient))
+    .then((adaptedMovies) => dispatch(loadMovies(adaptedMovies)))
 );
 
 export const fetchMovieByID = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
-    // .then(({movies}) => movies.map(adaptMovieToClient))
-    .then(({data}) => dispatch(loadMovieByID(data)))
+    .then(({movie}) => adaptMovieToClient(movie))
+    .then((movie) => dispatch(loadMovieByID(movie)))
 );
 
 export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
-    // .then(({movies}) => movies.map(adaptMovieToClient))
-    .then(({data}) => dispatch(loadFavoriteMovies(data)))
+    .then(({movies}) => movies.map(adaptMovieToClient))
+    .then((adaptedMovies) => dispatch(loadFavoriteMovies(adaptedMovies)))
 );
 
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
-  // .then(({movie}) => adaptMovieToClient(movie))
-  .then(({data}) => dispatch(loadPromoMovie(data)))
+  .then(({movie}) => adaptMovieToClient(movie))
+  .then((movie) => dispatch(loadPromoMovie(movie)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
