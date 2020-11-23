@@ -5,7 +5,7 @@ import MoviesList from '../movies-list/movies-list';
 import {filterSimilarMovies} from '../../core';
 
 const mapStateToProps = (state, props) => {
-  const similarMovies = filterSimilarMovies(state.allMovies, props.movie);
+  const similarMovies = filterSimilarMovies(state.movies, props.movie);
 
   return {
     movies: similarMovies

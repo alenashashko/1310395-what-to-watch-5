@@ -6,6 +6,7 @@ import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import ShowMoreButton from '../show-more-button/show-more-button';
 import withPageNumber from '../../hocs/with-page-number/with-page-number';
+import {filterMoviesByGenre} from '../../core';
 
 class MainPageMoviesList extends PureComponent {
   componentDidUpdate(prevProps) {
@@ -41,7 +42,7 @@ MainPageMoviesList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.moviesByGenre,
+  movies: filterMoviesByGenre(state.movies, state.genre),
   currentGenre: state.genre
 });
 

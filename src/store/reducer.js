@@ -2,12 +2,10 @@ import {DEFAULT_MOVIES_FILTER_VALUE} from '../const';
 import {ActionType} from './action';
 import {extend} from '../utils';
 import {movies} from '../mocks/movies';
-import {filterMoviesByGenre} from '../core';
 
 const initialState = {
   genre: DEFAULT_MOVIES_FILTER_VALUE,
-  moviesByGenre: movies,
-  allMovies: movies
+  movies
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,12 +13,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_GENRE:
       return extend(state, {
         genre: action.payload
-      });
-    case ActionType.FILTER_MOVIES_BY_GENRE:
-      const moviesByGenre = filterMoviesByGenre(state.allMovies, state.genre);
-
-      return extend(state, {
-        moviesByGenre
       });
     default:
       return state;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
 import {DEFAULT_MOVIES_FILTER_VALUE} from '../../const';
-import {changeGenre, filterMoviesByGenre} from '../../store/action';
+import {changeGenre} from '../../store/action';
 import {connect} from 'react-redux';
 
 const GenresList = (props) => {
@@ -37,7 +37,7 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const genresWithRepeating = state.allMovies.map((movie) => movie.genre);
+  const genresWithRepeating = state.movies.map((movie) => movie.genre);
   const genres = Array.from(new Set(genresWithRepeating));
 
   genres.unshift(DEFAULT_MOVIES_FILTER_VALUE);
@@ -51,7 +51,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   changeGenreAction(genre) {
     dispatch(changeGenre(genre));
-    dispatch(filterMoviesByGenre());
   },
 
 });
