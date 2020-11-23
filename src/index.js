@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './components/app/app';
 import {CINEMA_NAME, AuthorizationStatus} from './const';
@@ -18,7 +19,9 @@ const api = createAPI(() => store.dispatch(changeAuthorizationStatus(Authorizati
 
 const store = createStore( // delete movies prop
     rootReducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(fetchMoviesList());
