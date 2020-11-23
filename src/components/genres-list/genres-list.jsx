@@ -37,13 +37,13 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const genresWithRepeating = state.movies.map((movie) => movie.genre);
+  const genresWithRepeating = state.DATA.movies.map((movie) => movie.genre);
   const genres = Array.from(new Set(genresWithRepeating));
 
   genres.unshift(DEFAULT_MOVIES_FILTER_VALUE);
 
   return {
-    currentGenre: state.genre,
+    currentGenre: state.APP.genre,
     genres
   };
 };

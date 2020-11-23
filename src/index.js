@@ -7,12 +7,12 @@ import App from './components/app/app';
 import {promoMovie} from './mocks/movies'; // separate request
 import {movies} from './mocks/movies'; // delete
 import {REVIEWS} from './mocks/reviews';
-import {reducer} from './store/reducer';
+import rootReducer from './store/reducers/root-reducer';
 
 const CINEMA_NAME = `WTW`;
 
 const store = createStore( // delete movies prop
-    reducer,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 

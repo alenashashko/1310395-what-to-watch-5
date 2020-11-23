@@ -42,8 +42,8 @@ MainPageMoviesList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: filterMoviesByGenre(state.movies, state.genre),
-  currentGenre: state.genre
+  movies: filterMoviesByGenre(state.DATA.movies, state.APP.genre),
+  currentGenre: state.APP.genre
 });
 
 export default connect(mapStateToProps)(withPageNumber(MainPageMoviesList));
