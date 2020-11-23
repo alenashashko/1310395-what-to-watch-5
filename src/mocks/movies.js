@@ -111,16 +111,19 @@ const generateMovie = () => {
     id: nanoid(),
     title: MOVIES_INFO[randomMovieIndex].title,
     picture: MOVIES_INFO[randomMovieIndex].picture,
+    backgroundPicture: MOVIES_INFO[randomMovieIndex].picture,
     poster: MOVIES_INFO[randomMovieIndex].picture,
     genre: GENRES[getRandomInteger(0, GENRES.length - 1)],
     year: getRandomInteger(1990, 2020),
     ratingScore: +(Math.random() * 10.05).toFixed(1),
     ratingCount: getRandomInteger(1, 1000),
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     duration: getRandomInteger(3600000, 18000000),
     description: DESCRIPTION_PARTS.slice(0, getRandomInteger(1, DESCRIPTION_PARTS.length)),
     director: DIRECTORS[getRandomInteger(0, DIRECTORS.length - 1)],
-    starring: ACTORS.slice(0, getRandomInteger(1, ACTORS.length))
+    starring: ACTORS.slice(0, getRandomInteger(1, ACTORS.length)),
+    isFavorite: true
   };
 };
 

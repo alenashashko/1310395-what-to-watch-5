@@ -9,7 +9,7 @@ import TabsWrapped from '../tabs/tabs';
 const MoviePage = (props) => {
   const {cinemaName, movie, reviews, id, history} = props;
 
-  return (
+  return ( // bg picture ?
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">

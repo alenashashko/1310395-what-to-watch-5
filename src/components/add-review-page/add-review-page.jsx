@@ -8,7 +8,7 @@ const AddReviewPage = (props) => {
   const {cinemaName, movie} = props;
   // id
 
-  return (
+  return ( // bg picture ?
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">

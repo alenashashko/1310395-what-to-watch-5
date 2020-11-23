@@ -8,7 +8,7 @@ import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies
 const MainPage = (props) => {
   const {cinemaName, promoMovie, history} = props;
 
-  return (
+  return ( // bg picture ?
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">

@@ -43,7 +43,7 @@ class PlayerPage extends PureComponent {
     const progressInPercent = duration === ABSENT_PROGRESS_IN_PERSENT ?
       ABSENT_PROGRESS_IN_PERSENT : (playbackTime / duration) * FULL_PROGRESS_IN_PERCENT;
 
-    return (
+    return ( // picture ?
       <div className="player" ref={forwardContainerRef}>
         <video
           ref={forwardVideoRef}
@@ -52,7 +52,7 @@ class PlayerPage extends PureComponent {
           onEnded={onVideoEnded}
           className="player__video"
           src={movie.src}
-          poster={movie.poster}
+          poster={movie.backgroundPicture}
         />
 
         <button onClick={this._onExitClick} type="button" className="player__exit">Exit</button>

@@ -1,8 +1,10 @@
 import {loadMovies, changeAuthorizationStatus} from '../store/action';
 import {AuthorizationStatus} from '../const';
+// import {adaptMovieToClient} from '../services/adapters';
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
+    // .then(({movies}) => adaptMovieToClient(movies))
     .then(({data}) => dispatch(loadMovies(data)))
 );
 
