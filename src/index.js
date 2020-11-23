@@ -11,7 +11,7 @@ import {REVIEWS} from './mocks/reviews';
 import rootReducer from './store/reducers/root-reducer';
 import {createAPI} from './services/api';
 import {changeAuthorizationStatus} from './store/action';
-import {fetchMoviesList, fetchFavoriteMoviesList, fetchPromoMovie, checkAuth} from './store/api-actions';
+import {fetchMoviesList, fetchFavoriteMoviesList, checkAuth} from './store/api-actions';
 
 const api = createAPI(() => store.dispatch(changeAuthorizationStatus(AuthorizationStatus.NO_AUTH)));
 
@@ -24,7 +24,6 @@ const store = createStore( // delete movies prop
 
 store.dispatch(fetchMoviesList());
 store.dispatch(fetchFavoriteMoviesList()); // ?
-store.dispatch(fetchPromoMovie()); // ?
 store.dispatch(checkAuth());
 
 ReactDom.render(
