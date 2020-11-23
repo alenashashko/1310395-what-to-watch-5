@@ -21,7 +21,7 @@ export const TabTypes = {
   REVIEWS: `Reviews`
 };
 
-export const tabs = Object.values(TabTypes);
+export const TAB_NAMES = Object.values(TabTypes);
 
 export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;
 

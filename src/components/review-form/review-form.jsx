@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 import proptypes from '../../type';
 import withRatingAndReviewText from '../../hocs/with-rating-and-review-text/with-rating-and-review-text';
 
-const RATINGS = new Array(5).fill(null);
-
 const ReviewForm = (props) => {
   const {ratingValue, reviewText, onFormSubmit, onTextChange, onRatingChange} = props;
+  const ratings = new Array(5).fill(null);
 
   return (
     <form onSubmit={onFormSubmit} action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
-          {RATINGS.map((it, index) => {
+          {ratings.map((it, index) => {
             return (
               <React.Fragment key={index}>
                 <input className="rating__input" id={`star-${index + 1}`} type="radio"
