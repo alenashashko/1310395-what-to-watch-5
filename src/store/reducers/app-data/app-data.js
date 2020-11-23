@@ -3,7 +3,9 @@ import {extend} from '../../../utils';
 import {movies} from '../../../mocks/movies';
 
 const initialState = {
-  movies
+  movies,
+  favoriteMovies: [],
+  promoMovie: {}
 };
 
 const appData = (state = initialState, action) => {
@@ -11,6 +13,14 @@ const appData = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload
+      });
+    case ActionType.LOAD_FAVORITE_MOVIES:
+      return extend(state, {
+        favoriteMovies: action.payload
+      });
+    case ActionType.LOAD_PROMO_MOVIE:
+      return extend(state, {
+        promoMovie: action.payload
       });
     default:
       return state;

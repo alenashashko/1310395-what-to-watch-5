@@ -10,19 +10,19 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPageWrapped from '../player-page/player-page';
 
 const App = (props) => {
-  const {cinemaName, promoMovie, movies, reviews} = props;
+  const {cinemaName, movies, reviews} = props;
 
   return ( // movies
     <BrowserRouter basename='/'>
       <Switch>
         <Route exact path='/'>
-          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} />
+          <MainPage cinemaName={cinemaName} />
         </Route>
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />
         </Route>
         <Route exact path='/mylist'>
-          <MyListPage cinemaName={cinemaName} movies={movies} />
+          <MyListPage cinemaName={cinemaName} />
         </Route>
         <Route exact path='/films/:id' render={(routeProps) => (
           <MoviePage cinemaName={cinemaName} movie={movies[0]} reviews={reviews}
@@ -47,7 +47,6 @@ const App = (props) => {
 
 App.propTypes = {
   cinemaName: proptypes.cinemaName,
-  promoMovie: proptypes.movie,
   movies: proptypes.movies,
   reviews: proptypes.reviews
 };

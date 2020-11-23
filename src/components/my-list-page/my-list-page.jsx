@@ -1,11 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 
 const MyListPage = (props) => {
-  const {cinemaName, movies} = props;
+  const {cinemaName, favoriteMovies} = props;
 
   return (
     <div className="user-page">
@@ -32,7 +33,7 @@ const MyListPage = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <MoviesList movies={movies}/>
+        <MoviesList movies={favoriteMovies}/>
       </section>
 
       <footer className="page-footer">
@@ -56,7 +57,12 @@ const MyListPage = (props) => {
 
 MyListPage.propTypes = {
   cinemaName: proptypes.cinemaName,
-  movies: proptypes.movies,
+  favoriteMovies: proptypes.movies,
 };
 
-export default MyListPage;
+const mapStateToProps = (state) => ({
+  favoriteMovies: state.DATA.favoriteMovies
+});
+
+export {MyListPage};
+export default connect(mapStateToProps)(MyListPage);

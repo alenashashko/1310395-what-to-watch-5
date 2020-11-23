@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import GenresList from '../genres-list/genres-list';
@@ -102,4 +103,9 @@ MainPage.propTypes = {
   history: proptypes.history
 };
 
-export default withRouter(MainPage);
+const mapStateToProps = (state) => ({
+  promoMovie: state.DATA.promoMovie
+});
+
+export const MainPageWithRouter = withRouter(MainPage);
+export default connect(mapStateToProps)(MainPageWithRouter);
