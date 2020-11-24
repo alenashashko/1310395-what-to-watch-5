@@ -36,7 +36,10 @@ export const fetchPromoMovie = () => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(() => dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH)))
+    .then(({data}) => {
+      dispatch(loadAuthorizationInfo(data));
+      dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH));
+    })
     .catch((err) => {
       throw err;
     })
