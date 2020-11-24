@@ -7,14 +7,9 @@ import proptypes from '../../type';
 import GenresList from '../genres-list/genres-list';
 import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
 import {fetchPromoMovie} from '../../store/api-actions';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 class MainPage extends PureComponent {
-  componentDidMount() {
-    const {fetchPromoMovieAction} = this.props;
-
-    fetchPromoMovieAction();
-  }
-
   render() {
     const {cinemaName, promoMovie, history} = this.props;
 
@@ -125,4 +120,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {MainPage};
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainPage));
+export default connect(mapStateToProps, mapDispatchToProps)(
+    withRouter(
+        generateWithFetchedData(
+            (state) => !!state.DATA.promoMovie,
+            (props) => props.fetchPromoMovieAction()
+        )(
+            MainPage
+        )
+    )
+);

@@ -1,6 +1,6 @@
 export const adaptMovieToClient = (movie) => {
   const adaptedMovie = { // background_color ?
-    id: movie.id,
+    id: String(movie.id),
     title: movie.name,
     picture: movie.preview_image,
     backgroundPicture: movie.background_image,

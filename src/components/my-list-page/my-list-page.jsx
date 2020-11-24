@@ -17,6 +17,10 @@ class MyListPage extends PureComponent {
   render() {
     const {cinemaName, favoriteMovies} = this.props;
 
+    if (!favoriteMovies) {
+      return null;
+    }
+
     return (
       <div className="user-page">
         <header className="page-header user-page__head">

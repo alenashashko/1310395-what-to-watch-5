@@ -26,7 +26,7 @@ export default {
     src: string.isRequired,
     previewSrc: string.isRequired,
     duration: number.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
+    description: string.isRequired,
     director: string.isRequired,
     starring: arrayOf(string.isRequired).isRequired,
     isFavorite: bool.isRequired
@@ -45,7 +45,7 @@ export default {
         src: string.isRequired,
         previewSrc: string.isRequired,
         duration: number.isRequired,
-        description: arrayOf(string.isRequired).isRequired,
+        description: string.isRequired,
         director: string.isRequired,
         starring: arrayOf(string.isRequired).isRequired,
         isFavorite: bool.isRequired

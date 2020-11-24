@@ -4,25 +4,25 @@ import {adaptMovieToClient} from '../services/adapters';
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-    .then(({movies}) => movies.map(adaptMovieToClient))
+    .then(({data}) => data.map(adaptMovieToClient))
     .then((adaptedMovies) => dispatch(loadMovies(adaptedMovies)))
 );
 
 export const fetchMovieByID = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
-    .then(({movie}) => adaptMovieToClient(movie))
+    .then(({data}) => adaptMovieToClient(data))
     .then((movie) => dispatch(loadMovieByID(movie)))
 );
 
 export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
-    .then(({movies}) => movies.map(adaptMovieToClient))
+    .then(({data}) => data.map(adaptMovieToClient))
     .then((adaptedMovies) => dispatch(loadFavoriteMovies(adaptedMovies)))
 );
 
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
-  .then(({movie}) => adaptMovieToClient(movie))
+  .then(({data}) => adaptMovieToClient(data))
   .then((movie) => dispatch(loadPromoMovie(movie)))
 );
 

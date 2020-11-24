@@ -17,6 +17,10 @@ class AddReviewPage extends PureComponent {
   render() {
     const {cinemaName, movie} = this.props;
 
+    if (!movie) {
+      return null;
+    }
+
     return ( // bg picture ?
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">

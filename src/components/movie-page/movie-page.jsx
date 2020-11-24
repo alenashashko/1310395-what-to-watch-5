@@ -8,14 +8,9 @@ import proptypes from '../../type';
 import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
 import {fetchMovieByID} from '../../store/api-actions';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 class MoviePage extends PureComponent {
-  componentDidMount() {
-    const {id, fetchMovieByIDAction} = this.props;
-
-    fetchMovieByIDAction(id);
-  }
-
   render() {
     const {cinemaName, movie, reviews, history} = this.props;
 
@@ -135,4 +130,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {MoviePage};
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MoviePage));
+export default connect(mapStateToProps, mapDispatchToProps)(
+    withRouter(
+        generateWithFetchedData(
+            (state) => !!state.DATA.currentMovie,
+            (props) => props.fetchMovieByIDAction(props.id)
+        )(
+            MoviePage
+        )
+    )
+);

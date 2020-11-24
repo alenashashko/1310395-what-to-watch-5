@@ -51,6 +51,10 @@ class PlayerPage extends PureComponent {
     const progressInPercent = duration === ABSENT_PROGRESS_IN_PERSENT ?
       ABSENT_PROGRESS_IN_PERSENT : (playbackTime / duration) * FULL_PROGRESS_IN_PERCENT;
 
+    if (!movie) {
+      return null;
+    }
+
     return ( // picture ?
       <div className="player" ref={forwardContainerRef}>
         <video

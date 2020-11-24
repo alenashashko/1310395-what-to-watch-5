@@ -24,11 +24,18 @@ const App = (props) => {
         <Route exact path='/mylist'>
           <MyListPage cinemaName={cinemaName} />
         </Route>
-        <Route exact path='/films/:id' render={(routeProps) => (
-          <MoviePage cinemaName={cinemaName} reviews={reviews}
-            id={routeProps.match.params.id}
-          />
-        )}>
+        <Route exact path='/films/:id' render={(routeProps) => {
+          const {id} = routeProps.match.params;
+
+          return (
+            <MoviePage
+              id={id}
+              key={id}
+              cinemaName={cinemaName}
+              reviews={reviews}
+            />
+          );
+        }}>
         </Route>
         <Route exact path='/films/:id/review' render={(routeProps) => (
           <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id}

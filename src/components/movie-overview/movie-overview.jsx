@@ -33,11 +33,7 @@ const MovieOverview = (props) => {
       </div>
 
       <div className="movie-card__text">
-        {movie.description.map((it) => {
-          return (
-            <p key={it}>{it}</p>
-          );
-        })}
+        <p>{movie.description}</p>
 
         <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
 
