@@ -5,6 +5,10 @@ export const getGenre = (state) => {
   return state.APP.genre;
 };
 
+export const getAuthorizationStatus = (state) => {
+  return state.USER.authorizationStatus;
+};
+
 export const getMovies = (state) => {
   return state.DATA.movies;
 };

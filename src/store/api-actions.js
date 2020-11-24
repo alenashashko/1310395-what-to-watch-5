@@ -29,7 +29,9 @@ export const fetchPromoMovie = () => (dispatch, _getState, api) => (
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH)))
-    .catch(() => {})
+    .catch((err) => {
+      throw err;
+    })
 );
 
 export const login = (data) => (dispatch, _getState, api) => (

@@ -8,6 +8,7 @@ import MyListPage from '../my-list-page/my-list-page';
 import MoviePage from '../movie-page/movie-page';
 import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPageWrapped from '../player-page/player-page';
+import PrivateRoute from '../private-route/private-route';
 
 const App = (props) => {
   const {cinemaName, reviews} = props;

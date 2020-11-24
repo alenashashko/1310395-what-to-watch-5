@@ -7,7 +7,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './components/app/app';
 import {CINEMA_NAME, AuthorizationStatus} from './const';
-import {REVIEWS} from './mocks/reviews';
+import {REVIEWS} from './mocks/reviews'; // delete
 import rootReducer from './store/reducers/root-reducer';
 import {createAPI} from './services/api';
 import {changeAuthorizationStatus} from './store/action';
@@ -15,7 +15,7 @@ import {fetchMoviesList, checkAuth} from './store/api-actions';
 
 const api = createAPI(() => store.dispatch(changeAuthorizationStatus(AuthorizationStatus.NO_AUTH)));
 
-const store = createStore( // delete movies prop
+const store = createStore( // delete reviews
     rootReducer,
     composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument(api))
