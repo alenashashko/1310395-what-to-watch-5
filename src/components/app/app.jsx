@@ -24,8 +24,12 @@ const App = (props) => {
   return (
     <BrowserRouter basename='/'>
       <Switch>
-        <Route exact path='/'>
-          <MainPage cinemaName={cinemaName} />
+        <Route exact path='/' render={(routeProps) => {
+          const {history} = routeProps;
+          return (
+            <MainPage onAvatarClick={() => history.push(`/mylist`)} cinemaName={cinemaName} />
+          );
+        }}>
         </Route>
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />

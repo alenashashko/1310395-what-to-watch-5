@@ -9,6 +9,14 @@ export const getAuthorizationStatus = (state) => {
   return state.USER.authorizationStatus;
 };
 
+export const getAvatarURL = (state) => {
+  return (
+    state.USER.authorizationInfo
+      ? state.USER.authorizationInfo.avatar_url
+      : null
+  );
+};
+
 export const getMovies = (state) => {
   return state.DATA.movies;
 };

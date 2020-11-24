@@ -10,11 +10,11 @@ import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getPromoMovie} from '../../store/selectors';
-import {getAuthorizationStatus} from '../../store/selectors';
+import {getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
 import {AuthorizationStatus} from '../../const';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, history, authorizationStatus} = props;
+  const {cinemaName, promoMovie, history, authorizationStatus, onAvatarClick, avatarUrl} = props;
 
   return (
     <React.Fragment>
@@ -38,8 +38,8 @@ const MainPage = (props) => {
 
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH
-              ? <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              ? <div onClick={onAvatarClick} className="user-block__avatar">
+                <img src={avatarUrl} alt="User avatar" width="63" height="63" />
               </div>
               : <Link to={`/login`} className="user-block__link">Sign in</Link>
             }
@@ -112,12 +112,15 @@ MainPage.propTypes = {
   promoMovie: proptypes.movie,
   history: proptypes.history,
   fetchPromoMovieAction: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
+  avatarUrl: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
   promoMovie: getPromoMovie(state),
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
+  avatarUrl: getAvatarURL(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

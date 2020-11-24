@@ -1,4 +1,11 @@
-import {loadMovies, loadMovieByID, loadFavoriteMovies, loadPromoMovie, changeAuthorizationStatus} from '../store/action';
+import {
+  loadMovies,
+  loadMovieByID,
+  loadFavoriteMovies,
+  loadPromoMovie,
+  changeAuthorizationStatus,
+  loadAuthorizationInfo
+} from '../store/action';
 import {AuthorizationStatus} from '../const';
 import {adaptMovieToClient} from '../services/adapters';
 
@@ -34,7 +41,10 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     })
 );
 
-export const login = (data) => (dispatch, _getState, api) => (
-  api.post(`/login`, data)
-    .then(() => dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH)))
+export const login = (requestBody) => (dispatch, _getState, api) => (
+  api.post(`/login`, requestBody)
+    .then(({data}) => {
+      dispatch(loadAuthorizationInfo(data));
+      dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH));
+    })
 );

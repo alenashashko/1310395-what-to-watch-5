@@ -4,6 +4,7 @@ import {extend} from '../../../utils';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
+  authorizationInfo: null
 };
 
 const user = (state = initialState, action) => {
@@ -11,6 +12,10 @@ const user = (state = initialState, action) => {
     case ActionType.CHANGE_AUTHORIZATION_STATUS:
       return extend(state, {
         authorizationStatus: action.payload
+      });
+    case ActionType.LOAD_AUTHORIZATION_INFO:
+      return extend(state, {
+        authorizationInfo: action.payload
       });
     default:
       return state;

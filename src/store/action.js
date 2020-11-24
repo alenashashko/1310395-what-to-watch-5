@@ -4,7 +4,8 @@ export const ActionType = {
   LOAD_MOVIE: `LOAD_MOVIE`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
-  CHANGE_AUTHORIZATION_STATUS: `CHANGE_AUTHORIZATION_STATUS`
+  CHANGE_AUTHORIZATION_STATUS: `CHANGE_AUTHORIZATION_STATUS`,
+  LOAD_AUTHORIZATION_INFO: `LOAD_AUTHORIZATION_INFO`
 };
 
 export const changeGenre = (genre) => {
@@ -49,3 +50,9 @@ export const changeAuthorizationStatus = (status) => {
   };
 };
 
+export const loadAuthorizationInfo = (info) => {
+  return {
+    type: ActionType.LOAD_AUTHORIZATION_INFO,
+    payload: info
+  };
+};
