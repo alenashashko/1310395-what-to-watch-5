@@ -6,6 +6,7 @@ import {DEFAULT_MOVIES_FILTER_VALUE} from '../../const';
 import {changeGenre} from '../../store/action';
 import {connect} from 'react-redux';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
+import {getGenre, getMovies} from '../../store/selectors';
 
 const GenresList = (props) => {
   const {currentGenre, genres, changeGenreAction} = props;
@@ -44,7 +45,7 @@ const mapStateToProps = (state) => {
   genres.unshift(DEFAULT_MOVIES_FILTER_VALUE);
 
   return {
-    currentGenre: state.APP.genre,
+    currentGenre: getGenre(state),
     genres
   };
 };
@@ -57,7 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {GenresList};
 export default generateWithFetchedData(
-    (state) => !!state.DATA.movies
+    (state) => !!getMovies(state)
 )(
     connect(mapStateToProps, mapDispatchToProps)(GenresList)
 );

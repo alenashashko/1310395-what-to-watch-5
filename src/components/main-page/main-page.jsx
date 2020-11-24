@@ -8,6 +8,7 @@ import GenresList from '../genres-list/genres-list';
 import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
+import {getPromoMovie} from '../../store/selectors';
 
 const MainPage = (props) => {
   const {cinemaName, promoMovie, history} = props;
@@ -108,7 +109,7 @@ MainPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  promoMovie: state.DATA.promoMovie
+  promoMovie: getPromoMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,7 +122,7 @@ export {MainPage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     withRouter(
         generateWithFetchedData(
-            (state) => !!state.DATA.promoMovie,
+            (state) => !!getPromoMovie(state),
             (props) => props.fetchPromoMovieAction()
         )(
             MainPage

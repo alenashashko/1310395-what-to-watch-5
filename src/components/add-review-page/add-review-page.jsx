@@ -7,6 +7,7 @@ import proptypes from '../../type';
 import ReviewFormWrapped from '../review-form/review-form';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
+import {getCurrentMovie} from '../../store/selectors';
 
 const AddReviewPage = (props) => {
   const {cinemaName, movie} = props;
@@ -72,7 +73,7 @@ AddReviewPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.DATA.currentMovie
+  movie: getCurrentMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -84,7 +85,7 @@ const mapDispatchToProps = (dispatch) => ({
 export {AddReviewPage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     generateWithFetchedData(
-        (state) => !!state.DATA.currentMovie,
+        (state) => !!getCurrentMovie(state),
         (props) => props.fetchMovieByIDAction(props.id)
     )(
         AddReviewPage

@@ -9,6 +9,7 @@ import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
+import {getCurrentMovie} from '../../store/selectors';
 
 const MoviePage = (props) => {
   const {cinemaName, movie, reviews, history} = props;
@@ -118,7 +119,7 @@ MoviePage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.DATA.currentMovie
+  movie: getCurrentMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -131,7 +132,7 @@ export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     withRouter(
         generateWithFetchedData(
-            (state) => !!state.DATA.currentMovie,
+            (state) => !!getCurrentMovie(state),
             (props) => props.fetchMovieByIDAction(props.id)
         )(
             MoviePage

@@ -4,7 +4,7 @@ import {extend} from '../../../utils';
 const initialState = {
   movies: null,
   currentMovie: null,
-  favoriteMovies: [],
+  favoriteMovies: null,
   promoMovie: null
 };
 

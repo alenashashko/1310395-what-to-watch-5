@@ -7,6 +7,7 @@ import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import {fetchFavoriteMoviesList} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
+import {getFavoriteMovies} from '../../store/selectors';
 
 const MyListPage = (props) => {
   const {cinemaName, favoriteMovies} = props;
@@ -65,7 +66,7 @@ MyListPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  favoriteMovies: state.DATA.favoriteMovies
+  favoriteMovies: getFavoriteMovies(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,7 +78,7 @@ const mapDispatchToProps = (dispatch) => ({
 export {MyListPage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     generateWithFetchedData(
-        (state) => !!state.DATA.favoriteMovies,
+        (state) => !!getFavoriteMovies(state),
         (props) => props.fetchFavoriteMoviesListAction()
     )(
         MyListPage
