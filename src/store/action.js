@@ -5,7 +5,8 @@ export const ActionType = {
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   CHANGE_AUTHORIZATION_STATUS: `CHANGE_AUTHORIZATION_STATUS`,
-  LOAD_AUTHORIZATION_INFO: `LOAD_AUTHORIZATION_INFO`
+  LOAD_AUTHORIZATION_INFO: `LOAD_AUTHORIZATION_INFO`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`
 };
 
 export const changeGenre = (genre) => {
@@ -54,5 +55,12 @@ export const loadAuthorizationInfo = (info) => {
   return {
     type: ActionType.LOAD_AUTHORIZATION_INFO,
     payload: info
+  };
+};
+
+export const loadCommentsByID = (comments) => {
+  return {
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments
   };
 };

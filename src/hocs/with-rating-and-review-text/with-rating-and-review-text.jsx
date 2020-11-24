@@ -1,4 +1,11 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
+
+import {sendCommentByID} from '../../store/api-actions';
+
+const ONE_STAR_IN_RATING = 2;
 
 const withRatingAndReviewText = (Component) => {
   class WithRatingAndReviewText extends PureComponent {
@@ -16,8 +23,17 @@ const withRatingAndReviewText = (Component) => {
     }
 
     handleFormSubmit(evt) {
-      // clear form ?
+      const {id} = this.props.match.params;
+      const ratingValue = this.state.ratingValue;
+      const reviewText = this.state.reviewText;
+
       evt.preventDefault();
+
+      onsubmit(id, {
+        rating: ratingValue * ONE_STAR_IN_RATING,
+        comment: reviewText
+      });
+      // clear form ?
     }
 
     handleTextChange(evt) {
@@ -48,7 +64,17 @@ const withRatingAndReviewText = (Component) => {
     }
   }
 
-  return WithRatingAndReviewText;
+  WithRatingAndReviewText.propTypes = {
+    match: PropTypes.object.isRequired
+  };
+
+  const mapDispatchToProps = (dispatch) => ({
+    onsubmit(id, commentData) {
+      dispatch(sendCommentByID(id, commentData));
+    }
+  });
+
+  return connect(null, mapDispatchToProps)(withRouter(WithRatingAndReviewText));
 };
 
 export default withRatingAndReviewText;

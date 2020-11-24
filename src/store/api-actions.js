@@ -4,7 +4,8 @@ import {
   loadFavoriteMovies,
   loadPromoMovie,
   changeAuthorizationStatus,
-  loadAuthorizationInfo
+  loadAuthorizationInfo,
+  loadCommentsByID
 } from '../store/action';
 import {AuthorizationStatus} from '../const';
 import {adaptMovieToClient} from '../services/adapters';
@@ -51,4 +52,14 @@ export const login = (requestBody) => (dispatch, _getState, api) => (
       dispatch(loadAuthorizationInfo(data));
       dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH));
     })
+);
+
+export const fetchCommentsListByID = (id) => (dispatch, _getState, api) => (
+  api.get(`/comments/${id}`)
+    .then(({data}) => dispatch(loadCommentsByID(data)))
+);
+
+export const sendCommentByID = (id, requestBody) => (dispatch, _getState, api) => (
+  api.post(`/comments/${id}`, requestBody)
+    .then(({data}) => dispatch(loadCommentsByID(data)))
 );

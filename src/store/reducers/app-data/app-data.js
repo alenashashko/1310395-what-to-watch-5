@@ -5,7 +5,8 @@ const initialState = {
   movies: null,
   currentMovie: null,
   favoriteMovies: null,
-  promoMovie: null
+  promoMovie: null,
+  comments: null
 };
 
 const appData = (state = initialState, action) => {
@@ -25,6 +26,10 @@ const appData = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return extend(state, {
         promoMovie: action.payload
+      });
+    case ActionType.LOAD_COMMENTS:
+      return extend(state, {
+        comments: action.payload
       });
     default:
       return state;
