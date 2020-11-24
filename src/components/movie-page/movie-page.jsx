@@ -10,9 +10,11 @@ import TabsWrapped from '../tabs/tabs';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getCurrentMovie} from '../../store/selectors';
+import {getAuthorizationStatus} from '../../store/selectors';
+import {AuthorizationStatus} from '../../const';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, reviews, history} = props;
+  const {cinemaName, movie, reviews, history, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -65,7 +67,12 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
+                {authorizationStatus === AuthorizationStatus.AUTH
+                  ? <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">
+                  Add review
+                  </Link>
+                  : null
+                }
               </div>
             </div>
           </div>
@@ -117,11 +124,13 @@ MoviePage.propTypes = {
   reviews: proptypes.reviews,
   id: proptypes.id,
   history: proptypes.history,
-  fetchMovieByIDAction: PropTypes.func.isRequired
+  fetchMovieByIDAction: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state)
+  movie: getCurrentMovie(state),
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

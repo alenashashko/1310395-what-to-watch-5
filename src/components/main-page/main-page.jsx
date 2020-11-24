@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
@@ -9,9 +10,11 @@ import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getPromoMovie} from '../../store/selectors';
+import {getAuthorizationStatus} from '../../store/selectors';
+import {AuthorizationStatus} from '../../const';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, history} = props;
+  const {cinemaName, promoMovie, history, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -34,9 +37,12 @@ const MainPage = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === AuthorizationStatus.AUTH
+              ? <div className="user-block__avatar">
+                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div>
+              : <Link to={`/login`} className="user-block__link">Sign in</Link>
+            }
           </div>
         </header>
 
@@ -105,11 +111,13 @@ MainPage.propTypes = {
   cinemaName: proptypes.cinemaName,
   promoMovie: proptypes.movie,
   history: proptypes.history,
-  fetchPromoMovieAction: PropTypes.func.isRequired
+  fetchPromoMovieAction: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  promoMovie: getPromoMovie(state)
+  promoMovie: getPromoMovie(state),
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
