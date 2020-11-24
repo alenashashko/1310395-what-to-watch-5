@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import {filterMoviesByGenre} from '../core';
+import {filterMoviesByGenre, filterSimilarMovies} from '../core';
 
 export const getGenre = (state) => {
   return state.APP.genre;
@@ -23,4 +23,8 @@ export const getPromoMovie = (state) => {
 
 export const getGenreMovies = createSelector(getMovies, getGenre, (movies, genre) => {
   return filterMoviesByGenre(movies, genre);
+});
+
+export const getSimilarMovies = createSelector(getMovies, (state, movie) => movie, (movies, genre) => {
+  return filterSimilarMovies(movies, genre);
 });

@@ -2,12 +2,11 @@ import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
-import {filterSimilarMovies} from '../../core';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getMovies} from '../../store/selectors';
+import {getMovies, getSimilarMovies} from '../../store/selectors';
 
 const mapStateToProps = (state, props) => {
-  const similarMovies = filterSimilarMovies(getMovies(state), props.movie);
+  const similarMovies = getSimilarMovies(state, props.movie);
 
   return {
     movies: similarMovies
