@@ -1,24 +1,33 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './components/app/app';
-import {promoMovie} from './mocks/movies'; // separate request
-import {movies} from './mocks/movies'; // delete
+import {CINEMA_NAME, AuthorizationStatus} from './const';
 import {REVIEWS} from './mocks/reviews';
-import {reducer} from './store/reducer';
+import rootReducer from './store/reducers/root-reducer';
+import {createAPI} from './services/api';
+import {changeAuthorizationStatus} from './store/action';
+import {fetchMoviesList, checkAuth} from './store/api-actions';
 
-const CINEMA_NAME = `WTW`;
+const api = createAPI(() => store.dispatch(changeAuthorizationStatus(AuthorizationStatus.NO_AUTH)));
 
 const store = createStore( // delete movies prop
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    rootReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
+
+store.dispatch(fetchMoviesList());
+store.dispatch(checkAuth());
 
 ReactDom.render(
     <Provider store={store}>
-      <App cinemaName={CINEMA_NAME} promoMovie={promoMovie} movies={movies} reviews={REVIEWS}/>
+      <App cinemaName={CINEMA_NAME} reviews={REVIEWS}/>
     </Provider>,
     document.querySelector(`#root`)
 );

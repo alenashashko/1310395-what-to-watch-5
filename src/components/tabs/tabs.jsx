@@ -5,18 +5,18 @@ import proptypes from '../../type';
 import MovieOverview from '../movie-overview/movie-overview';
 import MovieDetails from '../movie-details/movie-details';
 import MovieReviews from '../movie-reviews/movie-reviews';
-import {TabTypes, tabs} from '../../const';
+import {TabType, TAB_NAMES} from '../../const';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 
 const Tabs = (props) => {
   const {activeTab, onTabClick, movie, reviews} = props;
   // id фильма
 
-  const getComponentByTab = (tab) => {
-    switch (tab) {
-      case TabTypes.DETAILS:
+  const getComponentByTab = (tabName) => {
+    switch (tabName) {
+      case TabType.DETAILS:
         return <MovieDetails movie={movie} />;
-      case TabTypes.REVIEWS:
+      case TabType.REVIEWS:
         return <MovieReviews reviews={reviews} />;
       default:
         return <MovieOverview movie={movie} />;
@@ -27,7 +27,7 @@ const Tabs = (props) => {
     <React.Fragment>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {tabs.map((tab) =>
+          {TAB_NAMES.map((tab) =>
             <li
               key={tab}
               className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
@@ -54,5 +54,6 @@ Tabs.propTypes = {
   reviews: proptypes.reviews
 };
 
+export {Tabs};
 export default withActiveTab(Tabs);
 

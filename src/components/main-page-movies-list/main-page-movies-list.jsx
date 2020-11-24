@@ -6,6 +6,8 @@ import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import ShowMoreButton from '../show-more-button/show-more-button';
 import withPageNumber from '../../hocs/with-page-number/with-page-number';
+import {filterMoviesByGenre} from '../../core';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 class MainPageMoviesList extends PureComponent {
   componentDidUpdate(prevProps) {
@@ -41,8 +43,13 @@ MainPageMoviesList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.moviesByGenre,
-  currentGenre: state.genre
+  movies: filterMoviesByGenre(state.DATA.movies, state.APP.genre),
+  currentGenre: state.APP.genre
 });
 
-export default connect(mapStateToProps)(withPageNumber(MainPageMoviesList));
+export {MainPageMoviesList};
+export default generateWithFetchedData((state) => !!state.DATA.movies)(
+    connect(mapStateToProps)(
+        withPageNumber(MainPageMoviesList)
+    )
+);

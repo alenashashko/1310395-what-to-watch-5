@@ -1,11 +1,13 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
+import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import {formatMovieDuration} from '../../utils';
 import withPlayerManager from '../../hocs/with-player-manager/with-player-manager';
 import {MS_IN_SEC, ABSENT_PROGRESS_IN_PERSENT, FULL_PROGRESS_IN_PERCENT} from '../../const';
+import {fetchMovieByID} from '../../store/api-actions';
 
 class PlayerPage extends PureComponent {
   constructor(props) {
@@ -20,6 +22,12 @@ class PlayerPage extends PureComponent {
     destroy();
 
     history.push(`/films/${movie.id}`);
+  }
+
+  componentDidMount() {
+    const {id, fetchMovieByIDAction} = this.props;
+
+    fetchMovieByIDAction(id);
   }
 
   render() {
@@ -37,34 +45,38 @@ class PlayerPage extends PureComponent {
       onPlayButtonClick,
       onFullScreenButtonClick,
       onProgressBarClick
-    } = this.props; // id
+    } = this.props;
 
     const msLeft = (duration - playbackTime) * MS_IN_SEC;
     const progressInPercent = duration === ABSENT_PROGRESS_IN_PERSENT ?
       ABSENT_PROGRESS_IN_PERSENT : (playbackTime / duration) * FULL_PROGRESS_IN_PERCENT;
 
-    return (
+    if (!movie) {
+      return null;
+    }
+
+    return ( // picture ?
       <div className="player" ref={forwardContainerRef}>
         <video
           ref={forwardVideoRef}
-          className="player__video"
-          src={movie.src}
-          poster={movie.poster}
           onCanPlayThrough={onCanPlayThrough}
           onTimeUpdate={onTimeUpdate}
           onEnded={onVideoEnded}
+          className="player__video"
+          src={movie.src}
+          poster={movie.backgroundPicture}
         />
 
-        <button type="button" className="player__exit" onClick={this._onExitClick}>Exit</button>
+        <button onClick={this._onExitClick} type="button" className="player__exit">Exit</button>
 
         <div className="player__controls">
           <div className="player__controls-row">
             <div className="player__time">
               <progress
+                onClick={onProgressBarClick}
                 className="player__progress"
                 value={progressInPercent}
                 max="100"
-                onClick={onProgressBarClick}
               />
               <div className="player__toggler" style={{left: `${progressInPercent}%`}}>Toggler</div>
             </div>
@@ -73,14 +85,14 @@ class PlayerPage extends PureComponent {
 
           <div className="player__controls-row">
             {isPlaying ? (
-              <button type="button" className="player__play" onClick={onPauseButtonClick}>
+              <button onClick={onPauseButtonClick} type="button" className="player__play">
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
                 </svg>
                 <span>Pause</span>
               </button>
             ) : (
-              <button type="button" className="player__play" onClick={onPlayButtonClick}>
+              <button onClick={onPlayButtonClick} type="button" className="player__play">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -90,7 +102,7 @@ class PlayerPage extends PureComponent {
 
             <div className="player__name">{movie.title}</div>
 
-            <button type="button" className="player__full-screen" onClick={onFullScreenButtonClick}>
+            <button onClick={onFullScreenButtonClick} type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>
@@ -119,7 +131,19 @@ PlayerPage.propTypes = {
   onProgressBarClick: PropTypes.func.isRequired,
   onCanPlayThrough: PropTypes.func.isRequired,
   onVideoEnded: PropTypes.func.isRequired,
-  destroy: PropTypes.func.isRequired
+  destroy: PropTypes.func.isRequired,
+  fetchMovieByIDAction: PropTypes.func.isRequired
 };
 
-export default withPlayerManager(withRouter(PlayerPage));
+const mapStateToProps = (state) => ({
+  movie: state.DATA.currentMovie
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchMovieByIDAction(id) {
+    dispatch(fetchMovieByID(id));
+  }
+});
+
+export {PlayerPage};
+export default connect(mapStateToProps, mapDispatchToProps)(withPlayerManager(withRouter(PlayerPage)));

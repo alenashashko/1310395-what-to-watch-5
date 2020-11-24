@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
 import {DEFAULT_MOVIES_FILTER_VALUE} from '../../const';
-import {ActionCreator} from '../../store/actions';
+import {changeGenre} from '../../store/action';
 import {connect} from 'react-redux';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 const GenresList = (props) => {
-  const {currentGenre, genres, changeGenre} = props;
+  const {currentGenre, genres, changeGenreAction} = props;
 
   return (
     <ul className="catalog__genres-list">
@@ -17,7 +18,7 @@ const GenresList = (props) => {
             <a
               onClick={(evt) => {
                 evt.preventDefault();
-                changeGenre(genre);
+                changeGenreAction(genre);
               }}
               href="#"
               className="catalog__genres-link">
@@ -33,28 +34,30 @@ const GenresList = (props) => {
 GenresList.propTypes = {
   genres: proptypes.genres,
   currentGenre: proptypes.genre,
-  changeGenre: PropTypes.func.isRequired
+  changeGenreAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
-  const genresWithRepeating = state.allMovies.map((movie) => movie.genre);
+  const genresWithRepeating = state.DATA.movies.map((movie) => movie.genre);
   const genres = Array.from(new Set(genresWithRepeating));
 
   genres.unshift(DEFAULT_MOVIES_FILTER_VALUE);
 
   return {
-    currentGenre: state.genre,
+    currentGenre: state.APP.genre,
     genres
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  changeGenre(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.filterMoviesByGenre());
+  changeGenreAction(genre) {
+    dispatch(changeGenre(genre));
   },
-
 });
 
 export {GenresList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenresList);
+export default generateWithFetchedData(
+    (state) => !!state.DATA.movies
+)(
+    connect(mapStateToProps, mapDispatchToProps)(GenresList)
+);

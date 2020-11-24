@@ -4,7 +4,8 @@ import {
   arrayOf,
   string,
   instanceOf,
-  object
+  object,
+  bool
 } from 'prop-types';
 
 // date: PropTypes.object.isRequired ?
@@ -16,32 +17,38 @@ export default {
     id: string.isRequired,
     title: string.isRequired,
     picture: string.isRequired,
+    backgroundPicture: string.isRequired,
     poster: string.isRequired,
     genre: string.isRequired,
     year: number.isRequired,
     ratingScore: number.isRequired,
     ratingCount: number.isRequired,
     src: string.isRequired,
+    previewSrc: string.isRequired,
     duration: number.isRequired,
-    description: arrayOf(string.isRequired).isRequired,
+    description: string.isRequired,
     director: string.isRequired,
     starring: arrayOf(string.isRequired).isRequired,
+    isFavorite: bool.isRequired
   }).isRequired,
   movies: arrayOf(
       shape({
         id: string.isRequired,
         title: string.isRequired,
         picture: string.isRequired,
+        backgroundPicture: string.isRequired,
         poster: string.isRequired,
         genre: string.isRequired,
         year: number.isRequired,
         ratingScore: number.isRequired,
         ratingCount: number.isRequired,
         src: string.isRequired,
+        previewSrc: string.isRequired,
         duration: number.isRequired,
-        description: arrayOf(string.isRequired).isRequired,
+        description: string.isRequired,
         director: string.isRequired,
         starring: arrayOf(string.isRequired).isRequired,
+        isFavorite: bool.isRequired
       })
   ).isRequired,
   reviews: arrayOf(
@@ -60,5 +67,4 @@ export default {
   reviewText: string.isRequired,
   pageNumber: number.isRequired
 };
-
 

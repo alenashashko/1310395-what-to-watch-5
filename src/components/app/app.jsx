@@ -10,34 +10,40 @@ import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPageWrapped from '../player-page/player-page';
 
 const App = (props) => {
-  const {cinemaName, promoMovie, movies, reviews} = props;
+  const {cinemaName, reviews} = props;
 
-  return ( // movies
+  return (
     <BrowserRouter basename='/'>
       <Switch>
         <Route exact path='/'>
-          <MainPage cinemaName={cinemaName} promoMovie={promoMovie} />
+          <MainPage cinemaName={cinemaName} />
         </Route>
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />
         </Route>
         <Route exact path='/mylist'>
-          <MyListPage cinemaName={cinemaName} movies={movies} />
+          <MyListPage cinemaName={cinemaName} />
         </Route>
-        <Route exact path='/films/:id' render={(routeProps) => (
-          <MoviePage cinemaName={cinemaName} movie={movies[0]} reviews={reviews}
-            id={routeProps.match.params.id}
-          />
-        )}>
+        <Route exact path='/films/:id' render={(routeProps) => {
+          const {id} = routeProps.match.params;
+
+          return (
+            <MoviePage
+              id={id}
+              key={id}
+              cinemaName={cinemaName}
+              reviews={reviews}
+            />
+          );
+        }}>
         </Route>
         <Route exact path='/films/:id/review' render={(routeProps) => (
           <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id}
-            movie={movies[0]}
           />
         )}>
         </Route>
         <Route exact path='/player/:id' render={(routeProps) => (
-          <PlayerPageWrapped id={routeProps.match.params.id} movie={movies[0]} />
+          <PlayerPageWrapped id={routeProps.match.params.id} />
         )}>
         </Route>
       </Switch>
@@ -47,8 +53,6 @@ const App = (props) => {
 
 App.propTypes = {
   cinemaName: proptypes.cinemaName,
-  promoMovie: proptypes.movie,
-  movies: proptypes.movies,
   reviews: proptypes.reviews
 };
 
