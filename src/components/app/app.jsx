@@ -1,5 +1,7 @@
 import React from 'react';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {PropTypes} from 'prop-types';
+import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MainPage from '../main-page/main-page';
@@ -9,9 +11,15 @@ import MoviePage from '../movie-page/movie-page';
 import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPageWrapped from '../player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
+import {AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus} from '../../store/selectors';
 
 const App = (props) => {
-  const {cinemaName, reviews} = props;
+  const {cinemaName, reviews, authorizationStatus} = props;
+
+  if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
+    return null;
+  }
 
   return (
     <BrowserRouter basename='/'>
@@ -22,9 +30,14 @@ const App = (props) => {
         <Route exact path='/login'>
           <AuthPage cinemaName={cinemaName} />
         </Route>
-        <Route exact path='/mylist'>
-          <MyListPage cinemaName={cinemaName} />
-        </Route>
+        <PrivateRoute
+          exact
+          path='/mylist'
+          render={() => (
+            <MyListPage cinemaName={cinemaName} />
+          )}
+        >
+        </PrivateRoute>
         <Route exact path='/films/:id' render={(routeProps) => {
           const {id} = routeProps.match.params;
 
@@ -38,11 +51,14 @@ const App = (props) => {
           );
         }}>
         </Route>
-        <Route exact path='/films/:id/review' render={(routeProps) => (
-          <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id}
-          />
-        )}>
-        </Route>
+        <PrivateRoute
+          exact
+          path='/films/:id/review'
+          render={(routeProps) => (
+            <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id} />
+          )}
+        >
+        </PrivateRoute>
         <Route exact path='/player/:id' render={(routeProps) => (
           <PlayerPageWrapped id={routeProps.match.params.id} />
         )}>
@@ -54,7 +70,13 @@ const App = (props) => {
 
 App.propTypes = {
   cinemaName: proptypes.cinemaName,
-  reviews: proptypes.reviews
+  reviews: proptypes.reviews,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state)
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

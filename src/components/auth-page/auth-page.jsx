@@ -1,10 +1,12 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import {login} from '../../store/api-actions';
+import {getAuthorizationStatus} from '../../store/selectors';
+import {AuthorizationStatus} from '../../const';
 
 class AuthPage extends PureComponent {
   constructor(props) {
@@ -28,7 +30,13 @@ class AuthPage extends PureComponent {
   }
 
   render() {
-    const {cinemaName} = this.props;
+    const {cinemaName, authorizationStatus} = this.props;
+
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return (
+        <Redirect to={`/`} />
+      );
+    }
 
     return (
       <div className="user-page">
@@ -87,8 +95,13 @@ class AuthPage extends PureComponent {
 
 AuthPage.propTypes = {
   cinemaName: proptypes.cinemaName,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
@@ -97,4 +110,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AuthPage};
-export default connect(null, mapDispatchToProps)(AuthPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
