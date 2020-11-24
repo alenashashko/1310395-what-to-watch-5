@@ -8,6 +8,7 @@ import {formatMovieDuration} from '../../utils';
 import withPlayerManager from '../../hocs/with-player-manager/with-player-manager';
 import {MS_IN_SEC, ABSENT_PROGRESS_IN_PERSENT, FULL_PROGRESS_IN_PERCENT} from '../../const';
 import {fetchMovieByID} from '../../store/api-actions';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 class PlayerPage extends PureComponent {
   constructor(props) {
@@ -22,12 +23,6 @@ class PlayerPage extends PureComponent {
     destroy();
 
     history.push(`/films/${movie.id}`);
-  }
-
-  componentDidMount() {
-    const {id, fetchMovieByIDAction} = this.props;
-
-    fetchMovieByIDAction(id);
   }
 
   render() {
@@ -51,11 +46,7 @@ class PlayerPage extends PureComponent {
     const progressInPercent = duration === ABSENT_PROGRESS_IN_PERSENT ?
       ABSENT_PROGRESS_IN_PERSENT : (playbackTime / duration) * FULL_PROGRESS_IN_PERCENT;
 
-    if (!movie) {
-      return null;
-    }
-
-    return ( // picture ?
+    return (
       <div className="player" ref={forwardContainerRef}>
         <video
           ref={forwardVideoRef}
@@ -146,4 +137,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PlayerPage};
-export default connect(mapStateToProps, mapDispatchToProps)(withPlayerManager(withRouter(PlayerPage)));
+export default connect(mapStateToProps, mapDispatchToProps)(withPlayerManager(withRouter(
+    generateWithFetchedData(
+        (state) => !!state.DATA.currentMovie,
+        (props) => props.fetchMovieByIDAction(props.id)
+    )(PlayerPage)
+))
+);

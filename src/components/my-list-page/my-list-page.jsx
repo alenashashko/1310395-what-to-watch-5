@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -6,68 +6,57 @@ import {connect} from 'react-redux';
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
 import {fetchFavoriteMoviesList} from '../../store/api-actions';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
-class MyListPage extends PureComponent {
-  componentDidMount() {
-    const {fetchFavoriteMoviesListAction} = this.props;
+const MyListPage = (props) => {
+  const {cinemaName, favoriteMovies} = props;
 
-    fetchFavoriteMoviesListAction();
-  }
+  return (
+    <div className="user-page">
+      <header className="page-header user-page__head">
+        <div className="logo">
+          <Link to="/" className="logo__link">
+            {cinemaName.split(``).map((character, index) => {
+              return (
+                <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
+              );
+            })}
+          </Link>
+        </div>
 
-  render() {
-    const {cinemaName, favoriteMovies} = this.props;
+        <h1 className="page-title user-page__title">My list</h1>
 
-    if (!favoriteMovies) {
-      return null;
-    }
-
-    return (
-      <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </Link>
+        <div className="user-block">
+          <div className="user-block__avatar">
+            <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
           </div>
+        </div>
+      </header>
 
-          <h1 className="page-title user-page__title">My list</h1>
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <MoviesList movies={favoriteMovies}/>
+      </section>
 
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
+      <footer className="page-footer">
+        <div className="logo">
+          <Link to="/" className="logo__link logo__link--light">
+            {cinemaName.split(``).map((character, index) => {
+              return (
+                <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
+              );
+            })}
+          </Link>
+        </div>
 
-          <MoviesList movies={favoriteMovies}/>
-        </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
-      </div>
-    );
-  }
-}
+        <div className="copyright">
+          <p>© 2019 What to watch Ltd.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
 
 MyListPage.propTypes = {
   cinemaName: proptypes.cinemaName,
@@ -86,4 +75,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {MyListPage};
-export default connect(mapStateToProps, mapDispatchToProps)(MyListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(
+    generateWithFetchedData(
+        (state) => !!state.DATA.favoriteMovies,
+        (props) => props.fetchFavoriteMoviesListAction()
+    )(
+        MyListPage
+    )
+);
