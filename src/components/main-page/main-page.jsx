@@ -12,6 +12,7 @@ import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched
 import {getPromoMovie} from '../../store/selectors';
 import {getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
 import {AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 
 const MainPage = (props) => {
   const {cinemaName, promoMovie, history, authorizationStatus, onAvatarClick, avatarUrl} = props;
@@ -41,7 +42,7 @@ const MainPage = (props) => {
               ? <div onClick={onAvatarClick} className="user-block__avatar">
                 <img src={avatarUrl} alt="User avatar" width="63" height="63" />
               </div>
-              : <Link to={`/login`} className="user-block__link">Sign in</Link>
+              : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
             }
           </div>
         </header>

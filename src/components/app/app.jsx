@@ -13,6 +13,7 @@ import PlayerPageWrapped from '../player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
 import {AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../store/selectors';
+import {AppRoute} from '../../const';
 
 const App = (props) => {
   const {cinemaName, reviews, authorizationStatus} = props;
@@ -22,27 +23,27 @@ const App = (props) => {
   }
 
   return (
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename={AppRoute.ROOT}>
       <Switch>
-        <Route exact path='/' render={(routeProps) => {
+        <Route exact path={AppRoute.ROOT} render={(routeProps) => {
           const {history} = routeProps;
           return (
-            <MainPage onAvatarClick={() => history.push(`/mylist`)} cinemaName={cinemaName} />
+            <MainPage onAvatarClick={() => history.push(AppRoute.MY_LIST)} cinemaName={cinemaName} />
           );
         }}>
         </Route>
-        <Route exact path='/login'>
+        <Route exact path={AppRoute.LOGIN}>
           <AuthPage cinemaName={cinemaName} />
         </Route>
         <PrivateRoute
           exact
-          path='/mylist'
+          path={AppRoute.MY_LIST}
           render={() => (
             <MyListPage cinemaName={cinemaName} />
           )}
         >
         </PrivateRoute>
-        <Route exact path='/films/:id' render={(routeProps) => {
+        <Route exact path={AppRoute.MOVIE} render={(routeProps) => {
           const {id} = routeProps.match.params;
 
           return (
@@ -57,13 +58,13 @@ const App = (props) => {
         </Route>
         <PrivateRoute
           exact
-          path='/films/:id/review'
+          path={AppRoute.REVIEW}
           render={(routeProps) => (
             <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id} />
           )}
         >
         </PrivateRoute>
-        <Route exact path='/player/:id' render={(routeProps) => (
+        <Route exact path={AppRoute.PLAYER} render={(routeProps) => (
           <PlayerPageWrapped id={routeProps.match.params.id} />
         )}>
         </Route>

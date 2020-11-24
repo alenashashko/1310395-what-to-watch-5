@@ -28,6 +28,22 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE: `/films/:id`,
+  REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`
+};
+
+export const APIRoute = {
+  MOVIES: `/films`,
+  FAVORITE_MOVIES: `/favorite`,
+  PROMO_MOVIE: `/films/promo`,
+  LOGIN: `/login`
+};
+
 export const TAB_NAMES = Object.values(TabType);
 
 export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;

@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import proptypes from '../../type';
 import {login} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/selectors';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, AppRoute} from '../../const';
 
 class AuthPage extends PureComponent {
   constructor(props) {
@@ -34,7 +34,7 @@ class AuthPage extends PureComponent {
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return (
-        <Redirect to={`/`} />
+        <Redirect to={AppRoute.ROOT} />
       );
     }
 
