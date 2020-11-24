@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import withRatingAndReviewText from '../../hocs/with-rating-and-review-text/with-rating-and-review-text';
+import {getCurrentMovie} from '../../store/selectors';
+import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 const ReviewForm = (props) => {
   const {ratingValue, reviewText, onFormSubmit, onTextChange, onRatingChange} = props;
+  // movie
   const ratings = new Array(5).fill(null);
 
   return (
@@ -26,7 +30,12 @@ const ReviewForm = (props) => {
       </div>
 
       <div className="add-review__text">
-        <textarea onChange={onTextChange} value={reviewText} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+        <textarea
+          onChange={onTextChange}
+          value={reviewText}
+          className="add-review__textarea"
+          name="review-text" id="review-text"
+          placeholder="Review text"></textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
@@ -41,8 +50,19 @@ ReviewForm.propTypes = {
   reviewText: proptypes.reviewText,
   onFormSubmit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
-  onRatingChange: PropTypes.func.isRequired
+  onRatingChange: PropTypes.func.isRequired,
+  movie: proptypes.movie
 };
 
+const mapStateToProps = (state) => ({
+  movie: getCurrentMovie(state)
+});
+
 export {ReviewForm};
-export default withRatingAndReviewText(ReviewForm);
+export default connect(mapStateToProps)(
+    generateWithFetchedData(
+        (state) => !!getCurrentMovie(state)
+    )(
+        withRatingAndReviewText(ReviewForm)
+    )
+);

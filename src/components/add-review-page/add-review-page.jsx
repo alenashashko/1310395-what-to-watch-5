@@ -13,7 +13,9 @@ const AddReviewPage = (props) => {
   const {cinemaName, movie} = props;
 
   return (
-    <section className="movie-card movie-card--full">
+    <section
+      className="movie-card movie-card--full"
+      style={{backgroundColor: `${movie.backgroundColor}`}}>
       <div className="movie-card__header">
         <div className="movie-card__bg">
           <img src={movie.backgroundPicture} alt={movie.title} />

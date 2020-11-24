@@ -37,6 +37,7 @@ const withRatingAndReviewText = (Component) => {
 
       return (
         <Component
+          {...this.props}
           ratingValue={ratingValue}
           reviewText={reviewText}
           onFormSubmit={this.handleFormSubmit}
