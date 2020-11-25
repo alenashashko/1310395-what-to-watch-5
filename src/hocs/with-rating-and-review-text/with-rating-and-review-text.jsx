@@ -23,13 +23,14 @@ const withRatingAndReviewText = (Component) => {
     }
 
     handleFormSubmit(evt) {
+      const {onSubmit} = this.props;
       const {id} = this.props.match.params;
       const ratingValue = this.state.ratingValue;
       const reviewText = this.state.reviewText;
 
       evt.preventDefault();
 
-      onsubmit(id, {
+      onSubmit(id, {
         rating: ratingValue * ONE_STAR_IN_RATING,
         comment: reviewText
       });
@@ -65,11 +66,12 @@ const withRatingAndReviewText = (Component) => {
   }
 
   WithRatingAndReviewText.propTypes = {
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired
   };
 
   const mapDispatchToProps = (dispatch) => ({
-    onsubmit(id, commentData) {
+    onSubmit(id, commentData) {
       dispatch(sendCommentByID(id, commentData));
     }
   });

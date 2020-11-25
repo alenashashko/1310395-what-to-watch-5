@@ -62,5 +62,6 @@ export const fetchCommentsListByID = (id) => (dispatch, _getState, api) => (
 
 export const sendCommentByID = (id, requestBody) => (dispatch, _getState, api) => (
   api.post(`/comments/${id}`, requestBody)
-    .then(({data}) => dispatch(loadCommentsByID(data)))
+    .then(({data}) => data.map(adaptCommentToClient))
+    .then((adaptedComments) => dispatch(loadCommentsByID(adaptedComments)))
 );

@@ -57,6 +57,7 @@ const MovieReviews = (props) => {
 };
 
 MovieReviews.propTypes = {
+  id: proptypes.id,
   comments: proptypes.comments,
   fetchCommentsListByIDAction: PropTypes.func.isRequired
 };
