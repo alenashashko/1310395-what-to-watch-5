@@ -4,11 +4,18 @@ import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import withRatingAndReviewText from '../../hocs/with-rating-and-review-text/with-rating-and-review-text';
-import {getCurrentMovie} from '../../store/selectors';
+import {getCurrentMovie, getErrorText} from '../../store/selectors';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 
 const ReviewForm = (props) => {
-  const {ratingValue, reviewText, onFormSubmit, onTextChange, onRatingChange} = props;
+  const {
+    ratingValue,
+    reviewText,
+    onFormSubmit,
+    onTextChange,
+    onRatingChange,
+    saveErrorText
+  } = props;
   // movie
   const ratings = new Array(5).fill(null);
 
@@ -46,6 +53,12 @@ const ReviewForm = (props) => {
         </div>
 
       </div>
+      {saveErrorText
+        ? <div style={{
+          color: `#ed8d8d`,
+          textAlign: `center`,
+          paddingTop: `20px`
+        }}>{saveErrorText}</div> : null}
     </form>
   );
 };
@@ -56,11 +69,13 @@ ReviewForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
-  movie: proptypes.movie
+  movie: proptypes.movie,
+  saveErrorText: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state)
+  movie: getCurrentMovie(state),
+  saveErrorText: getErrorText(state)
 });
 
 export {ReviewForm};

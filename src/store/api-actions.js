@@ -6,7 +6,8 @@ import {
   changeAuthorizationStatus,
   loadAuthorizationInfo,
   loadCommentsByID,
-  redirectToRoute
+  redirectToRoute,
+  saveErrorText
 } from './actions';
 import {AuthorizationStatus} from '../const';
 import {adaptMovieToClient, adaptCommentToClient} from '../services/adapters';
@@ -65,4 +66,11 @@ export const sendCommentByID = (id, requestBody) => (dispatch, _getState, api) =
     .then(({data}) => data.map(adaptCommentToClient))
     .then((adaptedComments) => dispatch(loadCommentsByID(adaptedComments)))
     .then(() => dispatch(redirectToRoute(`/films/${id}`)))
+    .then(() => dispatch(saveErrorText(null)))
+    .catch((error) => {
+      const errorTextFull = error.response.data.error;
+      const errorTextToShow = errorTextFull.slice(errorTextFull.indexOf(`[`) + 1, -1);
+
+      return dispatch(saveErrorText(errorTextToShow));
+    })
 );

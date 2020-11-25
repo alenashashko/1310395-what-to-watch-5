@@ -34,7 +34,6 @@ const withRatingAndReviewText = (Component) => {
         rating: ratingValue * ONE_STAR_IN_RATING,
         comment: reviewText
       });
-      // clear form ?
     }
 
     handleTextChange(evt) {

@@ -7,7 +7,8 @@ export const ActionType = {
   CHANGE_AUTHORIZATION_STATUS: `CHANGE_AUTHORIZATION_STATUS`,
   LOAD_AUTHORIZATION_INFO: `LOAD_AUTHORIZATION_INFO`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
-  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  SAVE_ERROR_TEXT: `SAVE_ERROR_TEXT`
 };
 
 export const changeGenre = (genre) => {
@@ -70,5 +71,12 @@ export const redirectToRoute = (url) => {
   return {
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url
+  };
+};
+
+export const saveErrorText = (errorText) => {
+  return {
+    type: ActionType.SAVE_ERROR_TEXT,
+    payload: errorText
   };
 };

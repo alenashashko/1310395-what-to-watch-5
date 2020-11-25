@@ -37,6 +37,10 @@ export const getComments = (state) => {
   return state.DATA.comments;
 };
 
+export const getErrorText = (state) => {
+  return state.DATA.errorText;
+};
+
 export const getGenreMovies = createSelector(getMovies, getGenre, (movies, genre) => {
   return filterMoviesByGenre(movies, genre);
 });

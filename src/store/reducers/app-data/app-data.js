@@ -32,6 +32,10 @@ const appData = (state = initialState, action) => {
       return extend(state, {
         comments: action.payload
       });
+    case ActionType.SAVE_ERROR_TEXT:
+      return extend(state, {
+        errorText: action.payload
+      });
     default:
       return state;
   }
