@@ -61,10 +61,17 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={AppRoute.REVIEW}
-          render={(routeProps) => (
-            <AddReviewPage cinemaName={cinemaName} id={routeProps.match.params.id} />
-          )}
-        >
+          render={(routeProps) => {
+            const {history} = routeProps;
+
+            return (
+              <AddReviewPage
+                onAvatarClick={() => history.push(AppRoute.MY_LIST)}
+                cinemaName={cinemaName}
+                id={routeProps.match.params.id}
+              />
+            );
+          }}>
         </PrivateRoute>
         <Route exact path={AppRoute.PLAYER} render={(routeProps) => (
           <PlayerPageWrapped id={routeProps.match.params.id} />

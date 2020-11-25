@@ -7,10 +7,10 @@ import proptypes from '../../type';
 import ReviewFormWrapped from '../review-form/review-form';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getCurrentMovie} from '../../store/selectors';
+import {getCurrentMovie, getAvatarURL} from '../../store/selectors';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, movie} = props;
+  const {cinemaName, movie, avatarUrl, onAvatarClick} = props;
 
   return (
     <section
@@ -49,8 +49,8 @@ const AddReviewPage = (props) => {
           </nav>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <div onClick={onAvatarClick} className="user-block__avatar">
+              <img src={avatarUrl} alt="User avatar" width="63" height="63" />
             </div>
           </div>
         </header>
@@ -71,11 +71,14 @@ AddReviewPage.propTypes = {
   cinemaName: proptypes.cinemaName,
   id: proptypes.id,
   movie: proptypes.movie,
-  fetchMovieByIDAction: PropTypes.func.isRequired
+  fetchMovieByIDAction: PropTypes.func.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
+  avatarUrl: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state)
+  movie: getCurrentMovie(state),
+  avatarUrl: getAvatarURL(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

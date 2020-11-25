@@ -32,6 +32,12 @@ export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (
     .then((adaptedMovies) => dispatch(loadFavoriteMovies(adaptedMovies)))
 );
 
+export const sendFavoriteMovieByID = (id, status, requestBody) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`, requestBody)
+    .then(({data}) => adaptMovieToClient(data))
+    // .then((adaptedMovie) => dispatch(loadFavoriteMovies(adaptedMovie)))
+);
+
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(APIRoute.PROMO_MOVIE)
   .then(({data}) => adaptMovieToClient(data))
