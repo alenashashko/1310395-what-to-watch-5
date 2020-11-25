@@ -36,7 +36,11 @@ const ReviewForm = (props) => {
           className="add-review__textarea"
           name="review-text"
           id="review-text"
-          placeholder="Review text"></textarea>
+          placeholder="Review text"
+          minLength="50"
+          maxLength="400"
+        >
+        </textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>
