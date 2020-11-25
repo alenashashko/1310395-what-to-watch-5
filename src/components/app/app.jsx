@@ -48,9 +48,11 @@ const App = (props) => {
         </PrivateRoute>
         <Route exact path={AppRoute.MOVIE} render={(routeProps) => {
           const {id} = routeProps.match.params;
+          const {history} = routeProps;
 
           return (
             <MoviePage
+              onAvatarClick={() => history.push(AppRoute.MY_LIST)}
               id={id}
               key={id}
               cinemaName={cinemaName}

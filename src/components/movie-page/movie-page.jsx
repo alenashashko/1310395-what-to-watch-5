@@ -10,11 +10,11 @@ import TabsWrapped from '../tabs/tabs';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getCurrentMovie} from '../../store/selectors';
-import {getAuthorizationStatus} from '../../store/selectors';
-import {AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
+import {AuthorizationStatus, AppRoute} from '../../const';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, history, authorizationStatus} = props;
+  const {cinemaName, movie, history, authorizationStatus, onAvatarClick, avatarUrl} = props;
 
   return (
     <React.Fragment>
@@ -40,9 +40,12 @@ const MoviePage = (props) => {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              {authorizationStatus === AuthorizationStatus.AUTH
+                ? <div onClick={onAvatarClick} className="user-block__avatar">
+                  <img src={avatarUrl} alt="User avatar" width="63" height="63" />
+                </div>
+                : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
+              }
             </div>
           </header>
 
@@ -124,12 +127,15 @@ MoviePage.propTypes = {
   id: proptypes.id,
   history: proptypes.history,
   fetchMovieByIDAction: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
+  avatarUrl: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
   movie: getCurrentMovie(state),
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
+  avatarUrl: getAvatarURL(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

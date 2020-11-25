@@ -7,10 +7,11 @@ import proptypes from '../../type';
 import ReviewFormWrapped from '../review-form/review-form';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getCurrentMovie, getAvatarURL} from '../../store/selectors';
+import {getCurrentMovie, getAvatarURL, getAuthorizationStatus} from '../../store/selectors';
+import {AuthorizationStatus, AppRoute} from '../../const';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, movie, avatarUrl, onAvatarClick} = props;
+  const {cinemaName, movie, avatarUrl, onAvatarClick, authorizationStatus} = props;
 
   return (
     <section
@@ -49,9 +50,12 @@ const AddReviewPage = (props) => {
           </nav>
 
           <div className="user-block">
-            <div onClick={onAvatarClick} className="user-block__avatar">
-              <img src={avatarUrl} alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === AuthorizationStatus.AUTH
+              ? <div onClick={onAvatarClick} className="user-block__avatar">
+                <img src={avatarUrl} alt="User avatar" width="63" height="63" />
+              </div>
+              : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
+            }
           </div>
         </header>
 
@@ -73,11 +77,13 @@ AddReviewPage.propTypes = {
   movie: proptypes.movie,
   fetchMovieByIDAction: PropTypes.func.isRequired,
   onAvatarClick: PropTypes.func.isRequired,
-  avatarUrl: PropTypes.string
+  avatarUrl: PropTypes.string,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
   movie: getCurrentMovie(state),
+  authorizationStatus: getAuthorizationStatus(state),
   avatarUrl: getAvatarURL(state)
 });
 
