@@ -6,7 +6,8 @@ export const ActionType = {
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   CHANGE_AUTHORIZATION_STATUS: `CHANGE_AUTHORIZATION_STATUS`,
   LOAD_AUTHORIZATION_INFO: `LOAD_AUTHORIZATION_INFO`,
-  LOAD_COMMENTS: `LOAD_COMMENTS`
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
 
 export const changeGenre = (genre) => {
@@ -62,5 +63,12 @@ export const loadCommentsByID = (comments) => {
   return {
     type: ActionType.LOAD_COMMENTS,
     payload: comments
+  };
+};
+
+export const redirectToRoute = (url) => {
+  return {
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url
   };
 };

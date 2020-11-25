@@ -11,13 +11,15 @@ import rootReducer from './store/reducers/root-reducer';
 import {createAPI} from './services/api';
 import {changeAuthorizationStatus} from './store/action';
 import {fetchMoviesList, checkAuth} from './store/api-actions';
+import {redirect} from './store/middlewares/redirect';
 
 const api = createAPI(() => store.dispatch(changeAuthorizationStatus(AuthorizationStatus.NO_AUTH)));
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 

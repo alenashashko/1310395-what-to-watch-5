@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router} from 'react-router-dom';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -11,9 +11,9 @@ import MoviePage from '../movie-page/movie-page';
 import AddReviewPage from '../add-review-page/add-review-page';
 import PlayerPageWrapped from '../player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, AppRoute} from '../../const';
 import {getAuthorizationStatus} from '../../store/selectors';
-import {AppRoute} from '../../const';
+import browserHistory from '../../browser-history';
 
 const App = (props) => {
   const {cinemaName, authorizationStatus} = props;
@@ -23,7 +23,7 @@ const App = (props) => {
   }
 
   return (
-    <BrowserRouter basename={AppRoute.ROOT}>
+    <Router history={browserHistory} basename={AppRoute.ROOT}>
       <Switch>
         <Route exact path={AppRoute.ROOT} render={(routeProps) => {
           const {history} = routeProps;
@@ -71,7 +71,7 @@ const App = (props) => {
         )}>
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

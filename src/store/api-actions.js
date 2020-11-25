@@ -5,7 +5,8 @@ import {
   loadPromoMovie,
   changeAuthorizationStatus,
   loadAuthorizationInfo,
-  loadCommentsByID
+  loadCommentsByID,
+  redirectToRoute
 } from '../store/action';
 import {AuthorizationStatus} from '../const';
 import {adaptMovieToClient, adaptCommentToClient} from '../services/adapters';
@@ -64,4 +65,5 @@ export const sendCommentByID = (id, requestBody) => (dispatch, _getState, api) =
   api.post(`/comments/${id}`, requestBody)
     .then(({data}) => data.map(adaptCommentToClient))
     .then((adaptedComments) => dispatch(loadCommentsByID(adaptedComments)))
+    .then(() => dispatch(redirectToRoute(`/films/${id}`)))
 );
