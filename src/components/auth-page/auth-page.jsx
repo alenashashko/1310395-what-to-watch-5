@@ -30,11 +30,19 @@ class AuthPage extends PureComponent {
     });
   }
 
-  render() {
-    const {cinemaName, authorizationStatus, redirectToMainPage} = this.props;
+  componentDidMount() {
+    const {authorizationStatus, redirectToMainPage} = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       redirectToMainPage();
+    }
+  }
+
+  render() {
+    const {cinemaName, authorizationStatus} = this.props;
+
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return null;
     }
 
     return (
