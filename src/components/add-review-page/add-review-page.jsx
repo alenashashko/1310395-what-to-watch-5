@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import ReviewFormWrapped from '../review-form/review-form';
+import UserBlock from '../user-block/user-block';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getCurrentMovie, getAvatarURL, getAuthorizationStatus} from '../../store/selectors';
-import {AuthorizationStatus, AppRoute} from '../../const';
+import {getCurrentMovie} from '../../store/selectors';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, movie, avatarUrl, onAvatarClick, authorizationStatus} = props;
+  const {cinemaName, movie} = props;
 
   return (
     <section
@@ -49,14 +49,7 @@ const AddReviewPage = (props) => {
             </ul>
           </nav>
 
-          <div className="user-block">
-            {authorizationStatus === AuthorizationStatus.AUTH
-              ? <div onClick={onAvatarClick} className="user-block__avatar">
-                <img src={avatarUrl} alt="User avatar" width="63" height="63" />
-              </div>
-              : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
-            }
-          </div>
+          <UserBlock />
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
@@ -75,16 +68,11 @@ AddReviewPage.propTypes = {
   cinemaName: proptypes.cinemaName,
   id: proptypes.id,
   movie: proptypes.movie,
-  fetchMovieByIDAction: PropTypes.func.isRequired,
-  onAvatarClick: PropTypes.func.isRequired,
-  avatarUrl: PropTypes.string,
-  authorizationStatus: PropTypes.string.isRequired
+  fetchMovieByIDAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state),
-  authorizationStatus: getAuthorizationStatus(state),
-  avatarUrl: getAvatarURL(state)
+  movie: getCurrentMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

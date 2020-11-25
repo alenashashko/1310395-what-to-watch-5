@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import GenresList from '../genres-list/genres-list';
 import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
+import UserBlock from '../user-block/user-block';
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getPromoMovie, getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
-import {AuthorizationStatus, AppRoute} from '../../const';
+import {getPromoMovie} from '../../store/selectors';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, history, authorizationStatus, onAvatarClick, avatarUrl} = props;
+  const {cinemaName, promoMovie, history} = props;
 
   return (
     <React.Fragment>
@@ -35,14 +34,7 @@ const MainPage = (props) => {
             </a>
           </div>
 
-          <div className="user-block">
-            {authorizationStatus === AuthorizationStatus.AUTH
-              ? <div onClick={onAvatarClick} className="user-block__avatar">
-                <img src={avatarUrl} alt="User avatar" width="63" height="63" />
-              </div>
-              : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
-            }
-          </div>
+          <UserBlock />
         </header>
 
         <div className="movie-card__wrap">
@@ -110,16 +102,11 @@ MainPage.propTypes = {
   cinemaName: proptypes.cinemaName,
   promoMovie: proptypes.movie,
   history: proptypes.history,
-  fetchPromoMovieAction: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onAvatarClick: PropTypes.func.isRequired,
-  avatarUrl: PropTypes.string
+  fetchPromoMovieAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  promoMovie: getPromoMovie(state),
-  authorizationStatus: getAuthorizationStatus(state),
-  avatarUrl: getAvatarURL(state)
+  promoMovie: getPromoMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

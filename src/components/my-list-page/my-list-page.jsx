@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import MoviesList from '../movies-list/movies-list';
+import UserBlock from '../user-block/user-block';
 import {fetchFavoriteMoviesList} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getFavoriteMovies} from '../../store/selectors';
@@ -27,11 +28,7 @@ const MyListPage = (props) => {
 
         <h1 className="page-title user-page__title">My list</h1>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <UserBlock />
       </header>
 
       <section className="catalog">

@@ -25,11 +25,9 @@ const App = (props) => {
   return (
     <Router history={browserHistory} basename={AppRoute.ROOT}>
       <Switch>
-        <Route exact path={AppRoute.ROOT} render={(routeProps) => {
-          const {history} = routeProps;
+        <Route exact path={AppRoute.ROOT} render={() => {
           return (
             <MainPage
-              onAvatarClick={() => history.push(AppRoute.MY_LIST)}
               cinemaName={cinemaName}
             />
           );
@@ -48,11 +46,9 @@ const App = (props) => {
         </PrivateRoute>
         <Route exact path={AppRoute.MOVIE} render={(routeProps) => {
           const {id} = routeProps.match.params;
-          const {history} = routeProps;
 
           return (
             <MoviePage
-              onAvatarClick={() => history.push(AppRoute.MY_LIST)}
               id={id}
               key={id}
               cinemaName={cinemaName}
@@ -64,11 +60,8 @@ const App = (props) => {
           exact
           path={AppRoute.REVIEW}
           render={(routeProps) => {
-            const {history} = routeProps;
-
             return (
               <AddReviewPage
-                onAvatarClick={() => history.push(AppRoute.MY_LIST)}
                 cinemaName={cinemaName}
                 id={routeProps.match.params.id}
               />

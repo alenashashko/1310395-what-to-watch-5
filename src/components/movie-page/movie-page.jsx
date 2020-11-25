@@ -7,14 +7,15 @@ import {connect} from 'react-redux';
 import proptypes from '../../type';
 import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
+import UserBlock from '../user-block/user-block';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getCurrentMovie} from '../../store/selectors';
-import {getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
-import {AuthorizationStatus, AppRoute} from '../../const';
+import {getAuthorizationStatus} from '../../store/selectors';
+import {AuthorizationStatus} from '../../const';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, history, authorizationStatus, onAvatarClick, avatarUrl} = props;
+  const {cinemaName, movie, history, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -39,14 +40,7 @@ const MoviePage = (props) => {
               </Link>
             </div>
 
-            <div className="user-block">
-              {authorizationStatus === AuthorizationStatus.AUTH
-                ? <div onClick={onAvatarClick} className="user-block__avatar">
-                  <img src={avatarUrl} alt="User avatar" width="63" height="63" />
-                </div>
-                : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
-              }
-            </div>
+            <UserBlock />
           </header>
 
           <div className="movie-card__wrap">
@@ -127,15 +121,12 @@ MoviePage.propTypes = {
   id: proptypes.id,
   history: proptypes.history,
   fetchMovieByIDAction: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onAvatarClick: PropTypes.func.isRequired,
-  avatarUrl: PropTypes.string
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
   movie: getCurrentMovie(state),
-  authorizationStatus: getAuthorizationStatus(state),
-  avatarUrl: getAvatarURL(state)
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
