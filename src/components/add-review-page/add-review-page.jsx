@@ -6,12 +6,14 @@ import {connect} from 'react-redux';
 import proptypes from '../../type';
 import ReviewFormWrapped from '../review-form/review-form';
 import UserBlock from '../user-block/user-block';
+import Logo from '../logo/logo';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getCurrentMovie} from '../../store/selectors';
+import {CINEMA_NAME} from '../../const';
 
 const AddReviewPage = (props) => {
-  const {cinemaName, movie} = props;
+  const {movie} = props;
 
   return (
     <section
@@ -22,20 +24,10 @@ const AddReviewPage = (props) => {
           <img src={movie.backgroundPicture} alt={movie.title} />
         </div>
 
-        <h1 className="visually-hidden">{cinemaName}</h1>
+        <h1 className="visually-hidden">{CINEMA_NAME}</h1>
 
         <header className="page-header">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>
-                    {character}
-                  </span>
-                );
-              })}
-            </Link>
-          </div>
+          <Logo />
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -65,7 +57,6 @@ const AddReviewPage = (props) => {
 };
 
 AddReviewPage.propTypes = {
-  cinemaName: proptypes.cinemaName,
   id: proptypes.id,
   movie: proptypes.movie,
   fetchMovieByIDAction: PropTypes.func.isRequired

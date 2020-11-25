@@ -10,7 +10,7 @@ import withVideoPlayingStatus from '../../hocs/with-video-playing-status/with-vi
 const MovieCard = (props) => {
   const {movie, history, isVideoPlaying, onMouseEnter, onMouseLeave} = props;
 
-  return ( // picture video?
+  return (
     <article className="small-movie-card catalog__movies-card"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

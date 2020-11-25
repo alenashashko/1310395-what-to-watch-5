@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
+import Logo from '../logo/logo';
+import Footer from '../footer/footer';
 import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
 import UserBlock from '../user-block/user-block';
@@ -12,10 +14,10 @@ import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getCurrentMovie} from '../../store/selectors';
 import {getAuthorizationStatus} from '../../store/selectors';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, CINEMA_NAME} from '../../const';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, history, authorizationStatus} = props;
+  const {movie, history, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -27,18 +29,10 @@ const MoviePage = (props) => {
             <img src={movie.backgroundPicture} alt={movie.title} />
           </div>
 
-          <h1 className="visually-hidden">{cinemaName}</h1>
+          <h1 className="visually-hidden">{CINEMA_NAME}</h1>
 
           <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link to="/" className="logo__link">
-                {cinemaName.split(``).map((character, index) => {
-                  return (
-                    <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                  );
-                })}
-              </Link>
-            </div>
+            <Logo />
 
             <UserBlock />
           </header>
@@ -95,28 +89,13 @@ const MoviePage = (props) => {
           <SimilarMovies movie={movie} />
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );
 };
 
 MoviePage.propTypes = {
-  cinemaName: proptypes.cinemaName,
   movie: proptypes.movie,
   id: proptypes.id,
   history: proptypes.history,

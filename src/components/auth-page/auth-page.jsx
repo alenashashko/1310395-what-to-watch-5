@@ -1,9 +1,9 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import proptypes from '../../type';
+import Logo from '../logo/logo';
+import Footer from '../footer/footer';
 import {login} from '../../store/api-actions';
 import {redirectToRoute} from '../../store/actions';
 import {getAuthorizationStatus} from '../../store/selectors';
@@ -39,7 +39,7 @@ class AuthPage extends PureComponent {
   }
 
   render() {
-    const {cinemaName, authorizationStatus} = this.props;
+    const {authorizationStatus} = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return null;
@@ -48,15 +48,7 @@ class AuthPage extends PureComponent {
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to="/" className="logo__link">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </Link>
-          </div>
+          <Logo />
 
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
@@ -80,28 +72,13 @@ class AuthPage extends PureComponent {
           </form>
         </div>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to="/" className="logo__link logo__link--light">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     );
   }
 }
 
 AuthPage.propTypes = {
-  cinemaName: proptypes.cinemaName,
   onSubmit: PropTypes.func.isRequired,
   redirectToMainPage: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired

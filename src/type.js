@@ -10,7 +10,6 @@ import {
 export default {
   id: string.isRequired,
   src: string.isRequired,
-  cinemaName: string.isRequired,
   movie: shape({
     id: string.isRequired,
     title: string.isRequired,

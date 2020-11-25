@@ -3,7 +3,6 @@ import {Switch, Route, Router} from 'react-router-dom';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 
-import proptypes from '../../type';
 import MainPage from '../main-page/main-page';
 import AuthPage from '../auth-page/auth-page';
 import MyListPage from '../my-list-page/my-list-page';
@@ -16,7 +15,7 @@ import {getAuthorizationStatus} from '../../store/selectors';
 import browserHistory from '../../browser-history';
 
 const App = (props) => {
-  const {cinemaName, authorizationStatus} = props;
+  const {authorizationStatus} = props;
 
   if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
     return null;
@@ -25,22 +24,17 @@ const App = (props) => {
   return (
     <Router history={browserHistory} basename={AppRoute.ROOT}>
       <Switch>
-        <Route exact path={AppRoute.ROOT} render={() => {
-          return (
-            <MainPage
-              cinemaName={cinemaName}
-            />
-          );
-        }}>
+        <Route exact path={AppRoute.ROOT} >
+          <MainPage />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
-          <AuthPage cinemaName={cinemaName} />
+          <AuthPage />
         </Route>
         <PrivateRoute
           exact
           path={AppRoute.MY_LIST}
           render={() => (
-            <MyListPage cinemaName={cinemaName} />
+            <MyListPage />
           )}
         >
         </PrivateRoute>
@@ -51,7 +45,6 @@ const App = (props) => {
             <MoviePage
               id={id}
               key={id}
-              cinemaName={cinemaName}
             />
           );
         }}>
@@ -62,7 +55,6 @@ const App = (props) => {
           render={(routeProps) => {
             return (
               <AddReviewPage
-                cinemaName={cinemaName}
                 id={routeProps.match.params.id}
               />
             );
@@ -78,7 +70,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  cinemaName: proptypes.cinemaName,
   authorizationStatus: PropTypes.string.isRequired
 };
 

@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './components/app/app';
-import {CINEMA_NAME, AuthorizationStatus} from './const';
+import {AuthorizationStatus} from './const';
 import rootReducer from './store/reducers/root-reducer';
 import {createAPI} from './services/api';
 import {changeAuthorizationStatus} from './store/actions';
@@ -28,7 +28,7 @@ store.dispatch(checkAuth());
 
 ReactDom.render(
     <Provider store={store}>
-      <App cinemaName={CINEMA_NAME} />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

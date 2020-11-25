@@ -7,12 +7,15 @@ import proptypes from '../../type';
 import GenresList from '../genres-list/genres-list';
 import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
 import UserBlock from '../user-block/user-block';
+import Logo from '../logo/logo';
+import Footer from '../footer/footer';
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getPromoMovie} from '../../store/selectors';
+import {CINEMA_NAME} from '../../const';
 
 const MainPage = (props) => {
-  const {cinemaName, promoMovie, history} = props;
+  const {promoMovie, history} = props;
 
   return (
     <React.Fragment>
@@ -21,18 +24,10 @@ const MainPage = (props) => {
           <img src={promoMovie.backgroundPicture} alt={promoMovie.title} />
         </div>
 
-        <h1 className="visually-hidden">{cinemaName}</h1>
+        <h1 className="visually-hidden">{CINEMA_NAME}</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </a>
-          </div>
+          <Logo />
 
           <UserBlock />
         </header>
@@ -78,28 +73,13 @@ const MainPage = (props) => {
 
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              {cinemaName.split(``).map((character, index) => {
-                return (
-                  <span key={index} className={`logo__letter logo__letter--${index + 1}`}>{character}</span>
-                );
-              })}
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );
 };
 
 MainPage.propTypes = {
-  cinemaName: proptypes.cinemaName,
   promoMovie: proptypes.movie,
   history: proptypes.history,
   fetchPromoMovieAction: PropTypes.func.isRequired
