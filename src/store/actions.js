@@ -8,7 +8,8 @@ export const ActionType = {
   LOAD_AUTHORIZATION_INFO: `LOAD_AUTHORIZATION_INFO`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
-  SAVE_ERROR_TEXT: `SAVE_ERROR_TEXT`
+  SAVE_ERROR_TEXT: `SAVE_ERROR_TEXT`,
+  CHANGE_COMMENT_LOADING_STATUS: `CHANGE_COMMENT_LOADING_STATUS`
 };
 
 export const changeGenre = (genre) => {
@@ -78,5 +79,12 @@ export const saveErrorText = (errorText) => {
   return {
     type: ActionType.SAVE_ERROR_TEXT,
     payload: errorText
+  };
+};
+
+export const changeCommentLoadingStatus = (status) => {
+  return {
+    type: ActionType.CHANGE_COMMENT_LOADING_STATUS,
+    payload: status
   };
 };

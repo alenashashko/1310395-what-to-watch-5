@@ -41,6 +41,10 @@ export const getErrorText = (state) => {
   return state.DATA.errorText;
 };
 
+export const getIsCommentLoadingStatus = (state) => {
+  return state.APP.isCommentLoading;
+};
+
 export const getGenreMovies = createSelector(getMovies, getGenre, (movies, genre) => {
   return filterMoviesByGenre(movies, genre);
 });

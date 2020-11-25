@@ -4,8 +4,7 @@ import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import withRatingAndReviewText from '../../hocs/with-rating-and-review-text/with-rating-and-review-text';
-import {getCurrentMovie, getErrorText} from '../../store/selectors';
-import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
+import {getErrorText, getIsCommentLoadingStatus} from '../../store/selectors';
 
 const ReviewForm = (props) => {
   const {
@@ -14,9 +13,9 @@ const ReviewForm = (props) => {
     onFormSubmit,
     onTextChange,
     onRatingChange,
-    saveErrorText
+    saveErrorText,
+    isLoading
   } = props;
-  // movie
   const ratings = new Array(5).fill(null);
 
   return (
@@ -49,7 +48,13 @@ const ReviewForm = (props) => {
         >
         </textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button
+            className="add-review__btn"
+            type="submit"
+            disabled={isLoading}
+          >
+            Post
+          </button>
         </div>
 
       </div>
@@ -69,20 +74,14 @@ ReviewForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
-  movie: proptypes.movie,
-  saveErrorText: PropTypes.string
+  saveErrorText: PropTypes.string,
+  isLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state),
-  saveErrorText: getErrorText(state)
+  saveErrorText: getErrorText(state),
+  isLoading: getIsCommentLoadingStatus(state)
 });
 
 export {ReviewForm};
-export default connect(mapStateToProps)(
-    generateWithFetchedData(
-        (state) => !!getCurrentMovie(state)
-    )(
-        withRatingAndReviewText(ReviewForm)
-    )
-);
+export default connect(mapStateToProps)(withRatingAndReviewText(ReviewForm));
