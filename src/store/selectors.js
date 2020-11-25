@@ -33,6 +33,10 @@ export const getPromoMovie = (state) => {
   return state.DATA.promoMovie;
 };
 
+export const getComments = (state) => {
+  return state.DATA.comments;
+};
+
 export const getGenreMovies = createSelector(getMovies, getGenre, (movies, genre) => {
   return filterMoviesByGenre(movies, genre);
 });

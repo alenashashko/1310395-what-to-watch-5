@@ -53,7 +53,7 @@ export default {
         isFavorite: bool.isRequired
       })
   ).isRequired,
-  reviews: arrayOf(
+  comments: arrayOf( // change
       shape({
         id: string.isRequired,
         author: string.isRequired,
