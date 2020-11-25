@@ -14,7 +14,7 @@ import {getAuthorizationStatus} from '../../store/selectors';
 import {AuthorizationStatus} from '../../const';
 
 const MoviePage = (props) => {
-  const {cinemaName, movie, reviews, history, authorizationStatus} = props;
+  const {cinemaName, movie, history, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -85,7 +85,7 @@ const MoviePage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabsWrapped movie={movie} reviews={reviews} id={movie.id}/>
+              <TabsWrapped movie={movie} id={movie.id}/>
             </div>
           </div>
         </div>
@@ -121,7 +121,6 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   cinemaName: proptypes.cinemaName,
   movie: proptypes.movie,
-  reviews: proptypes.reviews,
   id: proptypes.id,
   history: proptypes.history,
   fetchMovieByIDAction: PropTypes.func.isRequired,

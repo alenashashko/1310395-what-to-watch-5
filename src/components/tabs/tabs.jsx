@@ -9,7 +9,7 @@ import {TabType, TAB_NAMES} from '../../const';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 
 const Tabs = (props) => {
-  const {activeTab, onTabClick, movie, reviews} = props;
+  const {activeTab, onTabClick, movie} = props;
   // id фильма
 
   const getComponentByTab = (tabName) => {
@@ -17,7 +17,7 @@ const Tabs = (props) => {
       case TabType.DETAILS:
         return <MovieDetails movie={movie} />;
       case TabType.REVIEWS:
-        return <MovieReviews reviews={reviews} />;
+        return <MovieReviews />;
       default:
         return <MovieOverview movie={movie} />;
     }
@@ -50,8 +50,7 @@ const Tabs = (props) => {
 Tabs.propTypes = {
   activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
-  movie: proptypes.movie,
-  reviews: proptypes.reviews
+  movie: proptypes.movie
 };
 
 export {Tabs};

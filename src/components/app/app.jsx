@@ -16,7 +16,7 @@ import {getAuthorizationStatus} from '../../store/selectors';
 import {AppRoute} from '../../const';
 
 const App = (props) => {
-  const {cinemaName, reviews, authorizationStatus} = props;
+  const {cinemaName, authorizationStatus} = props;
 
   if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
     return null;
@@ -28,7 +28,10 @@ const App = (props) => {
         <Route exact path={AppRoute.ROOT} render={(routeProps) => {
           const {history} = routeProps;
           return (
-            <MainPage onAvatarClick={() => history.push(AppRoute.MY_LIST)} cinemaName={cinemaName} />
+            <MainPage
+              onAvatarClick={() => history.push(AppRoute.MY_LIST)}
+              cinemaName={cinemaName}
+            />
           );
         }}>
         </Route>
@@ -51,7 +54,6 @@ const App = (props) => {
               id={id}
               key={id}
               cinemaName={cinemaName}
-              reviews={reviews}
             />
           );
         }}>
@@ -75,7 +77,6 @@ const App = (props) => {
 
 App.propTypes = {
   cinemaName: proptypes.cinemaName,
-  reviews: proptypes.reviews,
   authorizationStatus: PropTypes.string.isRequired
 };
 

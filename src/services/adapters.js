@@ -21,3 +21,15 @@ export const adaptMovieToClient = (movie) => {
 
   return adaptedMovie;
 };
+
+export const adaptCommentToClient = (comment) => { // author.id ?
+  const adaptedComment = {
+    id: comment.id,
+    author: comment.user.name,
+    date: comment.date,
+    rating: comment.rating,
+    text: comment.comment
+  };
+
+  return adaptedComment;
+};

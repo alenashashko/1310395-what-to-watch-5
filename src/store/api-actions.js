@@ -8,7 +8,7 @@ import {
   loadCommentsByID
 } from '../store/action';
 import {AuthorizationStatus} from '../const';
-import {adaptMovieToClient} from '../services/adapters';
+import {adaptMovieToClient, adaptCommentToClient} from '../services/adapters';
 import {APIRoute} from '../const';
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
@@ -56,7 +56,8 @@ export const login = (requestBody) => (dispatch, _getState, api) => (
 
 export const fetchCommentsListByID = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
-    .then(({data}) => dispatch(loadCommentsByID(data)))
+    .then(({data}) => data.map(adaptCommentToClient))
+    .then((adaptedComments) => dispatch(loadCommentsByID(adaptedComments)))
 );
 
 export const sendCommentByID = (id, requestBody) => (dispatch, _getState, api) => (
