@@ -3,12 +3,10 @@ import {
   shape,
   arrayOf,
   string,
-  instanceOf,
   object,
   bool
 } from 'prop-types';
 
-// date: PropTypes.object.isRequired ?
 export default {
   id: string.isRequired,
   src: string.isRequired,
@@ -53,11 +51,11 @@ export default {
         isFavorite: bool.isRequired
       })
   ).isRequired,
-  comments: arrayOf( // change
+  comments: arrayOf(
       shape({
         id: string.isRequired,
         author: string.isRequired,
-        date: instanceOf(Date).isRequired,
+        date: string.isRequired,
         rating: number.isRequired,
         text: string.isRequired
       })

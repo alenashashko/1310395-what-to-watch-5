@@ -85,7 +85,7 @@ const MoviePage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <TabsWrapped movie={movie} id={movie.id}/>
+              <TabsWrapped movie={movie} />
             </div>
           </div>
         </div>

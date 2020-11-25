@@ -24,7 +24,7 @@ export const adaptMovieToClient = (movie) => {
 
 export const adaptCommentToClient = (comment) => { // author.id ?
   const adaptedComment = {
-    id: comment.id,
+    id: String(comment.id),
     author: comment.user.name,
     date: comment.date,
     rating: comment.rating,

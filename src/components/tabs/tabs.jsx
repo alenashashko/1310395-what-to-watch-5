@@ -10,14 +10,14 @@ import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 
 const Tabs = (props) => {
   const {activeTab, onTabClick, movie} = props;
-  // id фильма
+  const id = movie.id;
 
   const getComponentByTab = (tabName) => {
     switch (tabName) {
       case TabType.DETAILS:
         return <MovieDetails movie={movie} />;
       case TabType.REVIEWS:
-        return <MovieReviews />;
+        return <MovieReviews id={id}/>;
       default:
         return <MovieOverview movie={movie} />;
     }
