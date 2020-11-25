@@ -1,4 +1,4 @@
-import {ActionType} from '../../action';
+import {ActionType} from '../../actions';
 import {extend} from '../../../utils';
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
   currentMovie: null,
   favoriteMovies: null,
   promoMovie: null,
-  comments: null
+  comments: null,
+  errorText: null
 };
 
 const appData = (state = initialState, action) => {

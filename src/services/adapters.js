@@ -22,7 +22,7 @@ export const adaptMovieToClient = (movie) => {
   return adaptedMovie;
 };
 
-export const adaptCommentToClient = (comment) => { // author.id ?
+export const adaptCommentToClient = (comment) => {
   const adaptedComment = {
     id: String(comment.id),
     author: comment.user.name,

@@ -1,5 +1,5 @@
 import {DEFAULT_MOVIES_FILTER_VALUE} from '../../../const';
-import {ActionType} from '../../action';
+import {ActionType} from '../../actions';
 import {extend} from '../../../utils';
 
 const initialState = {

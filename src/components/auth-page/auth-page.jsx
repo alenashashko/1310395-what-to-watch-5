@@ -1,10 +1,11 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import {login} from '../../store/api-actions';
+import {redirectToRoute} from '../../store/actions';
 import {getAuthorizationStatus} from '../../store/selectors';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
@@ -30,12 +31,10 @@ class AuthPage extends PureComponent {
   }
 
   render() {
-    const {cinemaName, authorizationStatus} = this.props;
+    const {cinemaName, authorizationStatus, redirectToMainPage} = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
-      return (
-        <Redirect to={AppRoute.ROOT} />
-      );
+      redirectToMainPage();
     }
 
     return (
@@ -96,6 +95,7 @@ class AuthPage extends PureComponent {
 AuthPage.propTypes = {
   cinemaName: proptypes.cinemaName,
   onSubmit: PropTypes.func.isRequired,
+  redirectToMainPage: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired
 };
 
@@ -106,6 +106,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
+  },
+  redirectToMainPage() {
+    dispatch(redirectToRoute(AppRoute.ROOT));
   }
 });
 

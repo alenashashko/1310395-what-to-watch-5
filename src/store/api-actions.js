@@ -7,10 +7,10 @@ import {
   loadAuthorizationInfo,
   loadCommentsByID,
   redirectToRoute
-} from '../store/action';
+} from './actions';
 import {AuthorizationStatus} from '../const';
 import {adaptMovieToClient, adaptCommentToClient} from '../services/adapters';
-import {APIRoute} from '../const';
+import {APIRoute, AppRoute} from '../const';
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.MOVIES)
@@ -49,10 +49,9 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 
 export const login = (requestBody) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, requestBody)
-    .then(({data}) => {
-      dispatch(loadAuthorizationInfo(data));
-      dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH));
-    })
+    .then(({data}) => dispatch(loadAuthorizationInfo(data)))
+    .then(() => dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );
 
 export const fetchCommentsListByID = (id) => (dispatch, _getState, api) => (

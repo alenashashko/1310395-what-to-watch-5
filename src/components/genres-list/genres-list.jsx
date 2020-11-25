@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
 import {DEFAULT_MOVIES_FILTER_VALUE} from '../../const';
-import {changeGenre} from '../../store/action';
+import {changeGenre} from '../../store/actions';
 import {connect} from 'react-redux';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getGenre, getMovies} from '../../store/selectors';

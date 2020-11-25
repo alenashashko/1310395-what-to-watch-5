@@ -9,10 +9,8 @@ import GenresList from '../genres-list/genres-list';
 import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getPromoMovie} from '../../store/selectors';
-import {getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
-import {AuthorizationStatus} from '../../const';
-import {AppRoute} from '../../const';
+import {getPromoMovie, getAuthorizationStatus, getAvatarURL} from '../../store/selectors';
+import {AuthorizationStatus, AppRoute} from '../../const';
 
 const MainPage = (props) => {
   const {cinemaName, promoMovie, history, authorizationStatus, onAvatarClick, avatarUrl} = props;

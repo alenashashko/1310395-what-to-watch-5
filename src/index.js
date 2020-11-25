@@ -9,7 +9,7 @@ import App from './components/app/app';
 import {CINEMA_NAME, AuthorizationStatus} from './const';
 import rootReducer from './store/reducers/root-reducer';
 import {createAPI} from './services/api';
-import {changeAuthorizationStatus} from './store/action';
+import {changeAuthorizationStatus} from './store/actions';
 import {fetchMoviesList, checkAuth} from './store/api-actions';
 import {redirect} from './store/middlewares/redirect';
 
