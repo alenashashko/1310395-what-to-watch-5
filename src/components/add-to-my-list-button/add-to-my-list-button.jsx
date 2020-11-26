@@ -3,16 +3,31 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
-import {MovieChangeStatus} from '../../const';
+import {getAuthorizationStatus} from '../../store/selectors';
+import {MovieChangeStatus, AppRoute, AuthorizationStatus} from '../../const';
 import {changeFavoriteMovieByID} from '../../store/api-actions';
+import {redirectToRoute} from '../../store/actions';
 
 const AddToMyListButton = (props) => {
   const {id, isMovieFavorite, changeFavoriteMovieByIDAction} = props;
 
+  const handleAddToFavoriteButtonClick = () => {
+    const {authorizationStatus, redirectToAuthPage} = props;
+
+    if (authorizationStatus !== AuthorizationStatus.AUTH) {
+      redirectToAuthPage();
+    }
+  };
+
   return (
     isMovieFavorite
       ? <button
-        onClick={() => changeFavoriteMovieByIDAction(id, MovieChangeStatus.DELETE_FROM_FAVORITE)}
+        onClick={
+          () => {
+            handleAddToFavoriteButtonClick();
+            changeFavoriteMovieByIDAction(id, MovieChangeStatus.DELETE_FROM_FAVORITE);
+          }
+        }
         className="btn btn--list movie-card__button"
         type="button">
         <svg viewBox="0 0 18 14" width="18" height="14">
@@ -21,7 +36,12 @@ const AddToMyListButton = (props) => {
         <span>My list</span>
       </button>
       : <button
-        onClick={() => changeFavoriteMovieByIDAction(id, MovieChangeStatus.ADD_TO_FAVORITE)}
+        onClick={
+          () => {
+            handleAddToFavoriteButtonClick();
+            changeFavoriteMovieByIDAction(id, MovieChangeStatus.ADD_TO_FAVORITE);
+          }
+        }
         className="btn btn--list movie-card__button"
         type="button">
         <svg viewBox="0 0 19 20" width="19" height="20">
@@ -35,14 +55,23 @@ const AddToMyListButton = (props) => {
 AddToMyListButton.propTypes = {
   id: proptypes.id,
   isMovieFavorite: PropTypes.bool.isRequired,
-  changeFavoriteMovieByIDAction: PropTypes.func.isRequired
+  changeFavoriteMovieByIDAction: PropTypes.func.isRequired,
+  redirectToAuthPage: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   changeFavoriteMovieByIDAction(id, status) {
     dispatch(changeFavoriteMovieByID(id, status));
+  },
+  redirectToAuthPage() {
+    dispatch(redirectToRoute(AppRoute.LOGIN));
   }
 });
 
 export {AddToMyListButton};
-export default connect(null, mapDispatchToProps)(AddToMyListButton);
+export default connect(mapStateToProps, mapDispatchToProps)(AddToMyListButton);
