@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {MillisecondsInTimePeriod} from './const';
 import {getMovie} from './store/selectors';
 
@@ -60,6 +61,14 @@ export const formatCommentRating = (rating) => {
   const formatedRating = String(rating).replace(`.`, `,`);
 
   return formatedRating.indexOf(`,`) === -1 ? `${formatedRating},0` : formatedRating;
+};
+
+export const formatCommentDate = (date) => {
+  return dayjs(date).format(`MMMM DD, YYYY`);
+};
+
+export const formatCommentDateTime = (date) => {
+  return dayjs(date).format(`YYYY-MM-DD`);
 };
 
 export function exitFullscreen() {

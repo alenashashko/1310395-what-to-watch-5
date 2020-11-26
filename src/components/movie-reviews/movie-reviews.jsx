@@ -11,7 +11,7 @@ import {getComments} from '../../store/selectors';
 const MovieReviews = (props) => {
   const {comments} = props;
 
-  return ( // date и dateTime исправ
+  return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
 

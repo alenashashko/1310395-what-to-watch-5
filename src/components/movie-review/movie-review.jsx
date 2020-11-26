@@ -1,7 +1,7 @@
 import React from 'react';
 
 import proptypes from '../../type';
-import {formatCommentRating} from '../../utils';
+import {formatCommentRating, formatCommentDateTime, formatCommentDate} from '../../utils';
 
 const MovieReview = (props) => {
   const {review} = props;
@@ -13,7 +13,9 @@ const MovieReview = (props) => {
 
         <footer className="review__details">
           <cite className="review__author">{review.author}</cite>
-          <time className="review__date" dateTime="2016-12-24">{review.date.toString()}</time>
+          <time className="review__date" dateTime={formatCommentDateTime(review.date)}>
+            {formatCommentDate(review.date)}
+          </time>
         </footer>
       </blockquote>
 
