@@ -4,6 +4,7 @@ export const ABSENT_PROGRESS_IN_PERSENT = 0;
 export const FULL_PROGRESS_IN_PERCENT = 100;
 export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;
 export const MOVIES_PER_PAGE = 8;
+export const MINUTES_IN_HOUR = 60;
 
 export const MillisecondsInTimePeriod = {
   SECOND: 1000,

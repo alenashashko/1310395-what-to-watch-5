@@ -2,6 +2,7 @@ import React from 'react';
 
 import proptypes from '../../type';
 import {TextRatingToNubmer} from '../../const';
+import {formatMovieRating} from '../../utils';
 
 const createRatingTextVersion = (ratingScore) => {
   if (ratingScore < TextRatingToNubmer.BAD) {
@@ -23,7 +24,7 @@ const MovieOverview = (props) => {
   return (
     <React.Fragment>
       <div className="movie-rating">
-        <div className="movie-rating__score">{movie.ratingScore}</div>
+        <div className="movie-rating__score">{formatMovieRating(movie.ratingScore)}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">
             {createRatingTextVersion(movie.ratingScore)}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
+import MovieReview from '../movie-review/movie-review';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {fetchCommentsListByID} from '../../store/api-actions';
 import {getComments} from '../../store/selectors';
@@ -16,18 +17,7 @@ const MovieReviews = (props) => {
 
         {comments.slice(0, Math.ceil(comments.length / 2)).map((review) => {
           return (
-            <div key={review.id} className="review">
-              <blockquote className="review__quote">
-                <p className="review__text">{review.text}</p>
-
-                <footer className="review__details">
-                  <cite className="review__author">{review.author}</cite>
-                  <time className="review__date" dateTime="2016-12-24">{review.date.toString()}</time>
-                </footer>
-              </blockquote>
-
-              <div className="review__rating">{review.rating}</div>
-            </div>
+            <MovieReview key={review.id} review={review} />
           );
         })}
 
@@ -36,18 +26,7 @@ const MovieReviews = (props) => {
 
         {comments.slice(Math.ceil(comments.length / 2)).map((review) => {
           return (
-            <div key={review.id} className="review">
-              <blockquote className="review__quote">
-                <p className="review__text">{review.text}</p>
-
-                <footer className="review__details">
-                  <cite className="review__author">{review.author}</cite>
-                  <time className="review__date" dateTime="2016-12-24">{review.date.toString()}</time>
-                </footer>
-              </blockquote>
-
-              <div className="review__rating">{review.rating}</div>
-            </div>
+            <MovieReview key={review.id} review={review} />
           );
         })}
 

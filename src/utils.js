@@ -1,6 +1,8 @@
 import {MillisecondsInTimePeriod} from './const';
 import {getMovie} from './store/selectors';
 
+import {MINUTES_IN_HOUR} from './const';
+
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -36,6 +38,28 @@ export const formatMovieDuration = (duration) => {
     formatDurationDisplaying(minutes),
     formatDurationDisplaying(seconds)
   ].filter(Boolean).join(`:`);
+};
+
+export const formatMovieRunTime = (durationInMin) => {
+  const hours = Math.floor(durationInMin / MINUTES_IN_HOUR);
+  const minutes = durationInMin % MINUTES_IN_HOUR;
+
+  return [
+    hours > 0 ? `${hours}h` : undefined,
+    `${minutes}m`
+  ].filter(Boolean).join(` `);
+};
+
+export const formatMovieRating = (rating) => {
+  const ratingString = String(rating);
+
+  return ratingString.indexOf(`.`) === -1 ? `${ratingString}.0` : ratingString;
+};
+
+export const formatCommentRating = (rating) => {
+  const formatedRating = String(rating).replace(`.`, `,`);
+
+  return formatedRating.indexOf(`,`) === -1 ? `${formatedRating},0` : formatedRating;
 };
 
 export function exitFullscreen() {

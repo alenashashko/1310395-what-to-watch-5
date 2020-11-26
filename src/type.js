@@ -69,6 +69,13 @@ export default {
         isFavorite: bool.isRequired
       })
   ).isRequired,
+  comment: shape({
+    id: string.isRequired,
+    author: string.isRequired,
+    date: string.isRequired,
+    rating: number.isRequired,
+    text: string.isRequired
+  }).isRequired,
   comments: arrayOf(
       shape({
         id: string.isRequired,
