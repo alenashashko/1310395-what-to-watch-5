@@ -2,6 +2,8 @@ export const CINEMA_NAME = `WTW`;
 export const MS_IN_SEC = 1000;
 export const ABSENT_PROGRESS_IN_PERSENT = 0;
 export const FULL_PROGRESS_IN_PERCENT = 100;
+export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;
+export const MOVIES_PER_PAGE = 8;
 
 export const MillisecondsInTimePeriod = {
   SECOND: 1000,
@@ -46,6 +48,7 @@ export const APIRoute = {
 
 export const TAB_NAMES = Object.values(TabType);
 
-export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;
-
-export const MOVIES_PER_PAGE = 8;
+export const MovieChangeStatus = {
+  ADD_TO_FAVORITE: 1,
+  DELETE_FROM_FAVORITE: 0
+};

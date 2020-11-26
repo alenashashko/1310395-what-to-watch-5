@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
@@ -9,13 +8,15 @@ import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies
 import UserBlock from '../user-block/user-block';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import AddToMyListButton from '../add-to-my-list-button/add-to-my-list-button';
+import PlayButton from '../play-button/play-button';
 import {fetchPromoMovie} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getPromoMovie} from '../../store/selectors';
 import {CINEMA_NAME} from '../../const';
 
 const MainPage = (props) => {
-  const {promoMovie, history} = props;
+  const {promoMovie} = props;
 
   return (
     <React.Fragment>
@@ -28,7 +29,6 @@ const MainPage = (props) => {
 
         <header className="page-header movie-card__head">
           <Logo />
-
           <UserBlock />
         </header>
 
@@ -46,18 +46,8 @@ const MainPage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button onClick={() => history.push(`/player/${promoMovie.id}`)} className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <PlayButton id={promoMovie.id} />
+                <AddToMyListButton id={promoMovie.id} isMovieFavorite={promoMovie.isFavorite} />
               </div>
             </div>
           </div>
@@ -67,10 +57,8 @@ const MainPage = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
           <GenresList />
           <MainPageMoviesListWrapped />
-
         </section>
 
         <Footer />
@@ -81,7 +69,6 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   promoMovie: proptypes.movie,
-  history: proptypes.history,
   fetchPromoMovieAction: PropTypes.func.isRequired
 };
 
@@ -97,12 +84,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {MainPage};
 export default connect(mapStateToProps, mapDispatchToProps)(
-    withRouter(
-        generateWithFetchedData(
-            (state) => !!getPromoMovie(state),
-            (props) => props.fetchPromoMovieAction()
-        )(
-            MainPage
-        )
+    generateWithFetchedData(
+        (state) => !!getPromoMovie(state),
+        (props) => props.fetchPromoMovieAction()
+    )(
+        MainPage
     )
 );

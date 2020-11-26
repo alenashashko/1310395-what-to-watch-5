@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import AddToMyListButton from '../add-to-my-list-button/add-to-my-list-button';
+import PlayButton from '../play-button/play-button';
 import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
 import UserBlock from '../user-block/user-block';
-import {fetchMovieByID} from '../../store/api-actions';
+import {fetchMovieByID, changeFavoriteMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getCurrentMovie} from '../../store/selectors';
 import {getAuthorizationStatus} from '../../store/selectors';
 import {AuthorizationStatus, CINEMA_NAME} from '../../const';
 
 const MoviePage = (props) => {
-  const {movie, history, authorizationStatus} = props;
+  const {movie, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -33,7 +34,6 @@ const MoviePage = (props) => {
 
           <header className="page-header movie-card__head">
             <Logo />
-
             <UserBlock />
           </header>
 
@@ -46,18 +46,9 @@ const MoviePage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button onClick={() => history.push(`/player/${movie.id}`)} className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <PlayButton id={movie.id} />
+                <AddToMyListButton id={movie.id} isMovieFavorite={movie.isFavorite} />
+
                 {authorizationStatus === AuthorizationStatus.AUTH
                   ? <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">
                   Add review
@@ -85,7 +76,6 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
           <SimilarMovies movie={movie} />
         </section>
 
@@ -98,9 +88,9 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   movie: proptypes.movie,
   id: proptypes.id,
-  history: proptypes.history,
   fetchMovieByIDAction: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  changeFavoriteMovieByIDAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -111,17 +101,18 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchMovieByIDAction(id) {
     dispatch(fetchMovieByID(id));
+  },
+  changeFavoriteMovieByIDAction(id, status) {
+    dispatch(changeFavoriteMovieByID(id, status));
   }
 });
 
 export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(
-    withRouter(
-        generateWithFetchedData(
-            (state) => !!getCurrentMovie(state),
-            (props) => props.fetchMovieByIDAction(props.id)
-        )(
-            MoviePage
-        )
+    generateWithFetchedData(
+        (state) => !!getCurrentMovie(state),
+        (props) => props.fetchMovieByIDAction(props.id)
+    )(
+        MoviePage
     )
 );

@@ -23,7 +23,7 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
 export const fetchMovieByID = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
     .then(({data}) => adaptMovieToClient(data))
-    .then((movie) => dispatch(loadMovieByID(movie)))
+    .then((adaptedMovie) => dispatch(loadMovieByID(adaptedMovie)))
 );
 
 export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (
@@ -32,11 +32,13 @@ export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (
     .then((adaptedMovies) => dispatch(loadFavoriteMovies(adaptedMovies)))
 );
 
-export const sendFavoriteMovieByID = (id, status, requestBody) => (dispatch, _getState, api) => (
-  api.post(`/favorite/${id}/${status}`, requestBody)
-    .then(({data}) => adaptMovieToClient(data))
-    // .then((adaptedMovie) => dispatch(loadFavoriteMovies(adaptedMovie)))
-);
+export const changeFavoriteMovieByID = (id, status) => (dispatch, _getState, api) => {
+  return (
+    api.post(`/favorite/${id}/${status}`)
+      .then(({data}) => adaptMovieToClient(data))
+      .then((adaptedMovie) => dispatch(loadMovieByID(adaptedMovie)))
+  );
+};
 
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(APIRoute.PROMO_MOVIE)
