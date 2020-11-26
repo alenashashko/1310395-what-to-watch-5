@@ -51,9 +51,6 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       dispatch(loadAuthorizationInfo(data));
       dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH));
     })
-    .catch((err) => {
-      throw err;
-    })
 );
 
 export const login = (requestBody) => (dispatch, _getState, api) => (

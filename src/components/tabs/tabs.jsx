@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
@@ -8,11 +8,11 @@ import MovieReviews from '../movie-reviews/movie-reviews';
 import {TabType, TAB_NAMES} from '../../const';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 
-const Tabs = (props) => {
-  const {activeTab, onTabClick, movie} = props;
-  const id = movie.id;
+class Tabs extends PureComponent {
+  _getComponentByTab(tabName) {
+    const {movie} = this.props;
+    const {id} = this.props.movie;
 
-  const getComponentByTab = (tabName) => {
     switch (tabName) {
       case TabType.DETAILS:
         return <MovieDetails movie={movie} />;
@@ -21,31 +21,35 @@ const Tabs = (props) => {
       default:
         return <MovieOverview movie={movie} />;
     }
-  };
+  }
 
-  return (
-    <React.Fragment>
-      <nav className="movie-nav movie-card__nav">
-        <ul className="movie-nav__list">
-          {TAB_NAMES.map((tab) =>
-            <li
-              key={tab}
-              className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
-              <a href="#" className="movie-nav__link"
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  onTabClick(tab);
-                }}>
-                {tab}
-              </a>
-            </li>)}
-        </ul>
-      </nav>
+  render() {
+    const {activeTab, onTabClick} = this.props;
 
-      {getComponentByTab(activeTab)}
-    </React.Fragment>
-  );
-};
+    return (
+      <React.Fragment>
+        <nav className="movie-nav movie-card__nav">
+          <ul className="movie-nav__list">
+            {TAB_NAMES.map((tab) =>
+              <li
+                key={tab}
+                className={`movie-nav__item ${activeTab === tab ? `movie-nav__item--active` : ``}`}>
+                <a href="#" className="movie-nav__link"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    onTabClick(tab);
+                  }}>
+                  {tab}
+                </a>
+              </li>)}
+          </ul>
+        </nav>
+
+        {this._getComponentByTab(activeTab)}
+      </React.Fragment>
+    );
+  }
+}
 
 Tabs.propTypes = {
   activeTab: PropTypes.string.isRequired,

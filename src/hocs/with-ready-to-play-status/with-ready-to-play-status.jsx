@@ -15,18 +15,14 @@ const withReadyToPlayStatus = (Component) => {
         isDelayCompleted: false,
         isVideoReadyToPlay: false
       };
+
+      this._onCanPlayThrough = this._onCanPlayThrough.bind(this);
     }
 
     componentDidMount() {
       const video = this._videoRef.current;
 
       video.src = this.props.videoSrc;
-
-      video.oncanplaythrough = () => {
-        this.setState({
-          isVideoReadyToPlay: true
-        });
-      };
 
       this._timerId = setTimeout(() => this.setState({
         isDelayCompleted: true
@@ -42,11 +38,13 @@ const withReadyToPlayStatus = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
-
-      video.oncanplaythrough = null;
-
       clearTimeout(this._timerId);
+    }
+
+    _onCanPlayThrough() {
+      this.setState({
+        isVideoReadyToPlay: true
+      });
     }
 
     render() {
@@ -56,7 +54,8 @@ const withReadyToPlayStatus = (Component) => {
       return (
         <Component
           {...restProps}
-          videoRef={this._videoRef}/>
+          videoRef={this._videoRef}
+          onCanPlayThrough={this._onCanPlayThrough}/>
       );
     }
   }
