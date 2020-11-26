@@ -111,7 +111,10 @@ export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     generateWithFetchedData(
         (state) => !!getMovie(state),
-        (props) => props.fetchMovieByIDAction(props.id)
+        (props) => {
+          props.fetchMovieByIDAction(props.id);
+
+        }
     )(
         MoviePage
     )

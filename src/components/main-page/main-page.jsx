@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 
 import proptypes from '../../type';
 import GenresList from '../genres-list/genres-list';
@@ -10,13 +9,15 @@ import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import AddToMyListButton from '../add-to-my-list-button/add-to-my-list-button';
 import PlayButton from '../play-button/play-button';
-import {fetchPromoMovie} from '../../store/api-actions';
-import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getMovie} from '../../store/selectors';
+import withPromoLoaded from '../../hocs/with-promo-loaded/with-promo-loaded';
 import {CINEMA_NAME} from '../../const';
 
 const MainPage = (props) => {
-  const {promoMovie} = props;
+  const {promoMovie, wasPromoLoaded} = props;
+
+  if (wasPromoLoaded === false) {
+    return null;
+  }
 
   return (
     <React.Fragment>
@@ -68,26 +69,9 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  promoMovie: proptypes.movie,
-  fetchPromoMovieAction: PropTypes.func.isRequired
+  promoMovie: proptypes.movieNotRequired,
+  wasPromoLoaded: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  promoMovie: getMovie(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchPromoMovieAction() {
-    dispatch(fetchPromoMovie());
-  }
-});
-
 export {MainPage};
-export default connect(mapStateToProps, mapDispatchToProps)(
-    generateWithFetchedData(
-        (state) => !!getMovie(state),
-        (props) => props.fetchPromoMovieAction()
-    )(
-        MainPage
-    )
-);
+export default withPromoLoaded(MainPage);

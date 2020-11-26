@@ -3,7 +3,7 @@ import {Switch, Route, Router} from 'react-router-dom';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 
-import MainPage from '../main-page/main-page';
+import MainPageWrapped from '../main-page/main-page';
 import AuthPage from '../auth-page/auth-page';
 import MyListPage from '../my-list-page/my-list-page';
 import MoviePage from '../movie-page/movie-page';
@@ -25,7 +25,7 @@ const App = (props) => {
     <Router history={browserHistory} basename={AppRoute.ROOT}>
       <Switch>
         <Route exact path={AppRoute.ROOT} >
-          <MainPage />
+          <MainPageWrapped />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
           <AuthPage />

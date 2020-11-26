@@ -29,6 +29,25 @@ export default {
     starring: arrayOf(string.isRequired).isRequired,
     isFavorite: bool.isRequired
   }).isRequired,
+  movieNotRequired: shape({
+    id: string.isRequired,
+    title: string.isRequired,
+    picture: string.isRequired,
+    backgroundPicture: string.isRequired,
+    backgroundColor: string.isRequired,
+    poster: string.isRequired,
+    genre: string.isRequired,
+    year: number.isRequired,
+    ratingScore: number.isRequired,
+    ratingCount: number.isRequired,
+    src: string.isRequired,
+    previewSrc: string.isRequired,
+    duration: number.isRequired,
+    description: string.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired).isRequired,
+    isFavorite: bool.isRequired
+  }),
   movies: arrayOf(
       shape({
         id: string.isRequired,
