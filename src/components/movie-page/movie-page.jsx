@@ -16,6 +16,7 @@ import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched
 import {getMovie} from '../../store/selectors';
 import {getAuthorizationStatus} from '../../store/selectors';
 import {AuthorizationStatus, CINEMA_NAME} from '../../const';
+import {checkMovieIsLoaded} from '../../utils';
 
 const MoviePage = (props) => {
   const {movie, authorizationStatus} = props;
@@ -110,11 +111,8 @@ const mapDispatchToProps = (dispatch) => ({
 export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     generateWithFetchedData(
-        (state) => !!getMovie(state),
-        (props) => {
-          props.fetchMovieByIDAction(props.id);
-
-        }
+        (state, props) => checkMovieIsLoaded(state, props),
+        (props) => props.fetchMovieByIDAction(props.id)
     )(
         MoviePage
     )

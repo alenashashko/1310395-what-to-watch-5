@@ -23,8 +23,8 @@ export const generateWithFetchedData = (getCanBeRendered, fetchData) => (Compone
     canBeRendered: PropTypes.bool.isRequired
   };
 
-  const mapStateToProps = (state) => ({
-    canBeRendered: getCanBeRendered(state)
+  const mapStateToProps = (state, props) => ({
+    canBeRendered: getCanBeRendered(state, props)
   });
 
   return connect(mapStateToProps)(WithFetchedData);

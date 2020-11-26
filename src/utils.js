@@ -1,4 +1,5 @@
 import {MillisecondsInTimePeriod} from './const';
+import {getMovie} from './store/selectors';
 
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -58,3 +59,9 @@ export function launchIntoFullscreen(element) {
     element.msRequestFullscreen();
   }
 }
+
+export const checkMovieIsLoaded = (state, props) => {
+  const movie = getMovie(state);
+
+  return !!movie && movie.id === props.id;
+};

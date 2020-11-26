@@ -4,7 +4,7 @@ import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 
 import proptypes from '../../type';
-import {formatMovieDuration} from '../../utils';
+import {formatMovieDuration, checkMovieIsLoaded} from '../../utils';
 import withPlayerManager from '../../hocs/with-player-manager/with-player-manager';
 import {MS_IN_SEC, ABSENT_PROGRESS_IN_PERSENT, FULL_PROGRESS_IN_PERCENT} from '../../const';
 import {fetchMovieByID} from '../../store/api-actions';
@@ -140,7 +140,7 @@ const mapDispatchToProps = (dispatch) => ({
 export {PlayerPage};
 export default connect(mapStateToProps, mapDispatchToProps)(withPlayerManager(withRouter(
     generateWithFetchedData(
-        (state) => !!getMovie(state),
+        (state, props) => checkMovieIsLoaded(state, props),
         (props) => props.fetchMovieByIDAction(props.id)
     )(PlayerPage)
 ))

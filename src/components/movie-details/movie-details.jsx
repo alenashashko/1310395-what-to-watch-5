@@ -4,7 +4,6 @@ import proptypes from '../../type';
 
 const MovieDetails = (props) => {
   const {movie} = props;
-  // duration 1h 39m
 
   return (
     <div className="movie-card__text movie-card__row">
