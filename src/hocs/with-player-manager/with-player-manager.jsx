@@ -26,6 +26,12 @@ const withPlayerManager = (Component) => {
       this.destroy = this.destroy.bind(this);
     }
 
+    componentDidMount() {
+      this.setState({
+        isPlaying: true
+      });
+    }
+
     onFullScreenButtonClick() {
       if (this.state.isFullscreenMode) {
         exitFullscreen();

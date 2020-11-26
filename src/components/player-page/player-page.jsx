@@ -57,6 +57,7 @@ class PlayerPage extends PureComponent {
           className="player__video"
           src={movie.src}
           poster={movie.backgroundPicture}
+          autoPlay
         />
 
         <button onClick={this._onExitClick} type="button" className="player__exit">Exit</button>
