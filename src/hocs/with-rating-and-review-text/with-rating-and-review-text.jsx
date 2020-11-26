@@ -13,7 +13,7 @@ const withRatingAndReviewText = (Component) => {
       super();
 
       this.state = {
-        ratingValue: 5,
+        ratingValue: null,
         reviewText: ``
       };
 

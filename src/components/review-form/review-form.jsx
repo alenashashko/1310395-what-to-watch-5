@@ -22,12 +22,31 @@ const ReviewForm = (props) => {
     <form onSubmit={onFormSubmit} action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
+          {ratingValue === null ? (
+            <input
+              id={`star-hidden`}
+              name="rating"
+              className={`rating__input visually-hidden`}
+              type="radio"
+              defaultChecked={true}
+            />
+          ) : null}
+
           {ratings.map((it, index) => {
+            const isChecked = ratingValue ? ratingValue === index + 1 : false;
+
             return (
               <React.Fragment key={index}>
-                <input className="rating__input" id={`star-${index + 1}`} type="radio"
-                  name="rating" value={index + 1} defaultChecked={ratingValue > index}/>
-                <label onClick={() => onRatingChange(index + 1)}
+                <input
+                  id={`star-${index + 1}`}
+                  className="rating__input"
+                  type="radio"
+                  value={index + 1}
+                  name="rating"
+                  checked={isChecked}
+                  onChange={() => onRatingChange(index + 1)}
+                />
+                <label
                   className="rating__label" htmlFor={`star-${index + 1}`}>{`Rating ${index + 1}`}</label>
               </React.Fragment>
             );
@@ -51,7 +70,7 @@ const ReviewForm = (props) => {
           <button
             className="add-review__btn"
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || ratingValue === null || reviewText.length < 50}
           >
             Post
           </button>
@@ -69,7 +88,7 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
-  ratingValue: proptypes.ratingValue,
+  ratingValue: PropTypes.number,
   reviewText: proptypes.reviewText,
   onFormSubmit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
