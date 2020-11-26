@@ -2,7 +2,6 @@ import {
   loadMovies,
   loadMovieByID,
   loadFavoriteMovies,
-  loadPromoMovie,
   changeAuthorizationStatus,
   loadAuthorizationInfo,
   loadCommentsByID,
@@ -43,7 +42,7 @@ export const changeFavoriteMovieByID = (id, status) => (dispatch, _getState, api
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(APIRoute.PROMO_MOVIE)
   .then(({data}) => adaptMovieToClient(data))
-  .then((movie) => dispatch(loadPromoMovie(movie)))
+  .then((movie) => dispatch(loadMovieByID(movie)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

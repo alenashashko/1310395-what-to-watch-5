@@ -9,7 +9,7 @@ import UserBlock from '../user-block/user-block';
 import Logo from '../logo/logo';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getCurrentMovie} from '../../store/selectors';
+import {getMovie} from '../../store/selectors';
 import {CINEMA_NAME} from '../../const';
 
 const AddReviewPage = (props) => {
@@ -61,7 +61,7 @@ AddReviewPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state)
+  movie: getMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) => ({
 export {AddReviewPage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     generateWithFetchedData(
-        (state) => !!getCurrentMovie(state),
+        (state) => !!getMovie(state),
         (props) => props.fetchMovieByIDAction(props.id)
     )(
         AddReviewPage

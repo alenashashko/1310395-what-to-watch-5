@@ -13,7 +13,7 @@ import TabsWrapped from '../tabs/tabs';
 import UserBlock from '../user-block/user-block';
 import {fetchMovieByID, changeFavoriteMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getCurrentMovie} from '../../store/selectors';
+import {getMovie} from '../../store/selectors';
 import {getAuthorizationStatus} from '../../store/selectors';
 import {AuthorizationStatus, CINEMA_NAME} from '../../const';
 
@@ -94,7 +94,7 @@ MoviePage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state),
+  movie: getMovie(state),
   authorizationStatus: getAuthorizationStatus(state)
 });
 
@@ -110,7 +110,7 @@ const mapDispatchToProps = (dispatch) => ({
 export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(
     generateWithFetchedData(
-        (state) => !!getCurrentMovie(state),
+        (state) => !!getMovie(state),
         (props) => props.fetchMovieByIDAction(props.id)
     )(
         MoviePage

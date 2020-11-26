@@ -21,16 +21,12 @@ export const getMovies = (state) => {
   return state.DATA.movies;
 };
 
-export const getCurrentMovie = (state) => {
-  return state.DATA.currentMovie;
+export const getMovie = (state) => {
+  return state.DATA.movie;
 };
 
 export const getFavoriteMovies = (state) => {
   return state.DATA.favoriteMovies;
-};
-
-export const getPromoMovie = (state) => {
-  return state.DATA.promoMovie;
 };
 
 export const getComments = (state) => {

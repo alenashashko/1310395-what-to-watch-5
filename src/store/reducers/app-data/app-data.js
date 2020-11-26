@@ -3,9 +3,8 @@ import {extend} from '../../../utils';
 
 const initialState = {
   movies: null,
-  currentMovie: null,
+  movie: null,
   favoriteMovies: null,
-  promoMovie: null,
   comments: null,
   errorText: null
 };
@@ -18,15 +17,11 @@ const appData = (state = initialState, action) => {
       });
     case ActionType.LOAD_MOVIE:
       return extend(state, {
-        currentMovie: action.payload
+        movie: action.payload
       });
     case ActionType.LOAD_FAVORITE_MOVIES:
       return extend(state, {
         favoriteMovies: action.payload
-      });
-    case ActionType.LOAD_PROMO_MOVIE:
-      return extend(state, {
-        promoMovie: action.payload
       });
     case ActionType.LOAD_COMMENTS:
       return extend(state, {

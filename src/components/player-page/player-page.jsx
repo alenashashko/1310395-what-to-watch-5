@@ -9,7 +9,7 @@ import withPlayerManager from '../../hocs/with-player-manager/with-player-manage
 import {MS_IN_SEC, ABSENT_PROGRESS_IN_PERSENT, FULL_PROGRESS_IN_PERCENT} from '../../const';
 import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
-import {getCurrentMovie} from '../../store/selectors';
+import {getMovie} from '../../store/selectors';
 
 class PlayerPage extends PureComponent {
   constructor(props) {
@@ -128,7 +128,7 @@ PlayerPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movie: getCurrentMovie(state)
+  movie: getMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -140,7 +140,7 @@ const mapDispatchToProps = (dispatch) => ({
 export {PlayerPage};
 export default connect(mapStateToProps, mapDispatchToProps)(withPlayerManager(withRouter(
     generateWithFetchedData(
-        (state) => !!getCurrentMovie(state),
+        (state) => !!getMovie(state),
         (props) => props.fetchMovieByIDAction(props.id)
     )(PlayerPage)
 ))
