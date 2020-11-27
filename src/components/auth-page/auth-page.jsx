@@ -21,8 +21,8 @@ class AuthPage extends PureComponent {
   render() {
     const {
       authorizationStatus,
-      forwardLoginRef,
-      forwardPasswordRef,
+      loginForwardRef,
+      passwordForwardRef,
       isValidEmail,
       handleEmailInput,
       handleSubmit
@@ -53,7 +53,7 @@ class AuthPage extends PureComponent {
                 <input
                   style={isValidEmail ? {} : {border: `2px solid #a8421e`}}
                   onInput={handleEmailInput}
-                  ref={forwardLoginRef}
+                  ref={loginForwardRef}
                   className="sign-in__input"
                   type="email"
                   placeholder="Email address"
@@ -67,7 +67,7 @@ class AuthPage extends PureComponent {
               </div>
               <div className="sign-in__field">
                 <input
-                  ref={forwardPasswordRef}
+                  ref={passwordForwardRef}
                   className="sign-in__input"
                   type="password"
                   placeholder="Password"
@@ -95,8 +95,8 @@ class AuthPage extends PureComponent {
 AuthPage.propTypes = {
   redirectToMainPage: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  forwardLoginRef: PropTypes.object.isRequired,
-  forwardPasswordRef: PropTypes.object.isRequired,
+  loginForwardRef: PropTypes.object.isRequired,
+  passwordForwardRef: PropTypes.object.isRequired,
   isValidEmail: PropTypes.bool.isRequired,
   handleEmailInput: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired

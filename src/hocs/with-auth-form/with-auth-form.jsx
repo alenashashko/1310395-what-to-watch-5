@@ -17,12 +17,12 @@ const withAuthForm = (Component) => {
         isValidEmail: true
       };
 
-      this._handleLoginInput = this._handleEmailInput.bind(this);
+      this._handleEmailInput = this._handleEmailInput.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
     }
 
     _handleEmailInput() {
-      if (!checkEmailValidity(this._loginRef.current.value)) { // ?
+      if (!checkEmailValidity(this._loginRef.current.value)) {
         this.setState({
           isValidEmail: false
         });
@@ -48,8 +48,8 @@ const withAuthForm = (Component) => {
       return (
         <Component
           {...this.props}
-          forwardLoginRef={this._loginRef}
-          forwardPasswordRef={this._passwordRef}
+          loginForwardRef={this._loginRef}
+          passwordForwardRef={this._passwordRef}
           isValidEmail={this.state.isValidEmail}
           handleEmailInput={this._handleEmailInput}
           handleSubmit={this._handleSubmit}

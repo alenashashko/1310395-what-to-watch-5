@@ -108,8 +108,8 @@ const withPlayerManager = (Component) => {
         <Component
           {...this.props}
           {...this.state}
-          forwardContainerRef={this._containerRef}
-          forwardVideoRef={this._videoRef}
+          containerForwaardRef={this._containerRef}
+          videoForwardRef={this._videoRef}
           onFullScreenButtonClick={this.onFullScreenButtonClick}
           onPlayButtonClick={this.onPlayButtonClick}
           onPauseButtonClick={this.onPauseButtonClick}

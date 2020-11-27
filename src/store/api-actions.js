@@ -59,6 +59,7 @@ export const login = (requestBody) => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(loadAuthorizationInfo(data)))
     .then(() => dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH)))
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
+    .catch(() => {}) // do
 );
 
 export const fetchCommentsListByID = (id) => (dispatch, _getState, api) => (

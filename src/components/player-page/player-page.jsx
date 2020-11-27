@@ -32,8 +32,8 @@ class PlayerPage extends PureComponent {
       duration,
       playbackTime,
       isPlaying,
-      forwardContainerRef,
-      forwardVideoRef,
+      containerForwardRef,
+      videoForwardRef,
       onCanPlayThrough,
       onTimeUpdate,
       onVideoEnded,
@@ -48,9 +48,9 @@ class PlayerPage extends PureComponent {
       ABSENT_PROGRESS_IN_PERSENT : (playbackTime / duration) * FULL_PROGRESS_IN_PERCENT;
 
     return (
-      <div className="player" ref={forwardContainerRef}>
+      <div className="player" ref={containerForwardRef}>
         <video
-          ref={forwardVideoRef}
+          ref={videoForwardRef}
           onCanPlayThrough={onCanPlayThrough}
           onTimeUpdate={onTimeUpdate}
           onEnded={onVideoEnded}
@@ -60,7 +60,12 @@ class PlayerPage extends PureComponent {
           autoPlay
         />
 
-        <button onClick={this._onExitClick} type="button" className="player__exit">Exit</button>
+        <button
+          onClick={this._onExitClick}
+          type="button"
+          className="player__exit">
+            Exix
+        </button>
 
         <div className="player__controls">
           <div className="player__controls-row">
@@ -71,7 +76,11 @@ class PlayerPage extends PureComponent {
                 value={progressInPercent}
                 max="100"
               />
-              <div className="player__toggler" style={{left: `${progressInPercent}%`}}>Toggler</div>
+              <div
+                className="player__toggler"
+                style={{left: `${progressInPercent}%`}}>
+                Toggler
+              </div>
             </div>
             <div className="player__time-value">{formatMovieDuration(msLeft)}</div>
           </div>
@@ -95,7 +104,10 @@ class PlayerPage extends PureComponent {
 
             <div className="player__name">{movie.title}</div>
 
-            <button onClick={onFullScreenButtonClick} type="button" className="player__full-screen">
+            <button
+              onClick={onFullScreenButtonClick}
+              type="button"
+              className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>
@@ -112,8 +124,8 @@ PlayerPage.propTypes = {
   id: proptypes.id,
   movie: proptypes.movie,
   history: proptypes.history,
-  forwardContainerRef: PropTypes.object.isRequired,
-  forwardVideoRef: PropTypes.object.isRequired,
+  containerForwardRef: PropTypes.object.isRequired,
+  videoForwardRef: PropTypes.object.isRequired,
   duration: PropTypes.number.isRequired,
   playbackTime: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
