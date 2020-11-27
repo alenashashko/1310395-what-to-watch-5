@@ -105,7 +105,7 @@ const ReviewForm = (props) => {
 
 ReviewForm.propTypes = {
   movieBackgroundColor: PropTypes.string.isRequired,
-  ratingValue: PropTypes.number.isRequired,
+  ratingValue: PropTypes.number,
   reviewText: PropTypes.string.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,

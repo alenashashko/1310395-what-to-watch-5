@@ -7,7 +7,8 @@ import {
   loadCommentsByID,
   redirectToRoute,
   saveErrorText,
-  changeCommentLoadingStatus
+  changeCommentLoadingStatus,
+  setAuthHasError
 } from './actions';
 import {AuthorizationStatus} from '../const';
 import {adaptMovieToClient, adaptCommentToClient} from '../services/adapters';
@@ -59,7 +60,7 @@ export const login = (requestBody) => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(loadAuthorizationInfo(data)))
     .then(() => dispatch(changeAuthorizationStatus(AuthorizationStatus.AUTH)))
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
-    .catch(() => {}) // do
+    .catch(() => dispatch(setAuthHasError(true)))
 );
 
 export const fetchCommentsListByID = (id) => (dispatch, _getState, api) => (

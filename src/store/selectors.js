@@ -34,7 +34,11 @@ export const getComments = (state) => {
 };
 
 export const getErrorText = (state) => {
-  return state.DATA.errorText;
+  return state.APP.errorText;
+};
+
+export const getIsAuthError = (state) => {
+  return state.APP.isAuthError;
 };
 
 export const getIsCommentLoadingStatus = (state) => {

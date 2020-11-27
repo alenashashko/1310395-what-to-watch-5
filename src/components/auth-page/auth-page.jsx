@@ -6,7 +6,7 @@ import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import withAuthForm from '../../hocs/with-auth-form/with-auth-form';
 import {redirectToRoute} from '../../store/actions';
-import {getAuthorizationStatus} from '../../store/selectors';
+import {getAuthorizationStatus, getIsAuthError} from '../../store/selectors';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
 class AuthPage extends PureComponent {
@@ -21,6 +21,7 @@ class AuthPage extends PureComponent {
   render() {
     const {
       authorizationStatus,
+      isAuthError,
       loginForwardRef,
       passwordForwardRef,
       isValidEmail,
@@ -47,6 +48,14 @@ class AuthPage extends PureComponent {
               : <div className="sign-in__message">
                 <p>Please enter a valid email address</p>
               </div>
+            }
+            {isAuthError
+              ? <div className="sign-in__message">
+                <p>We can’t recognize this email
+                  <br/> and password combination. Please try again
+                </p>
+              </div>
+              : null
             }
             <div className="sign-in__fields">
               <div className="sign-in__field">
@@ -95,6 +104,7 @@ class AuthPage extends PureComponent {
 AuthPage.propTypes = {
   redirectToMainPage: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  isAuthError: PropTypes.bool,
   loginForwardRef: PropTypes.object.isRequired,
   passwordForwardRef: PropTypes.object.isRequired,
   isValidEmail: PropTypes.bool.isRequired,
@@ -103,7 +113,8 @@ AuthPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
+  isAuthError: getIsAuthError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

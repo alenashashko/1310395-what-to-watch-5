@@ -8,6 +8,7 @@ export const ActionType = {
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   SAVE_ERROR_TEXT: `SAVE_ERROR_TEXT`,
+  SET_LOGIN_HAS_ERROR: `SET_LOGIN_HAS_ERROR`,
   CHANGE_COMMENT_LOADING_STATUS: `CHANGE_COMMENT_LOADING_STATUS`
 };
 
@@ -71,6 +72,14 @@ export const saveErrorText = (errorText) => {
   return {
     type: ActionType.SAVE_ERROR_TEXT,
     payload: errorText
+  };
+};
+
+
+export const setAuthHasError = (isError) => {
+  return {
+    type: ActionType.SET_LOGIN_HAS_ERROR,
+    payload: isError
   };
 };
 

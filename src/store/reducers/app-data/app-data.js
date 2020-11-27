@@ -5,8 +5,7 @@ const initialState = {
   movies: null,
   movie: null,
   favoriteMovies: null,
-  comments: null,
-  errorText: null
+  comments: null
 };
 
 const appData = (state = initialState, action) => {
@@ -26,10 +25,6 @@ const appData = (state = initialState, action) => {
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
         comments: action.payload
-      });
-    case ActionType.SAVE_ERROR_TEXT:
-      return extend(state, {
-        errorText: action.payload
       });
     default:
       return state;

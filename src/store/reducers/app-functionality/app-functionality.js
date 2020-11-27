@@ -4,7 +4,9 @@ import {extend} from '../../../utils';
 
 const initialState = {
   genre: DEFAULT_MOVIES_FILTER_VALUE,
-  isCommentLoading: false
+  isCommentLoading: false,
+  errorText: null,
+  isAuthError: null
 };
 
 const appFunctionality = (state = initialState, action) => {
@@ -16,6 +18,14 @@ const appFunctionality = (state = initialState, action) => {
     case ActionType.CHANGE_COMMENT_LOADING_STATUS:
       return extend(state, {
         isCommentLoading: action.payload
+      });
+    case ActionType.SAVE_ERROR_TEXT:
+      return extend(state, {
+        errorText: action.payload
+      });
+    case ActionType.SET_LOGIN_HAS_ERROR:
+      return extend(state, {
+        isAuthError: action.payload
       });
     default:
       return state;
