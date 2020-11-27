@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
@@ -8,29 +8,40 @@ import {connect} from 'react-redux';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getGenre, getMovies} from '../../store/selectors';
 
-const GenresList = (props) => {
-  const {currentGenre, genres, changeGenreAction} = props;
+class GenresList extends PureComponent {
+  componentWillUnmount() {
+    const {changeGenreAction} = this.props;
 
-  return (
-    <ul className="catalog__genres-list">
-      {genres.map((genre) => {
-        return (
-          <li key={genre} className={`catalog__genres-item ${genre === currentGenre ? `catalog__genres-item--active` : ``}`}>
-            <a
-              onClick={(evt) => {
-                evt.preventDefault();
-                changeGenreAction(genre);
-              }}
-              href="#"
-              className="catalog__genres-link">
-              {genre}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
+    changeGenreAction(DEFAULT_MOVIES_FILTER_VALUE);
+  }
+
+  render() {
+    const {currentGenre, genres, changeGenreAction} = this.props;
+
+    return (
+      <ul className="catalog__genres-list">
+        {genres.map((genre) => {
+          return (
+            <li
+              key={genre}
+              className={`catalog__genres-item
+              ${genre === currentGenre ? `catalog__genres-item--active` : ``}`}>
+              <a
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  changeGenreAction(genre);
+                }}
+                href="#"
+                className="catalog__genres-link">
+                {genre}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+}
 
 GenresList.propTypes = {
   genres: proptypes.genres,
