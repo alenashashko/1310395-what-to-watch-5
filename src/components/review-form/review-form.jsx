@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import proptypes from '../../type';
-import withRatingAndReviewText from '../../hocs/with-rating-and-review-text/with-rating-and-review-text';
+import withRatingAndReviewText
+  from '../../hocs/with-rating-and-review-text/with-rating-and-review-text';
 import {getErrorText, getIsCommentLoadingStatus} from '../../store/selectors';
+import {increaseBrightness} from '../../utils';
+
+const TEXTAREA_BACKGROUND_COLOR_BRIGHTNESS_PERCENT_TO_INCREASE = 30;
 
 const ReviewForm = (props) => {
   const {
+    movieBackgroundColor,
     ratingValue,
     reviewText,
     onFormSubmit,
@@ -17,6 +21,11 @@ const ReviewForm = (props) => {
     isLoading
   } = props;
   const ratings = new Array(5).fill(null);
+
+  const textareaColor = increaseBrightness(
+      movieBackgroundColor,
+      TEXTAREA_BACKGROUND_COLOR_BRIGHTNESS_PERCENT_TO_INCREASE
+  );
 
   return (
     <form onSubmit={onFormSubmit} action="#" className="add-review__form">
@@ -47,14 +56,21 @@ const ReviewForm = (props) => {
                   onChange={() => onRatingChange(index + 1)}
                 />
                 <label
-                  className="rating__label" htmlFor={`star-${index + 1}`}>{`Rating ${index + 1}`}</label>
+                  className="rating__label" htmlFor={`star-${index + 1}`}>
+                  {`Rating ${index + 1}`}
+                </label>
               </React.Fragment>
             );
           })}
         </div>
       </div>
 
-      <div className="add-review__text">
+      <div
+        className="add-review__text"
+        style={{
+          backgroundColor: `${textareaColor}`,
+        }}
+      >
         <textarea
           onChange={onTextChange}
           value={reviewText}
@@ -88,8 +104,9 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
-  ratingValue: PropTypes.number,
-  reviewText: proptypes.reviewText,
+  movieBackgroundColor: PropTypes.string.isRequired,
+  ratingValue: PropTypes.number.isRequired,
+  reviewText: PropTypes.string.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,

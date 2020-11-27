@@ -5,6 +5,7 @@ export const FULL_PROGRESS_IN_PERCENT = 100;
 export const DEFAULT_MOVIES_FILTER_VALUE = `All genres`;
 export const MOVIES_PER_PAGE = 8;
 export const MINUTES_IN_HOUR = 60;
+export const EMAIL_REGEXP = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 export const MillisecondsInTimePeriod = {
   SECOND: 1000,

@@ -4,7 +4,7 @@ import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 
 import MainPageWrapped from '../main-page/main-page';
-import AuthPage from '../auth-page/auth-page';
+import AuthPageWrapped from '../auth-page/auth-page';
 import MyListPage from '../my-list-page/my-list-page';
 import MoviePage from '../movie-page/movie-page';
 import AddReviewPage from '../add-review-page/add-review-page';
@@ -28,7 +28,7 @@ const App = (props) => {
           <MainPageWrapped />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
-          <AuthPage />
+          <AuthPageWrapped />
         </Route>
         <PrivateRoute
           exact

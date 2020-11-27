@@ -49,7 +49,7 @@ const AddReviewPage = (props) => {
       </div>
 
       <div className="add-review">
-        <ReviewFormWrapped />
+        <ReviewFormWrapped movieBackgroundColor={movie.backgroundColor} />
       </div>
     </section>
   );

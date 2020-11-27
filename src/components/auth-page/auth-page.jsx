@@ -1,35 +1,15 @@
-import React, {PureComponent, createRef} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
-import {login} from '../../store/api-actions';
+import withAuthForm from '../../hocs/with-auth-form/with-auth-form';
 import {redirectToRoute} from '../../store/actions';
 import {getAuthorizationStatus} from '../../store/selectors';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
 class AuthPage extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this._loginRef = createRef();
-    this._passwordRef = createRef();
-
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
-  _handleSubmit(evt) {
-    const {onSubmit} = this.props;
-
-    evt.preventDefault();
-
-    onSubmit({
-      email: this._loginRef.current.value,
-      password: this._passwordRef.current.value,
-    });
-  }
-
   componentDidMount() {
     const {authorizationStatus, redirectToMainPage} = this.props;
 
@@ -39,7 +19,14 @@ class AuthPage extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus} = this.props;
+    const {
+      authorizationStatus,
+      forwardLoginRef,
+      forwardPasswordRef,
+      isValidEmail,
+      handleEmailInput,
+      handleSubmit
+    } = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return null;
@@ -54,16 +41,43 @@ class AuthPage extends PureComponent {
         </header>
 
         <div className="sign-in user-page__content">
-          <form onSubmit={this._handleSubmit} action="#" className="sign-in__form">
+          <form onSubmit={handleSubmit} action="#" className="sign-in__form">
+            {isValidEmail
+              ? null
+              : <div className="sign-in__message">
+                <p>Please enter a valid email address</p>
+              </div>
+            }
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input ref={this._loginRef} className="sign-in__input" type="email"
-                  placeholder="Email address" name="user-email" id="user-email" />
-                <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+                <input
+                  style={isValidEmail ? {} : {border: `2px solid #a8421e`}}
+                  onInput={handleEmailInput}
+                  ref={forwardLoginRef}
+                  className="sign-in__input"
+                  type="email"
+                  placeholder="Email address"
+                  name="user-email"
+                  id="user-email" />
+                <label
+                  className="sign-in__label visually-hidden"
+                  htmlFor="user-email">
+                  Email addres
+                </label>
               </div>
               <div className="sign-in__field">
-                <input ref={this._passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
-                <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
+                <input
+                  ref={forwardPasswordRef}
+                  className="sign-in__input"
+                  type="password"
+                  placeholder="Password"
+                  name="user-password"
+                  id="user-password" />
+                <label
+                  className="sign-in__label visually-hidden"
+                  htmlFor="user-password">
+                    Password
+                </label>
               </div>
             </div>
             <div className="sign-in__submit">
@@ -79,9 +93,13 @@ class AuthPage extends PureComponent {
 }
 
 AuthPage.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   redirectToMainPage: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  forwardLoginRef: PropTypes.object.isRequired,
+  forwardPasswordRef: PropTypes.object.isRequired,
+  isValidEmail: PropTypes.bool.isRequired,
+  handleEmailInput: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -89,13 +107,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
-  },
   redirectToMainPage() {
     dispatch(redirectToRoute(AppRoute.ROOT));
   }
 });
 
 export {AuthPage};
-export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withAuthForm(AuthPage));
