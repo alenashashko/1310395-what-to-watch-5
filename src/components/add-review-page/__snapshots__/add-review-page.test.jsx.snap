@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should AddReviewPage render correctly 1`] = `
+<section
+  className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": "#e1b0b2",
+    }
+  }
+>
+  <div
+    className="movie-card__header"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="Orlando"
+        src="/img/orlando.jpg"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link undefined"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <nav
+        className="breadcrumbs"
+      >
+        <ul
+          className="breadcrumbs__list"
+        >
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+              href="/films/1"
+              onClick={[Function]}
+            >
+              Orlando
+            </a>
+          </li>
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+            >
+              Add review
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <p>
+        UserBlockMock
+      </p>
+    </header>
+    <div
+      className="movie-card__poster movie-card__poster--small"
+    >
+      <img
+        alt="Orlando poster"
+        height="327"
+        src="/img/orlando.jpg"
+        width="218"
+      />
+    </div>
+  </div>
+  <div
+    className="add-review"
+  >
+    <p>
+      ReviewFormMock
+    </p>
+  </div>
+</section>
+`;

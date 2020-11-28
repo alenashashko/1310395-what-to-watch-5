@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from '../logo/logo';
 
-const CLASSNAME_FOR_LIGHT_LOGO_LINK = `logo__link--light`;
+import Logo from '../logo/logo';
+import {CLASSNAME_FOR_LIGHT_LOGO_LINK} from '../../const';
 
 const Footer = () => {
   return (
