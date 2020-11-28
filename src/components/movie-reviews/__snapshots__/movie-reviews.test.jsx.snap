@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MovieReviews render correctly 1`] = `
+<div
+  className="movie-card__reviews movie-card__row"
+>
+  <div
+    className="movie-card__reviews-col"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Cras aliquet varius magna, non porta ligula feugiat eget.
+    Fusce tristique felis at fermentum pharetra.
+    Aliquam id orci ut lectus varius viverra.
+    Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            Kate Muir
+          </cite>
+          <time
+            className="review__date"
+            dateTime="2020-10-19"
+          >
+            October 19, 2020
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        7,8
+      </div>
+    </div>
+  </div>
+  <div
+    className="movie-card__reviews-col"
+  >
+    <div
+      className="review"
+    >
+      <blockquote
+        className="review__quote"
+      >
+        <p
+          className="review__text"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Cras aliquet varius magna, non porta ligula feugiat eget.
+    Fusce tristique felis at fermentum pharetra.
+        </p>
+        <footer
+          className="review__details"
+        >
+          <cite
+            className="review__author"
+          >
+            John Snow
+          </cite>
+          <time
+            className="review__date"
+            dateTime="2020-10-17"
+          >
+            October 17, 2020
+          </time>
+        </footer>
+      </blockquote>
+      <div
+        className="review__rating"
+      >
+        6,4
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -24,4 +24,5 @@ PlayButton.propTypes = {
   history: proptypes.history,
 };
 
+export {PlayButton};
 export default withRouter(PlayButton);
