@@ -2,7 +2,7 @@ import {DEFAULT_MOVIES_FILTER_VALUE} from '../../../const';
 import {ActionType} from '../../actions';
 import {extend} from '../../../utils';
 
-const initialState = {
+export const initialState = {
   genre: DEFAULT_MOVIES_FILTER_VALUE,
   isCommentLoading: false,
   errorText: null,

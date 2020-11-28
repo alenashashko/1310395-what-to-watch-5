@@ -2,7 +2,7 @@ import {AuthorizationStatus} from '../../../const';
 import {ActionType} from '../../actions';
 import {extend} from '../../../utils';
 
-const initialState = {
+export const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   authorizationInfo: null
 };

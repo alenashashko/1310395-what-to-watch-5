@@ -154,7 +154,9 @@ exports[`Should MyListPage render correctly with favoriteMovies 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Bronson"
             height="175"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
             width="280"
           />
         </div>
@@ -165,7 +167,9 @@ exports[`Should MyListPage render correctly with favoriteMovies 1`] = `
             className="small-movie-card__link"
             href="/films/1"
             onClick={[Function]}
-          />
+          >
+            Bronson
+          </a>
         </h3>
       </article>
       <article
@@ -178,7 +182,9 @@ exports[`Should MyListPage render correctly with favoriteMovies 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Pulp Fiction"
             height="175"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/pulp-fiction.jpg"
             width="280"
           />
         </div>
@@ -187,9 +193,11 @@ exports[`Should MyListPage render correctly with favoriteMovies 1`] = `
         >
           <a
             className="small-movie-card__link"
-            href="/films/1"
+            href="/films/2"
             onClick={[Function]}
-          />
+          >
+            Pulp Fiction
+          </a>
         </h3>
       </article>
     </div>

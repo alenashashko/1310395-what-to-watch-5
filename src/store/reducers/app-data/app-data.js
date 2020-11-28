@@ -1,7 +1,7 @@
 import {ActionType} from '../../actions';
 import {extend} from '../../../utils';
 
-const initialState = {
+export const initialState = {
   movies: null,
   movie: null,
   favoriteMovies: null,
