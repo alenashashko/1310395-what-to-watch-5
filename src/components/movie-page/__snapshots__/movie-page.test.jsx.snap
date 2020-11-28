@@ -6,7 +6,7 @@ Array [
     className="movie-card movie-card--full"
     style={
       Object {
-        "backgroundColor": "#e1b0b2",
+        "backgroundColor": "#73B39A",
       }
     }
   >
@@ -17,8 +17,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Orlando"
-          src="/img/orlando.jpg"
+          alt="Bronson"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
         />
       </div>
       <h1
@@ -67,7 +67,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Orlando
+            Bronson
           </h2>
           <p
             className="movie-card__meta"
@@ -75,12 +75,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Crime
+              Action
             </span>
             <span
               className="movie-card__year"
             >
-              2015
+              2008
             </span>
           </p>
           <div
@@ -128,9 +128,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Orlando poster"
+            alt="Bronson poster"
             height="327"
-            src="/img/orlando.jpg"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
             width="218"
           />
         </div>
@@ -184,7 +184,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              7.8
+              3.6
             </div>
             <p
               className="movie-rating__meta"
@@ -192,12 +192,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Good
+                Normal
               </span>
               <span
                 className="movie-rating__count"
               >
-                1000
+                109661
                  ratings
               </span>
             </p>
@@ -206,22 +206,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.
-  Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-  Sed sed nisi sed augue convallis suscipit in sed felis.
-  Aliquam erat volutpat.
+              A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Wes Andreson
+                Nicolas Winding Refn
               </strong>
             </p>
             <p
@@ -229,7 +221,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson
+                Tom Hardy, Kelly Adams, Luing Andrews
               </strong>
             </p>
           </div>
@@ -298,7 +290,7 @@ Array [
     className="movie-card movie-card--full"
     style={
       Object {
-        "backgroundColor": "#e1b0b2",
+        "backgroundColor": "#73B39A",
       }
     }
   >
@@ -309,8 +301,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Orlando"
-          src="/img/orlando.jpg"
+          alt="Bronson"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
         />
       </div>
       <h1
@@ -359,7 +351,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Orlando
+            Bronson
           </h2>
           <p
             className="movie-card__meta"
@@ -367,12 +359,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Crime
+              Action
             </span>
             <span
               className="movie-card__year"
             >
-              2015
+              2008
             </span>
           </p>
           <div
@@ -413,9 +405,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Orlando poster"
+            alt="Bronson poster"
             height="327"
-            src="/img/orlando.jpg"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
             width="218"
           />
         </div>
@@ -469,7 +461,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              7.8
+              3.6
             </div>
             <p
               className="movie-rating__meta"
@@ -477,12 +469,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Good
+                Normal
               </span>
               <span
                 className="movie-rating__count"
               >
-                1000
+                109661
                  ratings
               </span>
             </p>
@@ -491,22 +483,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.
-  Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-  Sed sed nisi sed augue convallis suscipit in sed felis.
-  Aliquam erat volutpat.
+              A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Wes Andreson
+                Nicolas Winding Refn
               </strong>
             </p>
             <p
@@ -514,7 +498,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson
+                Tom Hardy, Kelly Adams, Luing Andrews
               </strong>
             </p>
           </div>

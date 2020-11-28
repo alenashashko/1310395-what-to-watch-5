@@ -28,6 +28,9 @@ export const fetchMovieByID = (id) => (dispatch, _getState, api) => (
 
 export const fetchFavoriteMoviesList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITE_MOVIES)
+    .then((data) => {
+      return data;
+    })
     .then(({data}) => data.map(adaptMovieToClient))
     .then((adaptedMovies) => dispatch(loadFavoriteMovies(adaptedMovies)))
 );

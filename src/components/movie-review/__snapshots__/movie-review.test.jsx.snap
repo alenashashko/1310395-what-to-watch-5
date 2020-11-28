@@ -10,11 +10,7 @@ exports[`Should MovieReview render correctly 1`] = `
     <p
       className="review__text"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
+      It was well acted, directed, and the music was good. But the story is yawn. Not trying to rip anybody but I checked my watch a dozen times during this movie.
     </p>
     <footer
       className="review__details"
@@ -22,20 +18,20 @@ exports[`Should MovieReview render correctly 1`] = `
       <cite
         className="review__author"
       >
-        Kate Muir
+        Jack
       </cite>
       <time
         className="review__date"
-        dateTime="2020-10-19"
+        dateTime="2020-11-03"
       >
-        October 19, 2020
+        November 03, 2020
       </time>
     </footer>
   </blockquote>
   <div
     className="review__rating"
   >
-    7,8
+    2,4
   </div>
 </div>
 `;

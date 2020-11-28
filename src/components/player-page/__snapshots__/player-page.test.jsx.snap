@@ -10,8 +10,8 @@ exports[`Should PlayerPage render correctly With paused video status 1`] = `
     onCanPlayThrough={[Function]}
     onEnded={[Function]}
     onTimeUpdate={[Function]}
-    poster="/img/orlando.jpg"
-    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+    poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
+    src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
   />
   <button
     className="player__exit"
@@ -33,13 +33,13 @@ exports[`Should PlayerPage render correctly With paused video status 1`] = `
           className="player__progress"
           max="100"
           onClick={[Function]}
-          value={0.0030303030303030307}
+          value={0.0036231884057971015}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "0.0030303030303030307%",
+              "left": "0.0036231884057971015%",
             }
           }
         >
@@ -49,7 +49,7 @@ exports[`Should PlayerPage render correctly With paused video status 1`] = `
       <div
         className="player__time-value"
       >
-        1:49:59
+        1:31:59
       </div>
     </div>
     <div
@@ -76,7 +76,7 @@ exports[`Should PlayerPage render correctly With paused video status 1`] = `
       <div
         className="player__name"
       >
-        Orlando
+        Bronson
       </div>
       <button
         className="player__full-screen"
@@ -111,8 +111,8 @@ exports[`Should PlayerPage render correctly With playing video status 1`] = `
     onCanPlayThrough={[Function]}
     onEnded={[Function]}
     onTimeUpdate={[Function]}
-    poster="/img/orlando.jpg"
-    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+    poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
+    src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
   />
   <button
     className="player__exit"
@@ -134,13 +134,13 @@ exports[`Should PlayerPage render correctly With playing video status 1`] = `
           className="player__progress"
           max="100"
           onClick={[Function]}
-          value={0.0030303030303030307}
+          value={0.0036231884057971015}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "0.0030303030303030307%",
+              "left": "0.0036231884057971015%",
             }
           }
         >
@@ -150,7 +150,7 @@ exports[`Should PlayerPage render correctly With playing video status 1`] = `
       <div
         className="player__time-value"
       >
-        1:49:59
+        1:31:59
       </div>
     </div>
     <div
@@ -177,7 +177,7 @@ exports[`Should PlayerPage render correctly With playing video status 1`] = `
       <div
         className="player__name"
       >
-        Orlando
+        Bronson
       </div>
       <button
         className="player__full-screen"

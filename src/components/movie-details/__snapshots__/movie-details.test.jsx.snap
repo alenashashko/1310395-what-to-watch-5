@@ -18,7 +18,7 @@ exports[`Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Wes Andreson
+        Nicolas Winding Refn
       </span>
     </p>
     <p
@@ -32,28 +32,13 @@ exports[`Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Bill Murray
+        Tom Hardy
         ,
         <br />
-        Edward Norton
+        Kelly Adams
         ,
         <br />
-        Jude Law
-        ,
-        <br />
-        Willem Dafoe
-        ,
-        <br />
-        Saoirse Ronan
-        ,
-        <br />
-        Tony Revoloru
-        ,
-        <br />
-        Tilda Swinton
-        ,
-        <br />
-        Tom Wilkinson
+        Luing Andrews
       </span>
     </p>
   </div>
@@ -71,7 +56,7 @@ exports[`Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1h 50m
+        1h 32m
       </span>
     </p>
     <p
@@ -85,7 +70,7 @@ exports[`Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        Crime
+        Action
       </span>
     </p>
     <p
@@ -99,7 +84,7 @@ exports[`Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        2015
+        2008
       </span>
     </p>
   </div>

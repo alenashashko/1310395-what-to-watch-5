@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="Orlando"
-        src="/img/orlando.jpg"
+        alt="Bronson"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
       />
     </div>
     <h1
@@ -60,9 +60,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="Orlando poster"
+            alt="Bronson poster"
             height="327"
-            src="/img/orlando.jpg"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
             width="218"
           />
         </div>
@@ -72,7 +72,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Orlando
+            Bronson
           </h2>
           <p
             className="movie-card__meta"
@@ -80,12 +80,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Crime
+              Action
             </span>
             <span
               className="movie-card__year"
             >
-              2015
+              2008
             </span>
           </p>
           <div

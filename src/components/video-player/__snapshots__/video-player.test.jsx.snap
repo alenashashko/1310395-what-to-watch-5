@@ -5,7 +5,7 @@ exports[`Should VideoPlayer render correctly 1`] = `
   height="175"
   muted={true}
   onCanPlayThrough={[Function]}
-  poster="/img/orlando.jpg"
+  poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
   width="280"
 />
 `;

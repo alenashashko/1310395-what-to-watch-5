@@ -1,34 +1,29 @@
-export const review = {
-  id: `1`,
-  author: `Kate Muir`,
-  date: `2020-10-19T13:38:44.769Z`,
-  rating: 7.8,
-  text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.`
-};
+import {adaptCommentToClient} from '../services/adapters';
 
-export const reviews = [
+export const apiReviews = [
   {
-    id: `1`,
-    author: `Kate Muir`,
-    date: `2020-10-19T13:38:44.769Z`,
-    rating: 7.8,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Cras aliquet varius magna, non porta ligula feugiat eget.
-    Fusce tristique felis at fermentum pharetra.
-    Aliquam id orci ut lectus varius viverra.
-    Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.`
+    id: 1,
+    user: {
+      id: 11,
+      name: `Jack`
+    },
+    rating: 2.4,
+    comment: `It was well acted, directed, and the music was good. But the story is yawn. Not trying to rip anybody but I checked my watch a dozen times during this movie.`,
+    date: `2020-11-03T13:38:44.769Z`
   },
   {
-    id: `1`,
-    author: `John Snow`,
-    date: `2020-10-17T17:12:44.769Z`,
-    rating: 6.4,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Cras aliquet varius magna, non porta ligula feugiat eget.
-    Fusce tristique felis at fermentum pharetra.`
+    id: 2,
+    user: {
+      id: 12,
+      name: `Isaac`
+    },
+    rating: 7.2,
+    comment: `A movie that will take you to another world full of emotions.`,
+    date: `2020-10-23T13:38:44.769Z`
   }
 ];
+
+export const review = adaptCommentToClient(apiReviews[0]);
+
+export const reviews = apiReviews.map(adaptCommentToClient);
+

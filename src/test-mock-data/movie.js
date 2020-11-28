@@ -1,141 +1,65 @@
-export const movie = {
-  id: `1`,
-  title: `Orlando`,
-  picture: `/img/orlando.jpg`,
-  backgroundPicture: `/img/orlando.jpg`,
-  backgroundColor: `#e1b0b2`,
-  poster: `/img/orlando.jpg`,
-  genre: `Crime`,
-  year: 2015,
-  ratingScore: 7.8,
-  ratingCount: 1000,
-  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  duration: 110,
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.
-  Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-  Sed sed nisi sed augue convallis suscipit in sed felis.
-  Aliquam erat volutpat.`,
-  director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`,
-    `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`],
-  isFavorite: false
-};
+import {adaptMovieToClient} from '../services/adapters';
 
-export const movies = [{
-  id: `1`,
-  title: `Orlando`,
-  picture: `/img/orlando.jpg`,
-  backgroundPicture: `/img/orlando.jpg`,
-  backgroundColor: `#e1b0b2`,
-  poster: `/img/orlando.jpg`,
-  genre: `Crime`,
-  year: 2015,
-  ratingScore: 7.8,
-  ratingCount: 1000,
-  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  duration: 110,
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.
-  Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-  Sed sed nisi sed augue convallis suscipit in sed felis.
-  Aliquam erat volutpat.`,
-  director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`,
-    `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`],
-  isFavorite: false
-},
-{
-  id: `2`,
-  title: `Revenant`,
-  picture: `/img/revenant.jpg`,
-  backgroundPicture: `/img/revenant.jpg`,
-  backgroundColor: `#bdad8f`,
-  poster: `/img/revenant.jpg`,
-  genre: `Romance`,
-  year: 2010,
-  ratingScore: 5.9,
-  ratingCount: 850,
-  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  duration: 145,
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.`,
-  director: `Robert Zemeckis`,
-  starring: [`Will Smith`, `Michael J. Fox`, `Harrison Ford`,
-    `Sandra Bullock`, `Betty White`, `Tom Hanks`, `Denzel Washington`],
-  isFavorite: false
-}
+export const apiMovies = [
+  {
+    "name": `Bronson`,
+    "poster_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg`,
+    "preview_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg`,
+    "background_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg`,
+    "background_color": `#73B39A`,
+    "description": `A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.`,
+    "rating": 3.6,
+    "scores_count": 109661,
+    "director": `Nicolas Winding Refn`,
+    "starring": [
+      `Tom Hardy`,
+      `Kelly Adams`,
+      `Luing Andrews`
+    ],
+    "run_time": 92,
+    "genre": `Action`,
+    "released": 2008,
+    "id": 1,
+    "is_favorite": false,
+    "video_link": `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+    "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+  },
+  {
+    "name": `Pulp Fiction`,
+    "poster_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/Pulp_Fiction.jpg`,
+    "preview_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/pulp-fiction.jpg`,
+    "background_image": `https://assets.htmlacademy.ru/intensives/javascript-3/film/background/Pulp_Fiction.jpg`,
+    "background_color": `#795433`,
+    "description": `The lives of two mob hitmen, a boxer, a gangster & his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.`,
+    "rating": 1.5,
+    "scores_count": 1635992,
+    "director": `Quentin Tarantino`,
+    "starring": [
+      `John Travolta`,
+      `Uma Thurman`,
+      `Samuel L. Jackson`
+    ],
+    "run_time": 153,
+    "genre": `Crime`,
+    "released": 1994,
+    "id": 2,
+    "is_favorite": false,
+    "video_link": `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+  }
 ];
 
-export const favoriteMovies = [{
-  id: `1`,
-  title: `Orlando`,
-  picture: `/img/orlando.jpg`,
-  backgroundPicture: `/img/orlando.jpg`,
-  backgroundColor: `#e1b0b2`,
-  poster: `/img/orlando.jpg`,
-  genre: `Crime`,
-  year: 2015,
-  ratingScore: 7.8,
-  ratingCount: 1000,
-  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  duration: 110,
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.
-  Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-  Sed sed nisi sed augue convallis suscipit in sed felis.
-  Aliquam erat volutpat.`,
-  director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`,
-    `Saoirse Ronan`, `Tony Revoloru`, `Tilda Swinton`, `Tom Wilkinson`],
-  isFavorite: true
-},
-{
-  id: `2`,
-  title: `Revenant`,
-  picture: `/img/revenant.jpg`,
-  backgroundPicture: `/img/revenant.jpg`,
-  backgroundColor: `#bdad8f`,
-  poster: `/img/revenant.jpg`,
-  genre: `Romance`,
-  year: 2010,
-  ratingScore: 5.9,
-  ratingCount: 850,
-  src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  duration: 145,
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  Cras aliquet varius magna, non porta ligula feugiat eget.
-  Fusce tristique felis at fermentum pharetra.
-  Aliquam id orci ut lectus varius viverra.
-  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
-  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.`,
-  director: `Robert Zemeckis`,
-  starring: [`Will Smith`, `Michael J. Fox`, `Harrison Ford`,
-    `Sandra Bullock`, `Betty White`, `Tom Hanks`, `Denzel Washington`],
-  isFavorite: true
-}
-];
+export const apiMovie = apiMovies[0];
+
+export const movie = adaptMovieToClient(apiMovies[0]);
+
+export const movies = apiMovies.map(adaptMovieToClient);
+
+export const apiFavoriteMovies = apiMovies.map((movieItem) => {
+  return Object.assign({}, movieItem, {[`is_favorite`]: true});
+});
+
+export const favoriteMovies = apiFavoriteMovies.map(adaptMovieToClient);
 
 export const genres = [`Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`,
   `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
