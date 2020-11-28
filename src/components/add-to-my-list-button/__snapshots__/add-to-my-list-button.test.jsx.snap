@@ -1,26 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should AddToMyListButton render correctly With UNKNOWN authorization status 1`] = `
-<button
-  className="btn btn--list movie-card__button"
-  onClick={[Function]}
-  type="button"
->
-  <svg
-    height="20"
-    viewBox="0 0 19 20"
-    width="19"
-  >
-    <use
-      xlinkHref="#add"
-    />
-  </svg>
-  <span>
-    My list
-  </span>
-</button>
-`;
-
 exports[`Should AddToMyListButton render correctly With favorite movie and AUTH authorization status 1`] = `
 <button
   className="btn btn--list movie-card__button"

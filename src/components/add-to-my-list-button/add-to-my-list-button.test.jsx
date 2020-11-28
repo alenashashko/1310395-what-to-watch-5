@@ -62,18 +62,4 @@ describe(`Should AddToMyListButton render correctly`, () => {
 
     expect(tree).toMatchSnapshot();
   });
-
-  it(`With UNKNOWN authorization status`, () => {
-    const tree = renderer
-      .create(
-          <AddToMyListButton
-            id={`1`}
-            isMovieFavorite={false}
-            changeFavoriteMovieByIDAction={noop}
-            redirectToAuthPage={noop}
-            authorizationStatus={AuthorizationStatus.UNKNOWN}
-          />).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
 });
