@@ -157,7 +157,7 @@ exports[`Should PlayerPage render correctly With playing video status 1`] = `
       className="player__controls-row"
     >
       <button
-        className="player__pause"
+        className="player__play"
         onClick={[Function]}
         type="button"
       >

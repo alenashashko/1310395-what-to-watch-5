@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import {movie} from '../../test-mock-data/movie';
 import browserHistory from '../../browser-history';
@@ -92,7 +92,7 @@ it(`should call onPauseButtonClick when clicked on pause button`, () => {
       />
   );
 
-  wrapper.find(`button.player__pause`).simulate(`click`);
+  wrapper.find(`button.player__play`).simulate(`click`);
 
   expect(onPauseButtonClick).toHaveBeenCalledTimes(1);
 });

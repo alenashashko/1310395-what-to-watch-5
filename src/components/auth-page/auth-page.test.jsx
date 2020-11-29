@@ -8,7 +8,7 @@ import {AuthorizationStatus} from '../../const';
 const noop = () => {};
 
 describe(`Should AuthPage render correctly`, () => {
-  it(`With AUTH authorization status, with auth error and invalid email`, () => {
+  it(`when user authorised with auth error and invalid email`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -31,7 +31,7 @@ describe(`Should AuthPage render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`With NO_AUTH authorization status, without auth error and with valid email`, () => {
+  it(`when user unauthorised without auth error and with valid email`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -54,7 +54,7 @@ describe(`Should AuthPage render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`With NO_AUTH authorization status, with auth error and invalid email`, () => {
+  it(`when user unauthorised, with auth error and invalid email`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>

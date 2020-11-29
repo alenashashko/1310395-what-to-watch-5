@@ -7,7 +7,7 @@ import {AuthorizationStatus} from '../../const';
 const noop = () => {};
 
 describe(`Should AddToMyListButton render correctly`, () => {
-  it(`With favorite movie and AUTH authorization status`, () => {
+  it(`With favorite movie when user authorised`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
@@ -21,7 +21,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`With favorite movie and NO_AUTH authorization status`, () => {
+  it(`With favorite movie when user unauthorised`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
@@ -35,7 +35,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`With not favorite movie and AUTH authorization status`, () => {
+  it(`With not favorite movie when user authorised`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
@@ -49,7 +49,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`With not favorite movie and NO_AUTH authorization status`, () => {
+  it(`With not favorite movie when user unauthorised`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton

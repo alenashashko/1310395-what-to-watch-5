@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import {AddToMyListButton} from './add-to-my-list-button';
 import {AuthorizationStatus} from '../../const';

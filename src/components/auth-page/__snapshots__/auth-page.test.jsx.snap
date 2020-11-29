@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should AuthPage render correctly With AUTH authorization status, with auth error and invalid email 1`] = `null`;
+exports[`Should AuthPage render correctly when user authorised with auth error and invalid email 1`] = `null`;
 
-exports[`Should AuthPage render correctly With NO_AUTH authorization status, with auth error and invalid email 1`] = `
+exports[`Should AuthPage render correctly when user unauthorised without auth error and with valid email 1`] = `
 <div
   className="user-page"
 >
@@ -49,22 +49,6 @@ exports[`Should AuthPage render correctly With NO_AUTH authorization status, wit
       onSubmit={[Function]}
     >
       <div
-        className="sign-in__message"
-      >
-        <p>
-          Please enter a valid email address
-        </p>
-      </div>
-      <div
-        className="sign-in__message"
-      >
-        <p>
-          We can’t recognize this email
-          <br />
-           and password combination. Please try again
-        </p>
-      </div>
-      <div
         className="sign-in__fields"
       >
         <div
@@ -76,11 +60,7 @@ exports[`Should AuthPage render correctly With NO_AUTH authorization status, wit
             name="user-email"
             onInput={[Function]}
             placeholder="Email address"
-            style={
-              Object {
-                "border": "2px solid #a8421e",
-              }
-            }
+            style={Object {}}
             type="email"
           />
           <label
@@ -159,7 +139,7 @@ exports[`Should AuthPage render correctly With NO_AUTH authorization status, wit
 </div>
 `;
 
-exports[`Should AuthPage render correctly With NO_AUTH authorization status, without auth error and with valid email 1`] = `
+exports[`Should AuthPage render correctly when user unauthorised, with auth error and invalid email 1`] = `
 <div
   className="user-page"
 >
@@ -206,6 +186,22 @@ exports[`Should AuthPage render correctly With NO_AUTH authorization status, wit
       onSubmit={[Function]}
     >
       <div
+        className="sign-in__message"
+      >
+        <p>
+          Please enter a valid email address
+        </p>
+      </div>
+      <div
+        className="sign-in__message"
+      >
+        <p>
+          We can’t recognize this email
+          <br />
+           and password combination. Please try again
+        </p>
+      </div>
+      <div
         className="sign-in__fields"
       >
         <div
@@ -217,7 +213,11 @@ exports[`Should AuthPage render correctly With NO_AUTH authorization status, wit
             name="user-email"
             onInput={[Function]}
             placeholder="Email address"
-            style={Object {}}
+            style={
+              Object {
+                "border": "2px solid #a8421e",
+              }
+            }
             type="email"
           />
           <label

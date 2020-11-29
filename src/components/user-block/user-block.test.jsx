@@ -7,7 +7,7 @@ import {UserBlock} from './user-block';
 import {AuthorizationStatus} from '../../const';
 
 describe(`Should UserBlock render correctly`, () => {
-  it(`with AUTH auth status`, () => {
+  it(`when user authorised`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -20,7 +20,7 @@ describe(`Should UserBlock render correctly`, () => {
 
     expect(tree).toMatchSnapshot();
   });
-  it(`with NO_AUTH auth status`, () => {
+  it(`when user unauthorised`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>

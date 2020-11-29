@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should MoviePage render correctly with AUTH auth status 1`] = `
+exports[`Should MoviePage render correctly when user authorised 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -284,7 +284,7 @@ Array [
 ]
 `;
 
-exports[`Should MoviePage render correctly with NO_AUTH auth status 1`] = `
+exports[`Should MoviePage render correctly when user unauthorised 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"

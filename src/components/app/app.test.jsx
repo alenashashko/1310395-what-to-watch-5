@@ -14,7 +14,7 @@ jest.mock(`../main-page/main-page`, () => {
 });
 
 describe(`Should App render correctly`, () => {
-  it(`With AUTH authorization status`, () => {
+  it(`when user authorised`, () => {
     const tree = renderer
       .create(
           <App
@@ -24,7 +24,7 @@ describe(`Should App render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`With NO_AUTH authorization status`, () => {
+  it(`when user unauthorised`, () => {
     const tree = renderer
       .create(
           <App

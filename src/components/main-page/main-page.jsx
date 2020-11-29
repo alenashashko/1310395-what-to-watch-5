@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import proptypes from '../../type';
-// import GenresList from '../genres-list/genres-list';
+import GenresList from '../genres-list/genres-list';
 import MainPageMoviesListWrapped from '../main-page-movies-list/main-page-movies-list';
 import UserBlock from '../user-block/user-block';
 import Logo from '../logo/logo';
@@ -58,7 +58,7 @@ const MainPage = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          {/* <GenresList /> */}
+          <GenresList />
           <MainPageMoviesListWrapped />
         </section>
 

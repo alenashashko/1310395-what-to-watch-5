@@ -1,4 +1,5 @@
 import {adaptMovieToClient} from '../services/adapters';
+import {extend} from '../utils';
 
 export const apiMovies = [
   {
@@ -56,7 +57,7 @@ export const movie = adaptMovieToClient(apiMovies[0]);
 export const movies = apiMovies.map(adaptMovieToClient);
 
 export const apiFavoriteMovies = apiMovies.map((movieItem) => {
-  return Object.assign({}, movieItem, {[`is_favorite`]: true});
+  return extend(movieItem, {[`is_favorite`]: true});
 });
 
 export const favoriteMovies = apiFavoriteMovies.map(adaptMovieToClient);

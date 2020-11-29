@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should App render correctly With AUTH authorization status 1`] = `
-<p>
-  MainPageMock
-</p>
-`;
-
-exports[`Should App render correctly With NO_AUTH authorization status 1`] = `
-<p>
-  MainPageMock
-</p>
-`;
-
 exports[`Should App render correctly With UNKNOWN authorization status 1`] = `null`;
+
+exports[`Should App render correctly when user authorised 1`] = `
+<p>
+  MainPageMock
+</p>
+`;
+
+exports[`Should App render correctly when user unauthorised 1`] = `
+<p>
+  MainPageMock
+</p>
+`;

@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should PrivateRoute render correctly with AUTH auth status 1`] = `
+exports[`Should PrivateRoute render correctly when user authorised 1`] = `
 <div>
   private div
 </div>
 `;
 
-exports[`Should PrivateRoute render correctly with NO_AUTH auth status 1`] = `null`;
+exports[`Should PrivateRoute render correctly when user unauthorised 1`] = `null`;

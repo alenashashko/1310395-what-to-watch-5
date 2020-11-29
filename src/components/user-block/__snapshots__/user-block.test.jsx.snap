@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should UserBlock render correctly with AUTH auth status 1`] = `
+exports[`Should UserBlock render correctly when user authorised 1`] = `
 <div
   className="user-block"
 >
@@ -18,7 +18,7 @@ exports[`Should UserBlock render correctly with AUTH auth status 1`] = `
 </div>
 `;
 
-exports[`Should UserBlock render correctly with NO_AUTH auth status 1`] = `
+exports[`Should UserBlock render correctly when user unauthorised 1`] = `
 <div
   className="user-block"
 >

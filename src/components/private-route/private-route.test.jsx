@@ -6,7 +6,7 @@ import {PrivateRoute} from './private-route';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
 describe(`Should PrivateRoute render correctly`, () => {
-  it(`with AUTH auth status`, () => {
+  it(`when user authorised`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -21,7 +21,7 @@ describe(`Should PrivateRoute render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`with NO_AUTH auth status`, () => {
+  it(`when user unauthorised`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>

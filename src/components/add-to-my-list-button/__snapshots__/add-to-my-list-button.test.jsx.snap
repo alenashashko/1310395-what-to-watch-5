@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should AddToMyListButton render correctly With favorite movie and AUTH authorization status 1`] = `
+exports[`Should AddToMyListButton render correctly With favorite movie when user authorised 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}
@@ -21,7 +21,7 @@ exports[`Should AddToMyListButton render correctly With favorite movie and AUTH 
 </button>
 `;
 
-exports[`Should AddToMyListButton render correctly With favorite movie and NO_AUTH authorization status 1`] = `
+exports[`Should AddToMyListButton render correctly With favorite movie when user unauthorised 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}
@@ -42,7 +42,7 @@ exports[`Should AddToMyListButton render correctly With favorite movie and NO_AU
 </button>
 `;
 
-exports[`Should AddToMyListButton render correctly With not favorite movie and AUTH authorization status 1`] = `
+exports[`Should AddToMyListButton render correctly With not favorite movie when user authorised 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}
@@ -63,7 +63,7 @@ exports[`Should AddToMyListButton render correctly With not favorite movie and A
 </button>
 `;
 
-exports[`Should AddToMyListButton render correctly With not favorite movie and NO_AUTH authorization status 1`] = `
+exports[`Should AddToMyListButton render correctly With not favorite movie when user unauthorised 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}

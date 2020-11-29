@@ -36,7 +36,7 @@ jest.mock(`../similar-movies/similar-movies`, () => {
 });
 
 describe(`Should MoviePage render correctly`, () => {
-  it(`with AUTH auth status`, () => {
+  it(`when user authorised`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -51,7 +51,7 @@ describe(`Should MoviePage render correctly`, () => {
 
     expect(tree).toMatchSnapshot();
   });
-  it(`with NO_AUTH auth status`, () => {
+  it(`when user unauthorised`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
