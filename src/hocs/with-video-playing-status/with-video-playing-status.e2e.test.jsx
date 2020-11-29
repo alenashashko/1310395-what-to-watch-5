@@ -1,8 +1,8 @@
-import React from "react";
-import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import {configure, shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-import withVideoPlayingStatus from "./with-video-playing-status";
+import withVideoPlayingStatus from './with-video-playing-status';
 
 configure({adapter: new Adapter()});
 

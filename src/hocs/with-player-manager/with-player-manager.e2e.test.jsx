@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import {configure, shallow, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import {configure, shallow, mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-import withPlayerManager from "./with-player-manager";
+import withPlayerManager from './with-player-manager';
 
 configure({adapter: new Adapter()});
 

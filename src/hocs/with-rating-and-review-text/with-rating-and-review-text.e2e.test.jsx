@@ -1,11 +1,11 @@
-import React from "react";
-import {configure, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import {configure, mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import {BrowserRouter, Route} from 'react-router-dom';
 
-import withRatingAndReviewText from "./with-rating-and-review-text";
-import {Provider} from "react-redux";
-import {createStore} from "redux";
-import {BrowserRouter, Route} from "react-router-dom";
+import withRatingAndReviewText from './with-rating-and-review-text';
 
 configure({adapter: new Adapter()});
 

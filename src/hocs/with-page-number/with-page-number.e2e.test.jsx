@@ -1,10 +1,10 @@
-import React from "react";
-import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import {configure, shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import {movies} from '../../test-mock-data/movie';
 
-import withPageNumber from "./with-page-number";
+import withPageNumber from './with-page-number';
 
 configure({adapter: new Adapter()});
 

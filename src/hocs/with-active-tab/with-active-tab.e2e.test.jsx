@@ -1,10 +1,10 @@
-import React from "react";
-import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import {configure, shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import {TabType} from '../../const';
 
-import withActiveTab from "./with-active-tab";
+import withActiveTab from './with-active-tab';
 
 configure({adapter: new Adapter()});
 

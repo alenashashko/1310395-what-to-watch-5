@@ -1,11 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {configure, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {configure, mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 
-import withAuthForm from "./with-auth-form";
-import {Provider} from "react-redux";
-import {createStore} from "redux";
+import withAuthForm from './with-auth-form';
+
 
 configure({adapter: new Adapter()});
 
