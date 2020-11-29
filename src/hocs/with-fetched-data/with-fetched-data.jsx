@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 export const generateWithFetchedData = (getCanBeRendered, fetchData) => (Component) => {
-  class WithFetchedData extends React.Component {
+  class WithFetchedData extends PureComponent {
     componentDidMount() {
       if (fetchData) {
         fetchData(this.props);

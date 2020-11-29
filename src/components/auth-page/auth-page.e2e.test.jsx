@@ -10,8 +10,8 @@ configure({adapter: new Adapter()});
 
 const mockedRef = {current: {}};
 
-it(`should call handleEmailInput on email input change`, () => {
-  const handleEmailInput = jest.fn();
+it(`should call onEmailInput on email input change`, () => {
+  const onEmailInput = jest.fn();
 
   const wrapper = shallow(
       <AuthPage
@@ -21,8 +21,8 @@ it(`should call handleEmailInput on email input change`, () => {
         loginForwardRef={mockedRef}
         passwordForwardRef={mockedRef}
         isValidEmail={true}
-        handleEmailInput={handleEmailInput}
-        handleSubmit={jest.fn()}
+        onEmailInput={onEmailInput}
+        onSubmit={jest.fn()}
       />
   );
 
@@ -32,12 +32,12 @@ it(`should call handleEmailInput on email input change`, () => {
 
   emailInput.simulate(`input`, inputEvent);
 
-  expect(handleEmailInput).toHaveBeenCalledTimes(1);
-  expect(handleEmailInput).toHaveBeenNthCalledWith(1, inputEvent);
+  expect(onEmailInput).toHaveBeenCalledTimes(1);
+  expect(onEmailInput).toHaveBeenNthCalledWith(1, inputEvent);
 });
 
-it(`should call handleSubmit on form submit`, () => {
-  const handleSubmit = jest.fn();
+it(`should call onSubmit on form submit`, () => {
+  const onSubmit = jest.fn();
 
   const wrapper = shallow(
       <AuthPage
@@ -47,8 +47,8 @@ it(`should call handleSubmit on form submit`, () => {
         loginForwardRef={mockedRef}
         passwordForwardRef={mockedRef}
         isValidEmail={true}
-        handleEmailInput={jest.fn()}
-        handleSubmit={handleSubmit}
+        onEmailInput={jest.fn()}
+        onSubmit={onSubmit}
       />
   );
 
@@ -56,10 +56,10 @@ it(`should call handleSubmit on form submit`, () => {
 
   emailInput.simulate(`submit`);
 
-  expect(handleSubmit).toHaveBeenCalledTimes(1);
+  expect(onSubmit).toHaveBeenCalledTimes(1);
 });
 
-it(`should call handleSubmit on form submit`, () => {
+it(`should call onSubmit on form submit`, () => {
   const redirectToMainPage = jest.fn();
 
   shallow(
@@ -70,8 +70,8 @@ it(`should call handleSubmit on form submit`, () => {
         loginForwardRef={mockedRef}
         passwordForwardRef={mockedRef}
         isValidEmail={true}
-        handleEmailInput={jest.fn()}
-        handleSubmit={jest.fn()}
+        onEmailInput={jest.fn()}
+        onSubmit={jest.fn()}
       />
   );
 

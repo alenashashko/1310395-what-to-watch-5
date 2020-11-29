@@ -10,7 +10,7 @@ it(`Should MovieReviews render correctly`, () => {
   const tree = renderer
     .create(
         <MovieReviews
-          id={`1`}
+          id="1"
           comments={reviews}
           fetchCommentsListByIDAction={noop}
         />).toJSON();

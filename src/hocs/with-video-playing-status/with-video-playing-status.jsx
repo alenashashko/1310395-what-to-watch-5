@@ -9,17 +9,17 @@ const withVideoPlayingStatus = (Component) => {
         isVideoPlaying: false
       };
 
-      this.handleMouseEnter = this.handleMouseEnter.bind(this);
-      this.handleMouseLeave = this.handleMouseLeave.bind(this);
+      this._handleMouseEnter = this._handleMouseEnter.bind(this);
+      this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
-    handleMouseEnter() {
+    _handleMouseEnter() {
       this.setState({
         isVideoPlaying: true
       });
     }
 
-    handleMouseLeave() {
+    _handleMouseLeave() {
       this.setState({
         isVideoPlaying: false
       });
@@ -30,8 +30,8 @@ const withVideoPlayingStatus = (Component) => {
         <Component
           {...this.props}
           isVideoPlaying={this.state.isVideoPlaying}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
+          onMouseEnter={this._handleMouseEnter}
+          onMouseLeave={this._handleMouseLeave}
         />
       );
     }

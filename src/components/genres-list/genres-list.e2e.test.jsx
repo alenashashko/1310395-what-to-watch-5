@@ -15,7 +15,7 @@ it(`should call changeGenreAction on genre link click`, () => {
   const wrapper = shallow(
       <GenresList
         genres={genres}
-        currentGenre={`All genres`}
+        currentGenre="All genres"
         changeGenreAction={changeGenreAction}
       />
   );

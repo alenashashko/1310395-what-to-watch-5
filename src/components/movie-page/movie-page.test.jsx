@@ -42,7 +42,7 @@ describe(`Should MoviePage render correctly`, () => {
           <BrowserRouter>
             <MoviePage
               movie={movie}
-              id={`1`}
+              id="1"
               fetchMovieByIDAction={noop}
               authorizationStatus={AuthorizationStatus.AUTH}
               changeFavoriteMovieByIDAction={noop}
@@ -57,7 +57,7 @@ describe(`Should MoviePage render correctly`, () => {
           <BrowserRouter>
             <MoviePage
               movie={movie}
-              id={`1`}
+              id="1"
               fetchMovieByIDAction={noop}
               authorizationStatus={AuthorizationStatus.NO_AUTH}
               changeFavoriteMovieByIDAction={noop}

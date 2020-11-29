@@ -13,7 +13,7 @@ describe(`Should AuthPage render correctly`, () => {
       .create(
           <BrowserRouter>
             <AuthPage
-              id={`1`}
+              id="1"
               isMovieFavorite={true}
               changeFavoriteMovieByIDAction={noop}
               redirectToAuthPage={noop}
@@ -23,8 +23,8 @@ describe(`Should AuthPage render correctly`, () => {
               loginForwardRef={React.createRef()}
               passwordForwardRef={React.createRef()}
               isValidEmail={false}
-              handleEmailInput={noop}
-              handleSubmit={noop}
+              onEmailInput={noop}
+              onSubmit={noop}
             />
           </BrowserRouter>).toJSON();
 
@@ -36,7 +36,7 @@ describe(`Should AuthPage render correctly`, () => {
       .create(
           <BrowserRouter>
             <AuthPage
-              id={`1`}
+              id="1"
               isMovieFavorite={true}
               changeFavoriteMovieByIDAction={noop}
               redirectToAuthPage={noop}
@@ -46,8 +46,8 @@ describe(`Should AuthPage render correctly`, () => {
               loginForwardRef={React.createRef()}
               passwordForwardRef={React.createRef()}
               isValidEmail={true}
-              handleEmailInput={noop}
-              handleSubmit={noop}
+              onEmailInput={noop}
+              onSubmit={noop}
             />
           </BrowserRouter>).toJSON();
 
@@ -59,7 +59,7 @@ describe(`Should AuthPage render correctly`, () => {
       .create(
           <BrowserRouter>
             <AuthPage
-              id={`1`}
+              id="1"
               isMovieFavorite={true}
               changeFavoriteMovieByIDAction={noop}
               redirectToAuthPage={noop}
@@ -69,8 +69,8 @@ describe(`Should AuthPage render correctly`, () => {
               loginForwardRef={React.createRef()}
               passwordForwardRef={React.createRef()}
               isValidEmail={false}
-              handleEmailInput={noop}
-              handleSubmit={noop}
+              onEmailInput={noop}
+              onSubmit={noop}
             />
           </BrowserRouter>).toJSON();
 

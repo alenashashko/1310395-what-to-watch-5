@@ -35,7 +35,7 @@ it(`should check if changed email is not valid`, () => {
 
   wrapper.find(`input[type="email"]`).instance().value = `foo`;
 
-  getWrappedComponentProps().handleEmailInput();
+  getWrappedComponentProps().onEmailInput();
 
   wrapper.update();
 
@@ -53,7 +53,7 @@ it(`should check if changed email is valid`, () => {
 
   wrapper.find(`input[type="email"]`).instance().value = `alena@mail.com`;
 
-  getWrappedComponentProps().handleEmailInput();
+  getWrappedComponentProps().onEmailInput();
 
   wrapper.update();
 

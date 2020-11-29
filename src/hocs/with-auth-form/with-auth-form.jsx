@@ -51,8 +51,8 @@ const withAuthForm = (Component) => {
           loginForwardRef={this._loginRef}
           passwordForwardRef={this._passwordRef}
           isValidEmail={this.state.isValidEmail}
-          handleEmailInput={this._handleEmailInput}
-          handleSubmit={this._handleSubmit}
+          onEmailInput={this._handleEmailInput}
+          onSubmit={this._handleSubmit}
         />
       );
     }

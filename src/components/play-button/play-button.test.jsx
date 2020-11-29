@@ -10,7 +10,7 @@ it(`Should PlayButton render correctly)`, () => {
     .create(
         <BrowserRouter>
           <PlayButton
-            id={`1`}
+            id="1"
             history={browserHistory}
           />
         </BrowserRouter>).toJSON();

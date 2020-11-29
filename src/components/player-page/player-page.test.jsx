@@ -13,7 +13,7 @@ describe(`Should PlayerPage render correctly`, () => {
     const tree = renderer
       .create(
           <PlayerPage
-            id={`1`}
+            id="1"
             movie={movie}
             history={browserHistory}
             containerForwardRef={React.createRef()}
@@ -39,7 +39,7 @@ describe(`Should PlayerPage render correctly`, () => {
     const tree = renderer
       .create(
           <PlayerPage
-            id={`1`}
+            id="1"
             movie={movie}
             history={browserHistory}
             containerForwardRef={React.createRef()}

@@ -18,7 +18,7 @@ describe(`Should ReviewForm render correctly`, () => {
             onFormSubmit={noop}
             onTextChange={noop}
             onRatingChange={noop}
-            saveErrorText={`Lorem ipsum`}
+            saveErrorText="Lorem ipsum"
             isLoading={false}
           />).toJSON();
 

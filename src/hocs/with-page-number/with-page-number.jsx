@@ -12,8 +12,8 @@ const withPageNumber = (Component) => {
         pageNumber: 1
       };
 
-      this.handleButtonClick = this.handleButtonClick.bind(this);
-      this.resetPageNumber = this.resetPageNumber.bind(this);
+      this._handleButtonClick = this._handleButtonClick.bind(this);
+      this._resetPageNumber = this._resetPageNumber.bind(this);
     }
 
     _getVisibleMovies() {
@@ -23,13 +23,13 @@ const withPageNumber = (Component) => {
       return movies.slice(0, pageNumber * MOVIES_PER_PAGE);
     }
 
-    handleButtonClick() {
+    _handleButtonClick() {
       this.setState((prevState) => ({
         pageNumber: prevState.pageNumber + 1
       }));
     }
 
-    resetPageNumber() {
+    _resetPageNumber() {
       this.setState({
         pageNumber: 1
       });
@@ -42,9 +42,9 @@ const withPageNumber = (Component) => {
         <Component
           {...this.props}
           pageNumber={this.state.pageNumber}
-          onButtonClick={this.handleButtonClick}
+          onButtonClick={this._handleButtonClick}
           visibleMovies={visibleMovies}
-          resetPageNumber={this.resetPageNumber}
+          resetPageNumber={this._resetPageNumber}
         />
       );
     }

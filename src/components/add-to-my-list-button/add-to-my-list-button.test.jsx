@@ -11,7 +11,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
-            id={`1`}
+            id="1"
             isMovieFavorite={true}
             changeFavoriteMovieByIDAction={noop}
             redirectToAuthPage={noop}
@@ -25,7 +25,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
-            id={`1`}
+            id="1"
             isMovieFavorite={true}
             changeFavoriteMovieByIDAction={noop}
             redirectToAuthPage={noop}
@@ -39,7 +39,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
-            id={`1`}
+            id="1"
             isMovieFavorite={false}
             changeFavoriteMovieByIDAction={noop}
             redirectToAuthPage={noop}
@@ -53,7 +53,7 @@ describe(`Should AddToMyListButton render correctly`, () => {
     const tree = renderer
       .create(
           <AddToMyListButton
-            id={`1`}
+            id="1"
             isMovieFavorite={false}
             changeFavoriteMovieByIDAction={noop}
             redirectToAuthPage={noop}

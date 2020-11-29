@@ -12,7 +12,7 @@ it(`Should Footer render correctly`, () => {
     .create(
         <BrowserRouter>
           <Footer
-            id={`1`}
+            id="1"
             movie={movie}
             fetchMovieByIDAction={noop}
           />

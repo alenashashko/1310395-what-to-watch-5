@@ -17,12 +17,12 @@ const withRatingAndReviewText = (Component) => {
         reviewText: ``
       };
 
-      this.handleFormSubmit = this.handleFormSubmit.bind(this);
-      this.handleTextChange = this.handleTextChange.bind(this);
-      this.handleRatingChange = this.handleRatingChange.bind(this);
+      this._handleFormSubmit = this._handleFormSubmit.bind(this);
+      this._handleTextChange = this._handleTextChange.bind(this);
+      this._handleRatingChange = this._handleRatingChange.bind(this);
     }
 
-    handleFormSubmit(evt) {
+    _handleFormSubmit(evt) {
       const {onSubmit} = this.props;
       const {id} = this.props.match.params;
       const ratingValue = this.state.ratingValue;
@@ -36,13 +36,13 @@ const withRatingAndReviewText = (Component) => {
       });
     }
 
-    handleTextChange(evt) {
+    _handleTextChange(evt) {
       this.setState({
         reviewText: evt.target.value
       });
     }
 
-    handleRatingChange(value) {
+    _handleRatingChange(value) {
       this.setState({
         ratingValue: value
       });
@@ -56,9 +56,9 @@ const withRatingAndReviewText = (Component) => {
           {...this.props}
           ratingValue={ratingValue}
           reviewText={reviewText}
-          onFormSubmit={this.handleFormSubmit}
-          onTextChange={this.handleTextChange}
-          onRatingChange={this.handleRatingChange}
+          onFormSubmit={this._handleFormSubmit}
+          onTextChange={this._handleTextChange}
+          onRatingChange={this._handleRatingChange}
         />
       );
     }

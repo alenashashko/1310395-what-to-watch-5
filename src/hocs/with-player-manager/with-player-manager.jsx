@@ -16,14 +16,14 @@ const withPlayerManager = (Component) => {
       this._containerRef = createRef();
       this._videoRef = createRef();
 
-      this.onFullScreenButtonClick = this.onFullScreenButtonClick.bind(this);
-      this.onPlayButtonClick = this.onPlayButtonClick.bind(this);
-      this.onPauseButtonClick = this.onPauseButtonClick.bind(this);
-      this.onTimeUpdate = this.onTimeUpdate.bind(this);
-      this.onProgressBarClick = this.onProgressBarClick.bind(this);
-      this.onCanPlayThrough = this.onCanPlayThrough.bind(this);
-      this.onVideoEnded = this.onVideoEnded.bind(this);
-      this.destroy = this.destroy.bind(this);
+      this._onFullScreenButtonClick = this._onFullScreenButtonClick.bind(this);
+      this._onPlayButtonClick = this._onPlayButtonClick.bind(this);
+      this._onPauseButtonClick = this._onPauseButtonClick.bind(this);
+      this._onTimeUpdate = this._onTimeUpdate.bind(this);
+      this._onProgressBarClick = this._onProgressBarClick.bind(this);
+      this._onCanPlayThrough = this._onCanPlayThrough.bind(this);
+      this._onVideoEnded = this._onVideoEnded.bind(this);
+      this._destroy = this._destroy.bind(this);
     }
 
     componentDidMount() {
@@ -32,7 +32,7 @@ const withPlayerManager = (Component) => {
       });
     }
 
-    onFullScreenButtonClick() {
+    _onFullScreenButtonClick() {
       if (this.state.isFullscreenMode) {
         exitFullscreen();
 
@@ -44,7 +44,7 @@ const withPlayerManager = (Component) => {
       }
     }
 
-    onPlayButtonClick() {
+    _onPlayButtonClick() {
       this._videoRef.current.play();
 
       this.setState({
@@ -52,7 +52,7 @@ const withPlayerManager = (Component) => {
       });
     }
 
-    onPauseButtonClick() {
+    _onPauseButtonClick() {
       this._videoRef.current.pause();
 
       this.setState({
@@ -60,7 +60,7 @@ const withPlayerManager = (Component) => {
       });
     }
 
-    destroy() {
+    _destroy() {
       const videoElement = this._videoRef.current;
 
       videoElement.pause();
@@ -68,13 +68,13 @@ const withPlayerManager = (Component) => {
       videoElement.load();
     }
 
-    onTimeUpdate(evt) {
+    _onTimeUpdate(evt) {
       this.setState({
         playbackTime: evt.target.currentTime
       });
     }
 
-    onProgressBarClick(evt) {
+    _onProgressBarClick(evt) {
       const {width, left} = evt.target.getBoundingClientRect();
 
       const currentTime = ((evt.clientX - left) / width) * this.state.duration;
@@ -86,13 +86,13 @@ const withPlayerManager = (Component) => {
       });
     }
 
-    onCanPlayThrough(evt) {
+    _onCanPlayThrough(evt) {
       this.setState({
         duration: evt.target.duration,
       });
     }
 
-    onVideoEnded(evt) {
+    _onVideoEnded(evt) {
       const videoElement = evt.target;
 
       videoElement.load();
@@ -110,14 +110,14 @@ const withPlayerManager = (Component) => {
           {...this.state}
           containerForwardRef={this._containerRef}
           videoForwardRef={this._videoRef}
-          onFullScreenButtonClick={this.onFullScreenButtonClick}
-          onPlayButtonClick={this.onPlayButtonClick}
-          onPauseButtonClick={this.onPauseButtonClick}
-          onTimeUpdate={this.onTimeUpdate}
-          onProgressBarClick={this.onProgressBarClick}
-          onCanPlayThrough={this.onCanPlayThrough}
-          onVideoEnded={this.onVideoEnded}
-          destroy={this.destroy}
+          onFullScreenButtonClick={this._onFullScreenButtonClick}
+          onPlayButtonClick={this._onPlayButtonClick}
+          onPauseButtonClick={this._onPauseButtonClick}
+          onTimeUpdate={this._onTimeUpdate}
+          onProgressBarClick={this._onProgressBarClick}
+          onCanPlayThrough={this._onCanPlayThrough}
+          onVideoEnded={this._onVideoEnded}
+          destroy={this._destroy}
         />
       );
     }

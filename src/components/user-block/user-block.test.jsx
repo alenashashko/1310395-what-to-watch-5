@@ -14,7 +14,7 @@ describe(`Should UserBlock render correctly`, () => {
             <UserBlock
               history={browserHistory}
               authorizationStatus={AuthorizationStatus.AUTH}
-              avatarUrl={`https://assets.htmlacademy.ru/intensives/javascript-3/avatar/7.jpg`}
+              avatarUrl="https://assets.htmlacademy.ru/intensives/javascript-3/avatar/7.jpg"
             />
           </BrowserRouter>).toJSON();
 

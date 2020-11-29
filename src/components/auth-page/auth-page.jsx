@@ -25,8 +25,8 @@ class AuthPage extends PureComponent {
       loginForwardRef,
       passwordForwardRef,
       isValidEmail,
-      handleEmailInput,
-      handleSubmit
+      onEmailInput,
+      onSubmit
     } = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
@@ -42,7 +42,7 @@ class AuthPage extends PureComponent {
         </header>
 
         <div className="sign-in user-page__content">
-          <form onSubmit={handleSubmit} action="#" className="sign-in__form">
+          <form onSubmit={onSubmit} action="#" className="sign-in__form">
             {isValidEmail
               ? null
               : <div className="sign-in__message">
@@ -61,7 +61,7 @@ class AuthPage extends PureComponent {
               <div className="sign-in__field">
                 <input
                   style={isValidEmail ? {} : {border: `2px solid #a8421e`}}
-                  onInput={handleEmailInput}
+                  onInput={onEmailInput}
                   ref={loginForwardRef}
                   className="sign-in__input"
                   type="email"
@@ -108,8 +108,8 @@ AuthPage.propTypes = {
   loginForwardRef: PropTypes.object.isRequired,
   passwordForwardRef: PropTypes.object.isRequired,
   isValidEmail: PropTypes.bool.isRequired,
-  handleEmailInput: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  onEmailInput: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

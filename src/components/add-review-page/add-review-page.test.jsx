@@ -28,7 +28,7 @@ it(`Should AddReviewPage render correctly`, () => {
     .create(
         <BrowserRouter>
           <AddReviewPage
-            id={`1`}
+            id="1"
             movie={movie}
           />
         </BrowserRouter>).toJSON();
