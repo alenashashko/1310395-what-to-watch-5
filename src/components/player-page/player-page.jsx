@@ -87,7 +87,7 @@ class PlayerPage extends PureComponent {
 
           <div className="player__controls-row">
             {isPlaying ? (
-              <button onClick={onPauseButtonClick} type="button" className="player__play">
+              <button onClick={onPauseButtonClick} type="button" className="player__pause">
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
                 </svg>
@@ -136,8 +136,7 @@ PlayerPage.propTypes = {
   onProgressBarClick: PropTypes.func.isRequired,
   onCanPlayThrough: PropTypes.func.isRequired,
   onVideoEnded: PropTypes.func.isRequired,
-  destroy: PropTypes.func.isRequired,
-  fetchMovieByIDAction: PropTypes.func.isRequired
+  destroy: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

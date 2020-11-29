@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -57,8 +56,7 @@ const AddReviewPage = (props) => {
 
 AddReviewPage.propTypes = {
   id: proptypes.id,
-  movie: proptypes.movie,
-  fetchMovieByIDAction: PropTypes.func.isRequired
+  movie: proptypes.movie
 };
 
 const mapStateToProps = (state) => ({

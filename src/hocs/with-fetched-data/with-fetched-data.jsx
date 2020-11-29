@@ -20,7 +20,7 @@ export const generateWithFetchedData = (getCanBeRendered, fetchData) => (Compone
   }
 
   WithFetchedData.propTypes = {
-    canBeRendered: PropTypes.bool.isRequired
+    canBeRendered: PropTypes.bool.isRequired,
   };
 
   const mapStateToProps = (state, props) => ({

@@ -1,35 +1,33 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import browserHistory from '../../browser-history';
 import {BrowserRouter} from 'react-router-dom';
 
-import {PrivateRoute} from './private-route';
-import {AuthorizationStatus, AppRoute} from '../../const';
+import {UserBlock} from './user-block';
+import {AuthorizationStatus} from '../../const';
 
-describe(`Should PrivateRoute render correctly`, () => {
+describe(`Should UserBlock render correctly`, () => {
   it(`with AUTH auth status`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
-            <PrivateRoute
+            <UserBlock
+              history={browserHistory}
               authorizationStatus={AuthorizationStatus.AUTH}
-              path={AppRoute.ROOT}
-              exact={true}
-              render={() => <div>private div</div>}
+              avatarUrl={`https://assets.htmlacademy.ru/intensives/javascript-3/avatar/7.jpg`}
             />
           </BrowserRouter>).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
-
   it(`with NO_AUTH auth status`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
-            <PrivateRoute
+            <UserBlock
+              history={browserHistory}
               authorizationStatus={AuthorizationStatus.NO_AUTH}
-              path={AppRoute.ROOT}
-              exact={true}
-              render={() => <div>private div</div>}
+              avatarUrl={undefined}
             />
           </BrowserRouter>).toJSON();
 

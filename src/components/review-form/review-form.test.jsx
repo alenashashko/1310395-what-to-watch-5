@@ -24,6 +24,7 @@ describe(`Should ReviewForm render correctly`, () => {
 
     expect(tree).toMatchSnapshot();
   });
+
   it(`without save error text`, () => {
     const tree = renderer
       .create(
@@ -40,6 +41,7 @@ describe(`Should ReviewForm render correctly`, () => {
 
     expect(tree).toMatchSnapshot();
   });
+
   it(`with loading status`, () => {
     const tree = renderer
       .create(

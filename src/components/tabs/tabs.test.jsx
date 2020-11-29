@@ -7,6 +7,15 @@ import {TabType} from '../../const';
 
 const noop = () => {};
 
+jest.mock(`../movie-reviews/movie-reviews`, () => {
+  const MovieReviewsMock = () => <p>MovieReviewsMock</p>;
+
+  return {
+    __esModule: true,
+    default: MovieReviewsMock
+  };
+});
+
 describe(`Should Tabs render correctly`, () => {
   it(`with DETAILS active tab`, () => {
     const tree = renderer

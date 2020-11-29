@@ -5,8 +5,6 @@ import {BrowserRouter} from 'react-router-dom';
 import {AddReviewPage} from './add-review-page';
 import {movie} from '../../test-mock-data/movie';
 
-const noop = () => {};
-
 jest.mock(`../user-block/user-block`, () => {
   const UserBlockMock = () => <p>UserBlockMock</p>;
 
@@ -32,7 +30,6 @@ it(`Should AddReviewPage render correctly`, () => {
           <AddReviewPage
             id={`1`}
             movie={movie}
-            fetchMovieByIDAction={noop}
           />
         </BrowserRouter>).toJSON();
 

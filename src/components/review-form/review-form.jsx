@@ -35,7 +35,7 @@ const ReviewForm = (props) => {
             <input
               id={`star-hidden`}
               name="rating"
-              className={`rating__input visually-hidden`}
+              className={`visually-hidden`}
               type="radio"
               defaultChecked={true}
             />

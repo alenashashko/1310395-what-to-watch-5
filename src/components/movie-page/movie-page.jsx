@@ -11,7 +11,7 @@ import PlayButton from '../play-button/play-button';
 import SimilarMovies from '../similar-movies/similar-movies';
 import TabsWrapped from '../tabs/tabs';
 import UserBlock from '../user-block/user-block';
-import {fetchMovieByID, changeFavoriteMovieByID} from '../../store/api-actions';
+import {fetchMovieByID} from '../../store/api-actions';
 import {generateWithFetchedData} from '../../hocs/with-fetched-data/with-fetched-data';
 import {getMovie} from '../../store/selectors';
 import {getAuthorizationStatus} from '../../store/selectors';
@@ -89,9 +89,7 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   movie: proptypes.movie,
   id: proptypes.id,
-  fetchMovieByIDAction: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  changeFavoriteMovieByIDAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -103,9 +101,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMovieByIDAction(id) {
     dispatch(fetchMovieByID(id));
   },
-  changeFavoriteMovieByIDAction(id, status) {
-    dispatch(changeFavoriteMovieByID(id, status));
-  }
 });
 
 export {MoviePage};

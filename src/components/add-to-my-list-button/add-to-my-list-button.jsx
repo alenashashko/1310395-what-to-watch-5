@@ -16,7 +16,11 @@ const AddToMyListButton = (props) => {
 
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
       redirectToAuthPage();
+
+      return false;
     }
+
+    return true;
   };
 
   return (
@@ -24,8 +28,11 @@ const AddToMyListButton = (props) => {
       ? <button
         onClick={
           () => {
-            handleAddToFavoriteButtonClick();
-            changeFavoriteMovieByIDAction(id, MovieChangeStatus.DELETE_FROM_FAVORITE);
+            const isLoggedIn = handleAddToFavoriteButtonClick();
+
+            if (isLoggedIn) {
+              changeFavoriteMovieByIDAction(id, MovieChangeStatus.DELETE_FROM_FAVORITE);
+            }
           }
         }
         className="btn btn--list movie-card__button"
@@ -38,8 +45,11 @@ const AddToMyListButton = (props) => {
       : <button
         onClick={
           () => {
-            handleAddToFavoriteButtonClick();
-            changeFavoriteMovieByIDAction(id, MovieChangeStatus.ADD_TO_FAVORITE);
+            const isLoggedIn = handleAddToFavoriteButtonClick();
+
+            if (isLoggedIn) {
+              changeFavoriteMovieByIDAction(id, MovieChangeStatus.ADD_TO_FAVORITE);
+            }
           }
         }
         className="btn btn--list movie-card__button"
