@@ -64,7 +64,7 @@ class PlayerPage extends PureComponent {
           onClick={this._onExitClick}
           type="button"
           className="player__exit">
-            Exix
+            Exit
         </button>
 
         <div className="player__controls">
