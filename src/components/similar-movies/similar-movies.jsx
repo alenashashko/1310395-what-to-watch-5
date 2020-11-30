@@ -15,12 +15,12 @@ SimilarMovies.propTypes = {
   movie: proptypes.movie
 };
 
-const mapStateToProps = (state, props) => {
+function mapStateToProps(state, props) {
   const similarMovies = getSimilarMovies(state, props.movie);
 
   return {
     movies: similarMovies
   };
-};
+}
 
 export default SimilarMovies;
