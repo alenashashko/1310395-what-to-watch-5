@@ -18,7 +18,7 @@ exports[`Should PlayerPage render correctly With paused video status 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Exix
+    Exit
   </button>
   <div
     className="player__controls"
@@ -119,7 +119,7 @@ exports[`Should PlayerPage render correctly With playing video status 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Exix
+    Exit
   </button>
   <div
     className="player__controls"
